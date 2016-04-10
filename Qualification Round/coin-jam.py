@@ -1,5 +1,11 @@
+# Copyright (c) 2016 kamyu. All rights reserved.
+#
+# Google Code Jam 2016 Qualification Round - Problem C. Coin Jam
+# https://code.google.com/codejam/contest/6254486/dashboard#s=p2
+#
 # Time:  O(N * J)
 # Space: O(N)
+#
 
 def coin_jam():
     N, J = map(int, raw_input().strip().split())
