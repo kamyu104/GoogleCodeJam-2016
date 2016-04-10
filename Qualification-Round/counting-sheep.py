@@ -1,5 +1,5 @@
-# Time:  O(P), P is the smallest power of 10 greater than N
-# Space: O(1)
+# Time:  O(PlogP) = O(10 * N * log(10 *N)) = O(NlogN), P is the smallest power of 10 greater than N
+# Space: O(logP) = O(logN)
 
 def counting_sheep():
     N = int(input())
