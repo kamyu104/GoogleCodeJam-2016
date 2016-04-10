@@ -7,4 +7,4 @@ Python solutions of Google Code Jam 2016.
 ## Qualification Round
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
-|D| [Fractiles](https://code.google.com/codejam/contest/6254486/dashboard#s=p3)| [Python](./Qualification Round/fractiles.py)| _O(K)_ | _O(1)_ | Hard | | |
+|D| [Fractiles](https://code.google.com/codejam/contest/6254486/dashboard#s=p3)| [Python](./Qualification-Round/fractiles.py)| _O(K)_ | _O(1)_ | Hard | | |
