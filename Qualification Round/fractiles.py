@@ -30,8 +30,8 @@ def fractiles():
         p = 1
         for j in xrange(C):
             p = (p - 1) * K + min(i + j, K)
-        indexes.append(p)
-    return " ".join(map(str, indexes))
+        indexes.append(str(p))
+    return " ".join(indexes)
 
 for case in xrange(input()):
     print 'Case #%d: %s' % (case+1, fractiles())
