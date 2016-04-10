@@ -1,5 +1,11 @@
+# Copyright (c) 2016 kamyu. All rights reserved.
+#
+# Google Code Jam 2016 Qualification Round - Problem A. Counting Sheep
+# https://code.google.com/codejam/contest/6254486/dashboard#s=p0
+#
 # Time:  O(PlogP) = O(10 * N * log(10 *N)) = O(NlogN), P is the smallest power of 10 greater than N
 # Space: O(logP) = O(logN)
+#
 
 def counting_sheep():
     N = int(input())
