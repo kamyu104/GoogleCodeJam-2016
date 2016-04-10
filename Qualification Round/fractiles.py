@@ -1,5 +1,11 @@
+# Copyright (c) 2016 kamyu. All rights reserved.
+#
+# Google Code Jam 2016 Qualification Round - Problem D. Fractiles
+# https://code.google.com/codejam/contest/6254486/dashboard#s=p1
+#
 # Time:  O(K)
 # Space: O(1)
+#
 
 def fractiles():
     K, C, S = map(int, raw_input().strip().split())
