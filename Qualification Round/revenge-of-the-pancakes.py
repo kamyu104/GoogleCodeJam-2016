@@ -1,5 +1,11 @@
+# Copyright (c) 2016 kamyu. All rights reserved.
+#
+# Google Code Jam 2016 Qualification Round - Problem B. Revenge of the Pancakes
+# https://code.google.com/codejam/contest/6254486/dashboard#s=p1
+#
 # Time:  O(N)
 # Space: O(1)
+#
 
 def revenge_of_the_pancakes():
     stack = raw_input().strip()
