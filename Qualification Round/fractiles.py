@@ -25,7 +25,7 @@ def fractiles():
         # So we want to check if the values of p(0)
         # in the position i ~ i + C-1 are all Ls,
         # We may choose d(j) to be min(i + j, K),
-        # thus we only need to check if the value p(C) is L
+        # thus we only need to check if the value of p(C) is L
         # to get the answer.
         p = 1
         for j in xrange(C):
