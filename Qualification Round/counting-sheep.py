@@ -17,7 +17,7 @@ def counting_sheep():
     while len(digits) != 10:  # At most O(P) times.
         cnt += N
         tmp = cnt
-        while tmp: # O(logP) times.
+        while tmp:  # O(logP) times.
             digits.add(tmp % 10)
             tmp /= 10
     return cnt
