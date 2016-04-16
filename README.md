@@ -17,4 +17,4 @@ Python solutions of Google Code Jam 2016.
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
 |A| [The Last Word](https://code.google.com/codejam/contest/4304486/dashboard#s=p0)| [Python](./Round 1A/the-last-word.py)| _O(L)_ | _O(L)_ | Easy | | |
-|B| [Rank and File](hhttps://code.google.com/codejam/contest/4304486/dashboard#s=p1)| [Python](./Round 1A/rank-and-file.py)| _O(N^2)_ | _O(N^2)_ | Easy | | |
+|B| [Rank and File](https://code.google.com/codejam/contest/4304486/dashboard#s=p1)| [Python](./Round 1A/rank-and-file.py)| _O(N^2)_ | _O(N^2)_ | Easy | | |
