@@ -9,25 +9,25 @@
 
 # Time:  O(N)
 # Space: O(N)
-def compute(N, F, used, longest_len_from_kid, first_kid_in_a_circle_from_kid):
+def compute(N, F, visited, longest_len_from_kid, first_kid_in_a_circle_from_kid):
     for i in xrange(N):
-        if i not in used:
+        if i not in visited:
             cur, length = i, 0
-            while cur not in used:
+            while cur not in visited:
                 length += 1
-                used.add(cur)
+                visited.add(cur)
                 cur = F[cur]
-            if longest_len_from_kid[cur]:  # Compute from the visited kid.
-                used_kid = cur
+            if longest_len_from_kid[cur]:  # Compute from the visited kid by its values.
+                visited_kid = cur
                 cur = i
-                while cur != used_kid:
+                while cur != visited_kid:
                     first_kid_in_a_circle_from_kid[cur] = \
-                                        first_kid_in_a_circle_from_kid[used_kid]
+                                        first_kid_in_a_circle_from_kid[visited_kid]
                     longest_len_from_kid[cur] = \
-                                        length + longest_len_from_kid[used_kid]
+                                        length + longest_len_from_kid[visited_kid]
                     length -= 1
                     cur = F[cur]
-            else:
+            else:  # No visited kid with initiated values.
                 first_kid_in_a_circle = cur
                 cur, is_through_first_kid_in_a_circle = i, False
                 while not is_through_first_kid_in_a_circle or \
@@ -48,13 +48,13 @@ def compute(N, F, used, longest_len_from_kid, first_kid_in_a_circle_from_kid):
 
 # Time:  O(N^2)
 # Space: O(N)
-def compute2(N, F, used, longest_len_from_kid, first_kid_in_a_circle_from_kid):
+def compute2(N, F, visited, longest_len_from_kid, first_kid_in_a_circle_from_kid):
     for i in xrange(N):
-        used = set()
+        visited = set()
         cur, length = i, 0
-        while cur not in used:
+        while cur not in visited:
             length += 1
-            used.add(cur)
+            visited.add(cur)
             cur = F[cur]
         longest_len_from_kid[i], first_kid_in_a_circle_from_kid[i] = length, cur
 
@@ -70,9 +70,9 @@ def BFFs():
     # the circle from the kid i.
     first_kid_in_a_circle_from_kid = [0] * N
 
-    # Compute longest_len_from_kid and first_kid_in_a_circle_from_kid by used.
-    used = set()
-    compute(N, F, used, longest_len_from_kid, first_kid_in_a_circle_from_kid)
+    # Compute longest_len_from_kid and first_kid_in_a_circle_from_kid by visited.
+    visited = set()
+    compute(N, F, visited, longest_len_from_kid, first_kid_in_a_circle_from_kid)
 
     # longest_len_to_kid[i] denotes the longest length to the kid i.
     longest_len_to_kid = [0] * N
@@ -84,14 +84,14 @@ def BFFs():
                                       longest_len_from_kid[cur] + 1)
 
     chains, circle = 0, 0
-    used = set()
+    visited = set()
     for i in xrange(N):
-        # Only check an unused kid in a circle.
-        if i not in used and first_kid_in_a_circle_from_kid[i] == i:
-            # Count the length of the circle and mark the kids in it as used.
+        # Only check an unvisited kid in a circle.
+        if i not in visited and first_kid_in_a_circle_from_kid[i] == i:
+            # Count the length of the circle and mark the kids in it as visited.
             lens, cur = [], i
-            while cur not in used:
-                used.add(cur)
+            while cur not in visited:
+                visited.add(cur)
                 lens.append(longest_len_to_kid[cur])
                 cur = F[cur]
 
