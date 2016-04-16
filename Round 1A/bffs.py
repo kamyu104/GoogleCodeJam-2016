@@ -9,6 +9,7 @@
 
 # Time:  O(N)
 # Space: O(N)
+# Optimized computation for longest_len_from_kid and first_kid_in_a_circle_from_kid.
 def compute(N, F, visited, longest_len_from_kid, first_kid_in_a_circle_from_kid):
     for i in xrange(N):
         if i not in visited:
@@ -48,6 +49,9 @@ def compute(N, F, visited, longest_len_from_kid, first_kid_in_a_circle_from_kid)
 
 # Time:  O(N^2)
 # Space: O(N)
+# Easier implemenetation but slower computation for
+# longest_len_from_kid and first_kid_in_a_circle_from_kid.
+# It can pass the judge of the code jam.
 def compute2(N, F, visited, longest_len_from_kid, first_kid_in_a_circle_from_kid):
     for i in xrange(N):
         visited = set()
