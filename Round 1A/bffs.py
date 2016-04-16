@@ -38,9 +38,9 @@ def BFFs():
             val.append(longest[u])
             u = F[u]
         if len(val) == 2:
-            chains += val[0] + val[1] + 2;
+            chains += val[0] + val[1] + 2
         cycle = max(cycle, len(val))
-    return max(chains, cycle);
+    return max(chains, cycle)
 
 
 for case in xrange(input()):
