@@ -52,7 +52,7 @@ def BFFs():
             #         connected with a circle of which length is 2.
             #         Type 1 looks like:
             #
-            #         ->->->->->O<-<-<-<-<-
+            #         ->->->->->O<-<-<-<-<-->->->->->O<-<-<-<-<-
             #                  ^^^
             #           the circle length is 2
             if len(lens) == 2:
