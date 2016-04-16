@@ -103,8 +103,8 @@ def BFFs():
             #         Type 1 looks like:
             #
             #         ->->->->->O<-<-<-<-<- ... ->->->->->O<-<-<-<-<-
-            #                  ^^^                  ^^^
-            #                   the circle length is 2
+            #                  ^^^                       ^^^
+            #         the circle length is 2    the circle length is 2
             if len(lens) == 2:
                 chains += lens[0] + lens[1]
 
