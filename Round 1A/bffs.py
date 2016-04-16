@@ -49,7 +49,7 @@ def compute(N, F, visited, longest_len_from_kid, first_kid_in_a_circle_from_kid)
 
 # Time:  O(N^2)
 # Space: O(N)
-# Easier implemenetation but slower computation for
+# Easier implementation but slower computation for
 # longest_len_from_kid and first_kid_in_a_circle_from_kid.
 # It can pass the judge of the code jam.
 def compute2(N, F, visited, longest_len_from_kid, first_kid_in_a_circle_from_kid):
