@@ -10,14 +10,14 @@
 from collections import deque
 
 def the_last_word():
-    res = deque()
+    word = deque()
     S = raw_input().strip()
     for c in S:
-        if res and c >= res[0]:
-            res.appendleft(c)
+        if word and c >= word[0]:
+            word.appendleft(c)
         else:
-            res.append(c)
-    return "".join(res)
+            word.append(c)
+    return "".join(word)
 
 
 for case in xrange(input()):
