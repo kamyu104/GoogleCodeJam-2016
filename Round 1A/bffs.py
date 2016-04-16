@@ -33,7 +33,8 @@ def BFFs():
     for i in xrange(N):
         cur = first_kid_in_a_circle_from_kid[i]
         longest_len_to_kid[cur] = max(longest_len_to_kid[cur], \
-                                      longest_len_from_kid[i] - longest_len_from_kid[cur] + 1)
+                                      longest_len_from_kid[i] - \
+                                      longest_len_from_kid[cur] + 1)
 
     chains, circle = 0, 0
     used = set()
