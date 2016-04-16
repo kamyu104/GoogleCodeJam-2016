@@ -41,10 +41,10 @@ def BFFs():
         # Only check an unused kid in a circle.
         if i not in used and first_kid_in_a_circle_from_kid[i] == i:
             # Count the length of the circle and mark the kids in it as used.
-            vals, cur = [], i
+            lens, cur = [], i
             while cur not in used:
                 used.add(cur)
-                vals.append(longest_len_to_kid[cur])
+                lens.append(longest_len_to_kid[cur])
                 cur = F[cur]
 
             # Type 1: update the max length of the 2 chains
@@ -54,8 +54,8 @@ def BFFs():
             #         ->->->->->O<-<-<-<-<-
             #                  ^^^
             #           the circle length is 2
-            if len(vals) == 2:
-                chains += vals[0] + vals[1]
+            if len(lens) == 2:
+                chains += lens[0] + lens[1]
 
             # Type 2: update the max length of the circle.
             #         Type 2 looks like:
@@ -63,7 +63,7 @@ def BFFs():
             #                   O
             #                  ^^^
             #               only a circle
-            circle = max(circle, len(vals))
+            circle = max(circle, len(lens))
 
     return max(chains, circle)
 
