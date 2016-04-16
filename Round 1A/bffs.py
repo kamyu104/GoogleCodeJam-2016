@@ -38,7 +38,7 @@ def BFFs():
             used.add(cur)
             val.append(longest[cur])
             cur = F[cur]
-        if len(val) == 2:
+        if len(val) == 2:  # Find the length of the circle is 2.
             chains += val[0] + val[1] + 2
         circle = max(circle, len(val))
     return max(chains, circle)
