@@ -11,9 +11,13 @@ def BFFs():
     N = input()
     F = [int(c) - 1 for c in raw_input().strip().split()]
 
-    lengths =[0] * N  # lengths[i] denotes the max length from the kid i.
-    to = [0] * N      # to[i] denotes the index of the first kid in
-                      # the circle from the kid i.
+    # longest_len_begins_with_kid[i] denotes the longest length from the kid i.
+    longest_len_begins_with_kid =[0] * N
+
+    # first_kid_in_a_circle_from_kid[i] denotes the index of the first kid in
+    # the circle from the kid i.
+    first_kid_in_a_circle_from_kid = [0] * N
+
     for i in xrange(N):
         used = set()
         cur, length = i, 0
@@ -21,22 +25,26 @@ def BFFs():
             length += 1
             used.add(cur)
             cur = F[cur]
-        lengths[i], to[i] = length, cur
+        longest_len_begins_with_kid[i], first_kid_in_a_circle_from_kid[i] = length, cur
 
-    longest = [0] * N  # longest[i] denotes the max length ends with the kid i.
+    # longest_len_to_kid[i] denotes the longest length ends with the kid i.
+    longest_len_to_kid = [0] * N
+
     for i in xrange(N):
-        cur = to[i]
-        longest[cur] = max(longest[cur], lengths[i] - lengths[cur])
+        cur = first_kid_in_a_circle_from_kid[i]
+        longest_len_to_kid[cur] = max(longest_len_to_kid[cur], \
+                                      longest_len_begins_with_kid[i] - longest_len_begins_with_kid[cur] + 1)
 
     chains, circle = 0, 0
     used = set()
     for i in xrange(N):
-        if i not in used and to[i] == i:  # Only check an unused kid in a circle.
+        # Only check an unused kid in a circle.
+        if i not in used and first_kid_in_a_circle_from_kid[i] == i:
             # Count the length of the circle and mark the kids in it as used.
             vals, cur = [], i
             while cur not in used:
                 used.add(cur)
-                vals.append(longest[cur])
+                vals.append(longest_len_to_kid[cur])
                 cur = F[cur]
 
             # Type 1: update the max length of the 2 chains
@@ -47,7 +55,7 @@ def BFFs():
             #                  ^^^
             #           the circle length is 2
             if len(vals) == 2:
-                chains += vals[0] + vals[1] + 2
+                chains += vals[0] + vals[1]
 
             # Type 2: update the max length of the circle.
             #         Type 2 looks like:
