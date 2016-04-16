@@ -10,8 +10,8 @@
 from collections import deque
 
 def the_last_word():
-    word = deque()
     S = raw_input().strip()
+    word = deque()
     for c in S:
         if word and c >= word[0]:
             word.appendleft(c)
