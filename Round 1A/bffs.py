@@ -64,7 +64,7 @@ def compute2(N, F, visited, longest_len_from_kid, first_kid_in_a_circle_from_kid
 
 def BFFs():
     N = input()
-    F = [int(c) - 1 for c in raw_input().strip().split()]
+    F = map(lambda c: int(c) - 1, raw_input().strip().split())
 
     # longest_len_from_kid[i] denotes the longest length from the kid i.
     longest_len_from_kid =[0] * N
