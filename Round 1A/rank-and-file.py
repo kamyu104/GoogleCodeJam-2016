@@ -17,8 +17,10 @@ def rank_and_file():
     
     file = []
     for k, v in cnt.iteritems():
+        # The count of the missing number must be odd.
         if v % 2 == 1:
             file.append(k)
+    # The order of the missing numbers must be sorted.
     file.sort(key=int)
     return " ".join(file)
 
