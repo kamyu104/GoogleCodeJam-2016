@@ -3,7 +3,7 @@
 # Google Code Jam 2016 Round 1A - Problem C. BFFs
 # https://code.google.com/codejam/contest/4304486/dashboard#s=p2
 #
-# Time:  O(N)
+# Time:  O(N^2)
 # Space: O(N)
 #
 
