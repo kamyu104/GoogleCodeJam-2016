@@ -41,10 +41,20 @@ def BFFs():
 
             # Type 1: update the max length of the 2 chains
             #         connected with a circle of which length is 2.
+            #         Type 1 looks like:
+            #
+            #         ->->->->->O<-<-<-<-<-
+            #                  ^^^
+            #           the circle length is 2
             if len(vals) == 2:
                 chains += vals[0] + vals[1] + 2
 
             # Type 2: update the max length of the circle.
+            #         Type 2 looks like:
+            #
+            #                   O
+            #                  ^^^
+            #               only a circle
             circle = max(circle, len(vals))
 
     return max(chains, circle)
