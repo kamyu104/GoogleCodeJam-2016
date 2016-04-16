@@ -11,21 +11,22 @@ def BFFs():
     N = input()
     F = [int(c) - 1 for c in raw_input().strip().split()]
 
-    length =[0] * N  # length[i] denotes the max length from the kid i
-    to = [0] * N     # to[i] denotes the index of the last kid from the kid i
+    lengths =[0] * N  # lengths[i] denotes the max length from the kid i
+    to = [0] * N      # to[i] denotes the index of the first kid in
+                      # the circle from the kid i
     for i in xrange(N):
         used = set()
-        cur, l = i, 0
+        cur, length = i, 0
         while cur not in used:
-            l += 1
+            length += 1
             used.add(cur)
             cur = F[cur]
-        length[i], to[i] = l, cur
+        lengths[i], to[i] = length, cur
 
     longest = [0] * N  # longest[i] denotes the max length ends with the kid i.
     for i in xrange(N):
         cur = to[i]
-        longest[cur] = max(longest[cur], length[i] - length[cur])
+        longest[cur] = max(longest[cur], lengths[i] - lengths[cur])
 
     chains, circle = 0, 0
     used = set()
