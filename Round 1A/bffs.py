@@ -7,6 +7,8 @@
 # Space: O(N)
 #
 
+from collections import defaultdict
+
 # Time:  O(N)
 # Space: O(N)
 # Optimized computation for longest_len_from_kid and first_kid_in_a_circle_from_kid.
@@ -77,14 +79,14 @@ def bffs():
     visited = set()
     compute(N, F, visited, longest_len_from_kid, first_kid_in_a_circle_from_kid)
 
-    # longest_len_to_kid[i] denotes the longest length to the kid i.
-    longest_len_to_kid = [0] * N
-
+    # longest_len_to_kid[i] denotes the longest length to the kid i
+    # which resides in a cricle.
+    longest_len_to_first_kid_in_a_circle = defaultdict(int)
     for i in xrange(N):
         cur = first_kid_in_a_circle_from_kid[i]
-        longest_len_to_kid[cur] = max(longest_len_to_kid[cur], \
-                                      longest_len_from_kid[i] - \
-                                      longest_len_from_kid[cur] + 1)
+        longest_len_to_first_kid_in_a_circle[cur] = \
+            max(longest_len_to_first_kid_in_a_circle[cur], \
+                longest_len_from_kid[i] - longest_len_from_kid[cur] + 1)
 
     chains, circle = 0, 0
     visited = set()
@@ -95,7 +97,7 @@ def bffs():
             lens, cur = [], i
             while cur not in visited:
                 visited.add(cur)
-                lens.append(longest_len_to_kid[cur])
+                lens.append(longest_len_to_first_kid_in_a_circle[cur])
                 cur = F[cur]
 
             # Type 1: update the max length of the 2 chains
