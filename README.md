@@ -18,4 +18,4 @@ Python solutions of Google Code Jam 2016.
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
 |A| [The Last Word](https://code.google.com/codejam/contest/4304486/dashboard#s=p0)| [Python](./Round 1A/the-last-word.py)| _O(L)_ | _O(L)_ | Easy | | Greedy |
 |B| [Rank and File](https://code.google.com/codejam/contest/4304486/dashboard#s=p1)| [Python](./Round 1A/rank-and-file.py)| _O(N^2)_ | _O(N^2)_ | Easy | | Math Analysis |
-|C| [BFFs](https://code.google.com/codejam/contest/4304486/dashboard#s=p2)| [Python](./Round 1A/bffs.py)| _O(N^2)_ | _O(N)_ | Hard | | Hash, Graph |
+|C| [BFFs](https://code.google.com/codejam/contest/4304486/dashboard#s=p2)| [Python](./Round 1A/bffs.py)| _O(N)_ | _O(N)_ | Hard | | Hash, Graph |
