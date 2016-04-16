@@ -27,7 +27,7 @@ def BFFs():
             cur = F[cur]
         longest_len_from_kid[i], first_kid_in_a_circle_from_kid[i] = length, cur
 
-    # longest_len_to_kid[i] denotes the longest length ends with the kid i.
+    # longest_len_to_kid[i] denotes the longest length to the kid i.
     longest_len_to_kid = [0] * N
 
     for i in xrange(N):
