@@ -20,17 +20,21 @@ def compute(N, F, visited, longest_len_from_kid, first_kid_in_a_circle_from_kid)
                 cur = F[cur]
 
             visited_kid = cur
-            if not longest_len_from_kid[visited_kid]:  # if visited_kid not initiated.
+            is_visited_kid_uninitiated = (longest_len_from_kid[visited_kid] == 0)
+            if is_visited_kid_uninitiated:  # if visited_kid not initiated.
                 first_kid_in_a_circle_from_kid[visited_kid] = visited_kid
 
-            cur, is_through_first_kid_in_a_circle = i, False
-            while (not longest_len_from_kid[visited_kid] and \
-                   not is_through_first_kid_in_a_circle) or \
-                  cur != visited_kid:
+            cur, is_before_the_circle = i, True
+            while is_before_the_circle or cur != visited_kid:
                 if cur == visited_kid:
-                    is_through_first_kid_in_a_circle = True
+                    # Go through to the circle only if
+                    # the visited kid hasn't been initiated.
+                    if is_visited_kid_uninitiated:
+                        is_before_the_circle = False
+                    else:
+                        break
                 # Update the kid in the chain.
-                if not is_through_first_kid_in_a_circle:
+                if is_before_the_circle:
                     first_kid_in_a_circle_from_kid[cur] = \
                                     first_kid_in_a_circle_from_kid[visited_kid]
                     longest_len_from_kid[cur] = \
