@@ -28,8 +28,9 @@ def compute(N, F, visited, longest_len_from_kid, first_kid_in_a_circle_from_kid)
 
             cur, is_before_the_circle = i, True
             while (is_visited_kid_uninitiated and is_before_the_circle) or \
-                  cur != visited_kid: # Go through into the circle only if
-                                      # the visited kid hasn't been initiated.
+                  cur != visited_kid:
+                # Go through into the circle only if
+                # the visited kid hasn't been initiated.
                 if cur == visited_kid:
                     is_before_the_circle = False
                 # Update the kids in the chain.
