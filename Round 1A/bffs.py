@@ -69,7 +69,7 @@ def bffs():
     F = map(lambda c: int(c) - 1, raw_input().strip().split())
 
     # longest_len_from_kid[i] denotes the longest length from the kid i.
-    longest_len_from_kid =[0] * N
+    longest_len_from_kid = [0] * N
 
     # first_kid_in_a_circle_from_kid[i] denotes the index of the first kid in
     # the circle from the kid i.
