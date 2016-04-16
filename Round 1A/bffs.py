@@ -18,33 +18,28 @@ def compute(N, F, visited, longest_len_from_kid, first_kid_in_a_circle_from_kid)
                 length += 1
                 visited.add(cur)
                 cur = F[cur]
-            if longest_len_from_kid[cur]:  # Compute from the visited kid by its values.
-                visited_kid = cur
-                cur = i
-                while cur != visited_kid:
+
+            visited_kid = cur
+            if not longest_len_from_kid[visited_kid]:  # if visited_kid not initiated.
+                first_kid_in_a_circle_from_kid[visited_kid] = visited_kid
+
+            cur, is_through_first_kid_in_a_circle = i, False
+            while (not longest_len_from_kid[visited_kid] and \
+                   not is_through_first_kid_in_a_circle) or \
+                  cur != visited_kid:
+                if cur == visited_kid:
+                    is_through_first_kid_in_a_circle = True
+                # Update the kid in the chain.
+                if not is_through_first_kid_in_a_circle:
                     first_kid_in_a_circle_from_kid[cur] = \
-                                        first_kid_in_a_circle_from_kid[visited_kid]
+                                    first_kid_in_a_circle_from_kid[visited_kid]
                     longest_len_from_kid[cur] = \
-                                        length + longest_len_from_kid[visited_kid]
+                                    length + longest_len_from_kid[visited_kid]
                     length -= 1
-                    cur = F[cur]
-            else:  # No visited kid with initiated values.
-                first_kid_in_a_circle = cur
-                cur, is_through_first_kid_in_a_circle = i, False
-                while not is_through_first_kid_in_a_circle or \
-                      cur != first_kid_in_a_circle:
-                    if cur == first_kid_in_a_circle:
-                        is_through_first_kid_in_a_circle = True
-                    # Update the kid in the chain.
-                    if not is_through_first_kid_in_a_circle:
-                        first_kid_in_a_circle_from_kid[cur] = \
-                                        first_kid_in_a_circle
-                        longest_len_from_kid[cur] = length
-                        length -= 1
-                    else:  # Update the kid in the circle.
-                        first_kid_in_a_circle_from_kid[cur] = cur
-                        longest_len_from_kid[cur] = length
-                    cur = F[cur]
+                else:  # Update the kid in the circle.
+                    first_kid_in_a_circle_from_kid[cur] = cur
+                    longest_len_from_kid[cur] = length
+                cur = F[cur]
 
 
 # Time:  O(N^2)
