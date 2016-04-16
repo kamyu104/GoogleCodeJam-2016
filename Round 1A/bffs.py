@@ -22,7 +22,7 @@ def BFFs():
             cur = F[cur]
         length[i], to[i] = l, cur
 
-    longest = [0] * N
+    longest = [0] * N  # longest[i] denotes the max length ends with the kid i.
     for i in xrange(N):
         cur = to[i]
         longest[cur] = max(longest[cur], length[i] - length[cur])
