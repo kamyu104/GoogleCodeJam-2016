@@ -13,6 +13,8 @@ def the_last_word():
     S = raw_input().strip()
     word = deque()
     for c in S:
+        # Use greedy strategy to put the smaller char in the back,
+        # and put the larger or equal char in the front.
         if word and c >= word[0]:
             word.appendleft(c)
         else:
