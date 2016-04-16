@@ -3,8 +3,8 @@
 # Google Code Jam 2016 Round 1A - Problem A. The Last Word
 # https://code.google.com/codejam/contest/4304486/dashboard#s=p0
 #
-# Time:  O(N), N is the length of S
-# Space: O(N)
+# Time:  O(L), L is the length of S
+# Space: O(L)
 #
 
 from collections import deque
