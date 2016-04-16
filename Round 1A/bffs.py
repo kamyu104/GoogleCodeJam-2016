@@ -35,14 +35,14 @@ def compute(N, F, visited, longest_len_from_kid, first_kid_in_a_circle_from_kid)
                         is_before_the_circle = False
                     else:
                         break
-                # Update the kid in the chain.
+                # Update the kids in the chain.
                 if is_before_the_circle:
                     first_kid_in_a_circle_from_kid[cur] = \
                                     first_kid_in_a_circle_from_kid[visited_kid]
                     longest_len_from_kid[cur] = \
                                     length + longest_len_from_kid[visited_kid]
                     length -= 1
-                else:  # Update the kid in the circle.
+                else:  # Update the kids in the circle.
                     first_kid_in_a_circle_from_kid[cur] = cur
                     longest_len_from_kid[cur] = length
                 cur = F[cur]
