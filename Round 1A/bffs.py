@@ -62,7 +62,7 @@ def compute2(N, F, visited, longest_len_from_kid, first_kid_in_a_circle_from_kid
         longest_len_from_kid[i], first_kid_in_a_circle_from_kid[i] = length, cur
 
 
-def BFFs():
+def bffs():
     N = input()
     F = map(lambda c: int(c) - 1, raw_input().strip().split())
 
@@ -120,4 +120,4 @@ def BFFs():
 
 
 for case in xrange(input()):
-    print 'Case #%d: %s' % (case+1, BFFs())
+    print 'Case #%d: %s' % (case+1, bffs())
