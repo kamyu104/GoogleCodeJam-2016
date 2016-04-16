@@ -9,7 +9,7 @@ Python solutions of Google Code Jam 2016.
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
 |A| [Counting Sheep](https://code.google.com/codejam/contest/6254486/dashboard#s=p0)| [Python](./Qualification Round/counting-sheep.py)| _O(NlogN)_ | _O(logN)_ | Easy | | Simulate |
-|B| [Revenge of the Pancakes](https://code.google.com/codejam/contest/6254486/dashboard#s=p1)| [Python](./Qualification Round/revenge-of-the-pancakes.py)| _O(N)_ | _O(1)_ | Easy | | |
+|B| [Revenge of the Pancakes](https://code.google.com/codejam/contest/6254486/dashboard#s=p1)| [Python](./Qualification Round/revenge-of-the-pancakes.py)| _O(N)_ | _O(1)_ | Easy | | Math Analysis |
 |C| [Coin Jam](https://code.google.com/codejam/contest/6254486/dashboard#s=p2)| [Python](./Qualification Round/coin-jam.py)| _O(N * J)_ | _O(N)_ | Medium | | Tricky Math |
 |D| [Fractiles](https://code.google.com/codejam/contest/6254486/dashboard#s=p3)| [Python](./Qualification Round/fractiles.py)| _O(K)_ | _O(1)_ | Hard | | Logic, Math Induction |
 
