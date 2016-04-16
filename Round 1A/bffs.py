@@ -32,15 +32,21 @@ def BFFs():
     for i in xrange(N):
         if i in used or to[i] != i:
             continue;
-        val = []
-        cur = i
+
+        # Count the length.
+        vals, cur = [], i
         while cur not in used:
             used.add(cur)
-            val.append(longest[cur])
+            vals.append(longest[cur])
             cur = F[cur]
-        if len(val) == 2:  # Find the length of the circle is 2.
-            chains += val[0] + val[1] + 2
-        circle = max(circle, len(val))
+
+        # Type 1: update the max length of the 2 chains connected with a circle of which length is 2.
+        if len(vals) == 2:
+            chains += vals[0] + vals[1] + 2
+
+        # Type 2: update the max length of the circle.
+        circle = max(circle, len(vals))
+
     return max(chains, circle)
 
 
