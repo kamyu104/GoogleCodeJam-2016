@@ -98,7 +98,7 @@ def bffs():
                 lens.append(longest_len_to_first_kid_in_a_circle[cur])
                 cur = F[cur]
 
-            # Type 1: update the max length of the 2 chains
+            # Type 1: update the sum of the lengths of the 2 chains
             #         connected with a circle of which length is 2.
             #         Type 1 looks like:
             #
