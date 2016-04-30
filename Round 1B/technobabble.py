@@ -87,15 +87,15 @@ def bipartiteMatch(graph):
 
 def technobabble():
     N = input()
-    E, words1, words2 = list(), set(), set()
+    pairs, words1, words2 = list(), set(), set()
     for _ in xrange(N):
         s1, s2 = raw_input().strip().split()
-        E.append((s1, s2))
+        pairs.append((s1, s2))
         words1.add(s1)
         words2.add(s2)
 
     G = defaultdict(list)
-    for s1, s2 in E:
+    for s1, s2 in pairs:
         G[s1].append(s2)
 
     res = bipartiteMatch(G)
