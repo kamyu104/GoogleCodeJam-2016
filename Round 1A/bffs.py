@@ -28,8 +28,9 @@ def compute(N, F, visited, longest_len_from_kid, first_kid_in_a_circle_from_kid)
 
             cur, is_before_the_circle = i, True
             while (is_visited_kid_uninitiated and is_before_the_circle) or \
-                  cur != visited_kid: # Go through into the circle only if
-                                      # the visited kid hasn't been initiated.
+                  cur != visited_kid:
+                # Go through into the circle only if
+                # the visited kid hasn't been initiated.
                 if cur == visited_kid:
                     is_before_the_circle = False
                 # Update the kids in the chain.
@@ -97,7 +98,7 @@ def bffs():
                 lens.append(longest_len_to_first_kid_in_a_circle[cur])
                 cur = F[cur]
 
-            # Type 1: update the max length of the 2 chains
+            # Type 1: update the sum of the lengths of the 2 chains
             #         connected with a circle of which length is 2.
             #         Type 1 looks like:
             #
