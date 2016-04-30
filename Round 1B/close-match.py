@@ -16,8 +16,7 @@ def largest(S):
 
 
 def close_match(S, J):
-    n = len(S)
-    if n == 0:
+    if not S:
         return (0, '', '')
 
     if S[0] == J[0]:
