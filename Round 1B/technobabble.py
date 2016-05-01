@@ -87,12 +87,12 @@ def bipartiteMatch(graph):
 
 def technobabble():
     N = input()
-    G, words1, words2 = defaultdict(list), set(), set()
+    G, U, V = defaultdict(list), set(), set()
     for _ in xrange(N):
         s1, s2 = raw_input().strip().split()
         G[s1].append(s2)
-        words1.add(s1)
-        words2.add(s2)
+        U.add(s1)
+        V.add(s2)
 
     # Hopcroft-Karp algorithm
     # Time:  O(E * sqrt(V))
@@ -107,7 +107,7 @@ def technobabble():
     #       (the number of vertices not included in a maximum matching) = U + V
     #
     #   (1) + (2) <=> minimum edge cover = U + V - (the number of edges in a maximum matching)
-    return N - (len(words1) + len(words2) - len(res[0]))
+    return N - (len(U) + len(V) - len(res[0]))
 
 
 for case in xrange(input()):
