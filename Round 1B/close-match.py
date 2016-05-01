@@ -54,7 +54,8 @@ def close_match():
     A, B = raw_input().strip().split()
     res = min(a_wins(A, B), b_wins(A, B))
     for i in xrange(len(A)):
-        res = min(res, min(a_wins(A, B, i), b_wins(A, B, i)))
+        if A[i] == '?' or B[i] == '?':
+            res = min(res, min(a_wins(A, B, i), b_wins(A, B, i)))
     return res
 
 
