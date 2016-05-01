@@ -56,5 +56,6 @@ def close_match():
         res = min(res, min(awins(A, B, i), bwins(A, B, i)))
     return res
 
+
 for case in xrange(input()):
     print 'Case #{0}: {2} {3}'.format(case+1, *close_match())
