@@ -105,12 +105,12 @@ def technobabble():
 
     # The answer is total number of edges (topics) minus the size of a minimum edge cover.
     # - total edges = N
-    # - minimum edge cover = (the number of edges in a maximum matching) + 
-    #                        (the number of vertices not included in a maximum matching)
-    #   ∵ U + V = 2 * (the number of edges in a maximum matching) + 
-    #            (the number of vertices not included in a maximum matching)
-    #   
-    #   ∴ minimum edge cover = U + V - (the number of edges in a maximum matching)
+    # - (1) minimum edge cover = (the number of edges in a maximum matching) + 
+    #                            (the number of vertices not included in a maximum matching)
+    #   (2) 2 * (the number of edges in a maximum matching) + 
+    #       (the number of vertices not included in a maximum matching) = U + V
+    #
+    #   (1) + (2) <=> minimum edge cover = U + V - (the number of edges in a maximum matching)
     return N - (len(words1) + len(words2) - len(res[0]))
 
 
