@@ -17,7 +17,8 @@ def a_wins(A, B, i=-1):
         elif Y[i] == '?' and X[i] != '0':
             Y[i] = str(int(X[i])-1)  # Change to 1 less than that digit to win.
         else:
-            return (float("inf"), 0, 0)  # Dupilcated work, just return a default val.
+            # Change nothing (dupilcated work), just return a default val.
+            return (float("inf"), 0, 0)
 
     for i in xrange(len(X)):
         if wins:  # Already won, just minimize the difference.
