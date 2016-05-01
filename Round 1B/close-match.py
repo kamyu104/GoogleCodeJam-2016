@@ -10,14 +10,14 @@
 def a_wins(A, B, i=-1):
     wins, X, Y = False, list(A), list(B)
     if i >= 0:
-        if X[i] == '?' and Y[i] == '?':  # Try '1', '0'
-            X[i], Y[i] = '1', '0'
+        if X[i] == '?' and Y[i] == '?':
+            X[i], Y[i] = '1', '0'  # # Try '1', '0' to win.
         elif X[i] == '?' and Y[i] != '9':
-            X[i] = str(int(Y[i])+1)
+            X[i] = str(int(Y[i])+1)  # Change to 1 more than that digit to win.
         elif Y[i] == '?' and X[i] != '0':
-            Y[i] = str(int(X[i])-1)
+            Y[i] = str(int(X[i])-1)  # Change to 1 less than that digit to win.
         else:
-            return (float("inf"), 0, 0)  # Dupilcated work.
+            return (float("inf"), 0, 0)  # Dupilcated work, just return a default val.
 
     for i in xrange(len(X)):
         if wins:  # Sure to win, minimize the difference.
@@ -28,15 +28,15 @@ def a_wins(A, B, i=-1):
         else:
             if X[i] != '?' and Y[i] != '?':
                 if X[i] < Y[i]:
-                    return (float("inf"), 0, 0)  # Impossible to win.
+                    return (float("inf"), 0, 0)  # Impossible to win, just return a default val.
                 if X[i] > Y[i]:
                     wins = True
-            elif X[i] == '?' and Y[i] == '?':  # Try '0', '0'
-                X[i], Y[i] = '0', '0'
+            elif X[i] == '?' and Y[i] == '?':
+                X[i], Y[i] = '0', '0'  # Try '0', '0' to win.
             elif X[i] == '?':
-                X[i] = Y[i]
+                X[i] = Y[i]  # Change to that digit.
             elif Y[i] == '?':
-                Y[i] = X[i]
+                Y[i] = X[i]  # Change to that digit.
 
     X, Y = "".join(X), "".join(Y)
     return (int(X)-int(Y), X, Y)
@@ -49,7 +49,9 @@ def b_wins(A, B, i=-1):
 
 def close_match():
     A, B = raw_input().strip().split()
+
     res = min(a_wins(A, B), b_wins(A, B))
+    # Try to change at each position with any '?' to minimize difference. 
     for i in xrange(len(A)):
         res = min(res, min(a_wins(A, B, i), b_wins(A, B, i)))
     return res
