@@ -98,7 +98,11 @@ def technobabble():
     for s1, s2 in pairs:
         G[s1].append(s2)
 
+    # Hopcroft-Karp algorithm
+    # Time:  O(E * sqrt(V))
+    # Space: O(V)
     res = bipartiteMatch(G)
+
     #  Total number of edges (topics) minus the size of a minimum edge cover.
     return N - (len(words1) + len(words2) - len(res[0]))
 
