@@ -97,7 +97,7 @@ def technobabble():
     # Hopcroft-Karp algorithm
     # Time:  O(E * sqrt(V))
     # Space: O(V)
-    res = bipartiteMatch(G)
+    M, _, _ = bipartiteMatch(G)
 
     # The answer is total number of edges (topics) minus the size of a minimum edge cover.
     # - total edges = N
@@ -107,7 +107,7 @@ def technobabble():
     #       (the number of vertices not included in a maximum matching) = U + V
     #
     #   (1) + (2) <=> minimum edge cover = U + V - (the number of edges in a maximum matching)
-    return N - (len(U) + len(V) - len(res[0]))
+    return N - (len(U) + len(V) - len(M))
 
 
 for case in xrange(input()):
