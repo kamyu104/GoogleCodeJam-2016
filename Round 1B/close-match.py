@@ -21,25 +21,26 @@ def a_wins(A, B, position=-1):
                     return (float("inf"), 0, 0)  # Impossible to win.
                 if X[i] > Y[i]:
                     wins = True
-            else:
-                if i == position:
-                    if X[i] == '?' and Y[i] == '?':  # Try '1', '0'
-                        X[i], Y[i] = '1', '0'
-                    elif X[i] == '?' and Y[i] != '9':
-                        X[i] = str(int(Y[i])+1)
-                    elif Y[i] == '?' and X[i] != '0':
-                        Y[i] = str(int(X[i])-1)
+                    continue
 
-                    if X[i] != '?' and Y[i] != '?':
-                        wins = True
-                        continue
+            if i == position:
+                if X[i] == '?' and Y[i] == '?':  # Try '1', '0'
+                    X[i], Y[i] = '1', '0'
+                elif X[i] == '?' and Y[i] != '9':
+                    X[i] = str(int(Y[i])+1)
+                elif Y[i] == '?' and X[i] != '0':
+                    Y[i] = str(int(X[i])-1)
 
-                if X[i] == '?' and Y[i] == '?':  # Try '0', '0'
-                    X[i], Y[i] = '0', '0'
-                elif X[i] == '?':
-                    X[i] = Y[i]
-                elif Y[i] == '?':
-                    Y[i] = X[i]
+                if X[i] != '?' and Y[i] != '?':
+                    wins = True
+                    continue
+
+            if X[i] == '?' and Y[i] == '?':  # Try '0', '0'
+                X[i], Y[i] = '0', '0'
+            elif X[i] == '?':
+                X[i] = Y[i]
+            elif Y[i] == '?':
+                Y[i] = X[i]
 
     X, Y = "".join(X), "".join(Y)
     return (int(X)-int(Y), X, Y)
