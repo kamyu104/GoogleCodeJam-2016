@@ -40,8 +40,7 @@ def awins(A, B, target=-1):
                 elif Y[i] == '?':
                     Y[i] = X[i]
 
-    X = "".join(X)
-    Y = "".join(Y)
+    X, Y = "".join(X), "".join(Y)
     return (int(X)-int(Y), X, Y)
 
 
