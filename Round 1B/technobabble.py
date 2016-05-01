@@ -100,13 +100,13 @@ def technobabble():
     M, _, _ = bipartiteMatch(G)
 
     # The answer is total number of edges (topics) minus the size of a minimum edge cover.
-    # - total edges = N
-    # - (1) minimum edge cover = (the number of edges in a maximum matching) + 
-    #                            (the number of vertices not included in a maximum matching)
+    # - total number of edges = N
+    # - (1) the size of minimum edge cover = (the number of edges in a maximum matching) + 
+    #                                        (the number of vertices not included in a maximum matching)
     #   (2) 2 * (the number of edges in a maximum matching) + 
-    #       (the number of vertices not included in a maximum matching) = U + V
+    #       (the number of vertices not included in a maximum matching) = |U| + |V|
     #
-    #   (1) + (2) <=> minimum edge cover = U + V - (the number of edges in a maximum matching)
+    #   (1) + (2) <=>  the size of minimum edge cover = |U| + |V| - (the number of edges in a maximum matching)
     return N - (len(U) + len(V) - len(M))
 
 
