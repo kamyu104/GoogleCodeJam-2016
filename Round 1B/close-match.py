@@ -32,6 +32,7 @@ def a_wins(A, B, position=-1):
 
                     if X[i] != '?' and Y[i] != '?':
                         wins = True
+                        continue
 
                 if X[i] == '?' and Y[i] == '?':  # Try '0', '0'
                     X[i], Y[i] = '0', '0'
