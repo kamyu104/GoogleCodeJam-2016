@@ -51,6 +51,7 @@ def b_wins(A, B, i=-1):
 def close_match():
     A, B = raw_input().strip().split()
 
+    # Change nothing to win.
     res = min(a_wins(A, B), b_wins(A, B))
     # Try to change at each position with any '?' to minimize the difference. 
     for i in xrange(len(A)):
