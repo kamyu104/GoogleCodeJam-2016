@@ -7,7 +7,7 @@
 # Space: O(N)
 #
 
-def awins(A, B, target=-1):
+def awins(A, B, position=-1):
     wins, X, Y = False, list(A), list(B)
     for i in xrange(len(X)):
         if wins:  # Sure to win, minimize the difference.
@@ -22,7 +22,7 @@ def awins(A, B, target=-1):
                 if X[i] > Y[i]:
                     wins = True
             else:
-                if i == target:
+                if i == position:
                     if X[i] == '?' and Y[i] == '?':  # Try '1', '0'
                         X[i], Y[i] = '1', '0'
                     elif X[i] == '?' and Y[i] != '9':
