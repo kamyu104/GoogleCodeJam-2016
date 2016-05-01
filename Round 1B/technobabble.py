@@ -9,9 +9,9 @@
 
 from collections import defaultdict
 
+# Source code from http://code.activestate.com/recipes/123641-hopcroft-karp-bipartite-matching/
 # Hopcroft-Karp bipartite max-cardinality matching and max independent set
 # David Eppstein, UC Irvine, 27 Apr 2002
-# Source code from http://code.activestate.com/recipes/123641-hopcroft-karp-bipartite-matching/
 def bipartiteMatch(graph):
     '''Find maximum cardinality matching of a bipartite graph (U,V,E).
     The input format is a dictionary mapping members of U to a list
