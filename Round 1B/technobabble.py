@@ -106,7 +106,7 @@ def technobabble():
     #   (2) 2 * (the number of edges in a maximum matching) + 
     #       (the number of vertices not included in a maximum matching) = |U| + |V|
     #
-    #   (1) + (2) <=>  the size of minimum edge cover = |U| + |V| - (the number of edges in a maximum matching)
+    #   (1) + (2) <=> the size of minimum edge cover = |U| + |V| - (the number of edges in a maximum matching)
     return N - (len(U) + len(V) - len(M))
 
 
