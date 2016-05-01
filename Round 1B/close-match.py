@@ -45,14 +45,14 @@ def awins(A, B, target=-1):
     return (int(X)-int(Y), X, Y)
 
 
-def bwins(A,B, hint=-1):
+def bwins(A, B, hint=-1):
     X = awins(B, A, hint)
     return (X[0], X[2], X[1])
 
 
 def close_match():
     A, B = raw_input().strip().split()
-    res = min(awins(A, B),bwins(A, B))
+    res = min(awins(A, B), bwins(A, B))
     for i in xrange(len(A)):
         res = min(res, min(awins(A, B, i), bwins(A, B, i)))
         
