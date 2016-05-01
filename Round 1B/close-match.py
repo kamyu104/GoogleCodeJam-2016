@@ -42,8 +42,8 @@ def a_wins(A, B, i=-1):
     return (int(X)-int(Y), X, Y)
 
 
-def b_wins(A, B, hint=-1):
-    X = a_wins(B, A, hint)
+def b_wins(A, B, i=-1):
+    X = a_wins(B, A, i)
     return (X[0], X[2], X[1])
 
 
