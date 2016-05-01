@@ -24,13 +24,13 @@ unique = ['Z', 'O', 'W', 'T', 'U', \
 def getting_the_digits():
     S = raw_input().strip()
     cnt = Counter(list(S))
-    ans = []
+    res = []
     for i in order:
         while cnt[unique[i]] > 0:
             cnt -= cnts[i]
-            ans.append(i)
-    ans.sort()
-    return "".join(map(str, ans))
+            res.append(i)
+    res.sort()
+    return "".join(map(str, res))
 
 
 for case in xrange(input()):
