@@ -87,17 +87,17 @@ def bipartiteMatch(graph):
 
 def technobabble():
     N = input()
-    G, U, V = defaultdict(list), set(), set()
+    U, V, E = set(), set(), defaultdict(list)
     for _ in xrange(N):
         s1, s2 = raw_input().strip().split()
-        G[s1].append(s2)
         U.add(s1)
         V.add(s2)
+        E[s1].append(s2)
 
     # Hopcroft-Karp algorithm
     # Time:  O(E * sqrt(V))
     # Space: O(V)
-    M, _, _ = bipartiteMatch(G)
+    M, _, _ = bipartiteMatch(E)
 
     # The answer is total number of edges (topics) minus the size of a minimum edge cover.
     # - total number of edges = N
