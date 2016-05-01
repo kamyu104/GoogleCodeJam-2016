@@ -20,7 +20,7 @@ def a_wins(A, B, i=-1):
             return (float("inf"), 0, 0)  # Dupilcated work, just return a default val.
 
     for i in xrange(len(X)):
-        if wins:  # Sure to win, minimize the difference.
+        if wins:  # Already won, just minimize the difference.
             if X[i] == '?':
                 X[i] = '0'         
             if Y[i] == '?':
@@ -34,9 +34,9 @@ def a_wins(A, B, i=-1):
             elif X[i] == '?' and Y[i] == '?':
                 X[i], Y[i] = '0', '0'  # Try '0', '0' to win.
             elif X[i] == '?':
-                X[i] = Y[i]  # Change to that digit.
+                X[i] = Y[i]  # Change to that digit to.
             elif Y[i] == '?':
-                Y[i] = X[i]  # Change to that digit.
+                Y[i] = X[i]  # Change to that digit to.
 
     X, Y = "".join(X), "".join(Y)
     return (int(X)-int(Y), X, Y)
