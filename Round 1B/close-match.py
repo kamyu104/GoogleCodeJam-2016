@@ -34,9 +34,9 @@ def a_wins(A, B, i=-1):
             elif X[i] == '?' and Y[i] == '?':
                 X[i], Y[i] = '0', '0'  # Try '0', '0' to win.
             elif X[i] == '?':
-                X[i] = Y[i]  # Change to that digit to.
+                X[i] = Y[i]  # Change to that digit to win.
             elif Y[i] == '?':
-                Y[i] = X[i]  # Change to that digit to.
+                Y[i] = X[i]  # Change to that digit to win.
 
     X, Y = "".join(X), "".join(Y)
     return (int(X)-int(Y), X, Y)
