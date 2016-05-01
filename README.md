@@ -25,5 +25,5 @@ Python solutions of Google Code Jam 2016.
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
 |A| [Getting the Digits](https://code.google.com/codejam/contest/11254486/dashboard#s=p0)| [Python](./Round 1B/getting-the-digits.py)| _O(N)_ | _O(1)_ | Easy | | Greedy |
-|B| [Close Match](https://code.google.com/codejam/contest/11254486/dashboard#s=p1)| [Python](./Round 1B/close-match.py)| _O(N^2)_ | _O(N)_ | Medium | | Math Analysis |
-|C| [Technobabble](https://code.google.com/codejam/contest/11254486/dashboard#s=p2)| [Python](./Round 1B/technobabble.py)| _O(N * sqrt(W))_ | _O(W)_ | Hard | | Graph |
+|B| [Close Match](https://code.google.com/codejam/contest/11254486/dashboard#s=p1)| [Python](./Round 1B/close-match.py)| _O(N^2)_ | _O(N)_ | Medium | | Greedy |
+|C| [Technobabble](https://code.google.com/codejam/contest/11254486/dashboard#s=p2)| [Python](./Round 1B/technobabble.py)| _O(N * sqrt(W))_ | _O(W)_ | Hard | | Graph, Bipartite Matching |
