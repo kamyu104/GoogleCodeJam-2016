@@ -8,9 +8,7 @@
 #
 
 def awins(A, B, hint=-1):
-    X = list(A)
-    Y = list(B)
-    wins = False;
+    wins, X, Y = False, list(A), list(B)
     for i in xrange(len(X)):
         if wins:
             if X[i] == '?':
