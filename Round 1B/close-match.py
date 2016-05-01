@@ -7,7 +7,7 @@
 # Space: O(N)
 #
 
-def awins(A, B, position=-1):
+def a_wins(A, B, position=-1):
     wins, X, Y = False, list(A), list(B)
     for i in xrange(len(X)):
         if wins:  # Sure to win, minimize the difference.
@@ -44,16 +44,16 @@ def awins(A, B, position=-1):
     return (int(X)-int(Y), X, Y)
 
 
-def bwins(A, B, hint=-1):
-    X = awins(B, A, hint)
+def b_wins(A, B, hint=-1):
+    X = a_wins(B, A, hint)
     return (X[0], X[2], X[1])
 
 
 def close_match():
     A, B = raw_input().strip().split()
-    res = min(awins(A, B), bwins(A, B))
+    res = min(a_wins(A, B), b_wins(A, B))
     for i in xrange(len(A)):
-        res = min(res, min(awins(A, B, i), bwins(A, B, i)))
+        res = min(res, min(a_wins(A, B, i), b_wins(A, B, i)))
     return res
 
 
