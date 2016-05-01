@@ -55,7 +55,6 @@ def close_match():
     res = min(awins(A, B), bwins(A, B))
     for i in xrange(len(A)):
         res = min(res, min(awins(A, B, i), bwins(A, B, i)))
-        
     return res
 
 for case in xrange(input()):
