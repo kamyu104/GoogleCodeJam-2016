@@ -7,7 +7,7 @@
 # Space: O(N)
 #
 
-def awins(A, B, hint=-1):
+def awins(A, B, target=-1):
     wins, X, Y = False, list(A), list(B)
     for i in xrange(len(X)):
         if wins:
@@ -22,7 +22,7 @@ def awins(A, B, hint=-1):
                 if X[i] > Y[i]:
                     wins = True
             else:
-                if i == hint:
+                if i == target:
                     if X[i] == '?' and Y[i] == '?':
                         X[i], Y[i] = '1', '0'
                     elif X[i] == '?' and Y[i] != '9':
