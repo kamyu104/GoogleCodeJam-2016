@@ -11,7 +11,7 @@ def a_wins(A, B, i=-1):
     wins, X, Y = False, list(A), list(B)
     if i >= 0:
         if X[i] == '?' and Y[i] == '?':
-            X[i], Y[i] = '1', '0'  # # Try '1', '0' to win.
+            X[i], Y[i] = '1', '0'  # Try '1', '0' to win.
         elif X[i] == '?' and Y[i] != '9':
             X[i] = str(int(Y[i])+1)  # Change to 1 more than that digit to win.
         elif Y[i] == '?' and X[i] != '0':
