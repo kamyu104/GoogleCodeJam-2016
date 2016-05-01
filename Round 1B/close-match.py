@@ -10,7 +10,7 @@
 def awins(A, B, target=-1):
     wins, X, Y = False, list(A), list(B)
     for i in xrange(len(X)):
-        if wins:
+        if wins:  # Sure to win, minimize the difference.
             if X[i] == '?':
                 X[i] = '0'         
             if Y[i] == '?':
@@ -18,12 +18,12 @@ def awins(A, B, target=-1):
         else:
             if X[i] != '?' and Y[i] != '?':
                 if X[i] < Y[i]:
-                    return (float("inf"), 0, 0)
+                    return (float("inf"), 0, 0)  # Impossible to win.
                 if X[i] > Y[i]:
                     wins = True
             else:
                 if i == target:
-                    if X[i] == '?' and Y[i] == '?':
+                    if X[i] == '?' and Y[i] == '?':  # Try '1', '0'
                         X[i], Y[i] = '1', '0'
                     elif X[i] == '?' and Y[i] != '9':
                         X[i] = str(int(Y[i])+1)
@@ -33,7 +33,7 @@ def awins(A, B, target=-1):
                     if X[i] != '?' and Y[i] != '?':
                         wins = True
 
-                if X[i] == '?' and Y[i] == '?':
+                if X[i] == '?' and Y[i] == '?':  # Try '0', '0'
                     X[i], Y[i] = '0', '0'
                 elif X[i] == '?':
                     X[i] = Y[i]
