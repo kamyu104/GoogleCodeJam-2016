@@ -18,15 +18,15 @@ cnts = [Counter(s) for s in ["ZERO", "ONE", "TWO", "THREE", \
 order = [0, 2, 4, 6, 8, 1, 3, 5, 7, 9]
 
 # The unique char in the order.
-unique = ['Z', 'O', 'W', 'T', 'U', \
-          'F', 'X', 'S', 'G', 'N']
+unique_chars = ['Z', 'O', 'W', 'T', 'U', \
+                'F', 'X', 'S', 'G', 'N']
 
 def getting_the_digits():
     S = raw_input().strip()
     cnt = Counter(list(S))
     res = []
     for i in order:
-        while cnt[unique[i]] > 0:
+        while cnt[unique_chars[i]] > 0:
             cnt -= cnts[i]
             res.append(i)
     res.sort()
