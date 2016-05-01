@@ -87,16 +87,12 @@ def bipartiteMatch(graph):
 
 def technobabble():
     N = input()
-    pairs, words1, words2 = list(), set(), set()
+    G, words1, words2 = defaultdict(list), set(), set()
     for _ in xrange(N):
         s1, s2 = raw_input().strip().split()
-        pairs.append((s1, s2))
+        G[s1].append(s2)
         words1.add(s1)
         words2.add(s2)
-
-    G = defaultdict(list)
-    for s1, s2 in pairs:
-        G[s1].append(s2)
 
     # Hopcroft-Karp algorithm
     # Time:  O(E * sqrt(V))
