@@ -26,8 +26,8 @@ def getting_the_digits():
     cnt = Counter(list(S))
     res = []
     for i in order:
-        while cnt[unique_chars[i]] > 0:
-            cnt -= cnts[i]
+        if cnt[unique_chars[i]] > 0:
+            cnt -= cnt[unique_chars[i]] * cnts[i]
             res.append(i)
     res.sort()
     return "".join(map(str, res))
