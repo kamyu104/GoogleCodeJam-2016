@@ -22,6 +22,7 @@ def rank_and_file():
             file.append(k)
     # The order of the missing numbers must be sorted.
     file.sort(key=int)
+
     return " ".join(file)
 
 
