@@ -10,15 +10,15 @@
 def fashion_police():
     J, P, S, K = map(int, raw_input().strip().split())
 
-    if K >= P:
+    if S <= K:
         return [(j, p, s) for j in xrange(J) \
                           for p in xrange(P) \
-                          for s in xrange(min(S, K))]
+                          for s in xrange(S)]
 
-    # K < P <= S
-    return [(j, p, (j + p + s) % P) for j in xrange(J) \
+    # S > K
+    return [(j, p, (j + p + d) % S) for j in xrange(J) \
                                     for p in xrange(P) \
-                                    for s in xrange(K)]
+                                    for d in xrange(K)]
 
 
 for case in xrange(input()):
