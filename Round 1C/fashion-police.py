@@ -9,19 +9,15 @@
 
 def fashion_police():
     J, P, S, K = map(int, raw_input().strip().split())
-
-    if S <= K:
-        return [(j, p, s) for j in xrange(J) \
-                          for p in xrange(P) \
-                          for s in xrange(S)]
-
-    # if S > K:
+    
+    K = min(K, S)
+    # If S >= K:
     #   Let outfits be (j, p, s), and s = (j + p + d) % S, 0 <= j < J, 0 <= p < P, 0 <= d < K:
-    #   - For pair (j, p), s = (j + p + d) % S is at most K choices due to d is at most K choices
-    #   - For pair (j, s), p = (s - j - d) % S is at most K choices due to d is at most K choices
-    #   - For pair (p, s), j = (s - p - d) % S is at most K choices due to d is at most K choices
+    #  - For pair (j, p), s = (j + p + d) % S is at most K choices due to d is at most K choices
+    #  - For pair (j, s), p = (s - j - d) % S is at most K choices due to d is at most K choices
+    #  - For pair (p, s), j = (s - p - d) % S is at most K choices due to d is at most K choices
     #
-    #   => the combinations won't exceed the maximum.
+    #  => the combinations won't exceed the maximum.
     return [(j, p, (j + p + d) % S) for j in xrange(J) \
                                     for p in xrange(P) \
                                     for d in xrange(K)]
