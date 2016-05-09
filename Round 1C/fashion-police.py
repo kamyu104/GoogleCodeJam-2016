@@ -1,6 +1,6 @@
 # Copyright (c) 2016 kamyu. All rights reserved.
 #
-# Google Code Jam 2016 Round 1B - Problem C. Fashion Police
+# Google Code Jam 2016 Round 1C - Problem C. Fashion Police
 # https://code.google.com/codejam/contest/4314486/dashboard#s=p2
 #
 # Time:  O(J * P * min(S, K))
@@ -19,6 +19,7 @@ def fashion_police():
     return [(j, p, (j + p + s) % P) for j in xrange(J) \
                                     for p in xrange(P) \
                                     for s in xrange(K)]
+
 
 for case in xrange(input()):
     res = fashion_police()
