@@ -9,6 +9,13 @@
 
 def slides():
     B, M = map(int, raw_input().strip().split())
+    # The number of ways without loop is at most 2^(B-2).
+    # We can create the graph in this form:
+    # 01111
+    # 00111
+    # 00011
+    # 00001
+    # 00000
     if M > (2 ** (B - 2)):
         return []
 
