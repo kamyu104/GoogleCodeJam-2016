@@ -25,14 +25,14 @@ def senate_evacuation():
                 if heap:
                     n3, p3 = heapq.heappop(heap)
                     if n2 == n3:
-                        # Eacute the top 1 party if n1 = n2 = n3
+                        # Evacuate the top 1 party if n1 = n2 = n3
                         res.append(str(p1))
                         if n1 + 1 != 0:
                             heapq.heappush(heap, (n1 + 1, p1))
                         heapq.heappush(heap, (n2, p2))
                         heapq.heappush(heap, (n3, p3))
                     else:
-                        # Evacute the last two parties if n1 = n2
+                        # Evacuate the last two parties if n1 = n2
                         res.append(str(p1) + str(p2))
                         if n1 + 1 != 0:
                             heapq.heappush(heap, (n1 + 1, p1))
@@ -40,20 +40,20 @@ def senate_evacuation():
                             heapq.heappush(heap, (n2 + 1, p2))
                         heapq.heappush(heap, (n3, p3))
                 else:
-                    # Evacute the top 2 parties if n1 = n2 > n3
+                    # Evacuate the top 2 parties if n1 = n2 > n3
                     res.append(str(p1) + str(p2))
                     if n1 + 1 != 0:
                         heapq.heappush(heap, (n1 + 1, p1))
                     if n2 + 1 != 0:
                         heapq.heappush(heap, (n2 + 1, p2))
             else:
-                # Evacute the top 1 party if n1 > n2
+                # Evacuate the top 1 party if n1 > n2
                 res.append(str(p1))
                 if n1 + 1 != 0:
                     heapq.heappush(heap, (n1 + 1, p1))
                 heapq.heappush(heap, (n2, p2))
         else:
-            # Evacute the last one party.
+            # Evacuate the last one party.
             res.append(str(p1))
             if n1 + 1 != 0:
                 heapq.heappush(heap, (n1 + 1, p1))
