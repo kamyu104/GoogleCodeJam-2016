@@ -35,6 +35,7 @@ def slides():
             res[0][j] = M % 2
             M /= 2
             j -= 1
+
     return res
 
 
