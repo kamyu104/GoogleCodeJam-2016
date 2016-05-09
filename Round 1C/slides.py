@@ -23,13 +23,18 @@ def slides():
         for j in xrange(i + 1, B):
             res[i][j] = 1
 
-    # Row 1 represents M in binary format.
+    # We can create the graph in exact M ways in this form:
+    # 0???? => row 1 represents M in binary format.
+    # 00111
+    # 00011
+    # 00001
+    # 00000
     if M == 2 ** (B - 2):
-        # 01111
+        # row 1 is 01111
         for j in xrange(1, B):
             res[0][j] = 1
     else:
-        # 0???0
+        # row 1 is 0???0
         j = -2
         while M:
             res[0][j] = M % 2
