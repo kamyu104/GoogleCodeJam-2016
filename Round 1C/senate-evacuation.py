@@ -16,7 +16,7 @@ def senate_evacuation():
     for i, n in enumerate(P):
         heapq.heappush(heap, (-n, chr(ord('A') + i)))
 
-    # Try to get the top 3 parties (n1, n2, n3):
+    # Try to get the top 3 parties (n1, n2, n3)
     while heap:
         n1, p1 = heapq.heappop(heap)
         if heap:
