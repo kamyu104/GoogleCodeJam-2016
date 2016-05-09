@@ -24,15 +24,14 @@ def senate_evacuation():
             if n1 + 1 != 0:
                 heappush(heap, (n1 + 1, p1))
         else:
-            if len(heap) == 2:
-                # The two parties must have equal numbers of senators.
-                # We can evacuate them in pairs.
-                n1, p1 = heappop(heap)
-                n2, p2 = heappop(heap)
-                res.append(str(p1) + str(p2))
-                if n1 + 1 != 0:
-                    heappush(heap, (n1 + 1, p1))
-                    heappush(heap, (n2 + 1, p2))
+            # The last two parties must have equal numbers of senators.
+            # We can evacuate them in pairs.
+            n1, p1 = heappop(heap)
+            n2, p2 = heappop(heap)
+            res.append(str(p1) + str(p2))
+            if n1 + 1 != 0:
+                heappush(heap, (n1 + 1, p1))
+                heappush(heap, (n2 + 1, p2))
         
     return " ".join(res)
 
