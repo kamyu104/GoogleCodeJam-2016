@@ -1,10 +1,11 @@
-# [GoogleCodeJam 2016](https://code.google.com/codejam/contests.html) ![Language](https://img.shields.io/badge/language-Python-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md) ![Progress](https://img.shields.io/badge/progress-10%20%2F%2010-ff69b4.svg)
+# [GoogleCodeJam 2016](https://code.google.com/codejam/contests.html) ![Language](https://img.shields.io/badge/language-Python-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md) ![Progress](https://img.shields.io/badge/progress-13%20%2F%2013-ff69b4.svg)
 
 Python solutions of Google Code Jam 2016.
 
 * [Qualification Round](https://github.com/kamyu104/GoogleCodeJam-2016#qualification-round)
 * [Round 1A](https://github.com/kamyu104/GoogleCodeJam-2016#round-1a)
 * [Round 1B](https://github.com/kamyu104/GoogleCodeJam-2016#round-1b)
+* [Round 1C](https://github.com/kamyu104/GoogleCodeJam-2016#round-1c)
 
 ## Qualification Round
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
@@ -27,3 +28,10 @@ Python solutions of Google Code Jam 2016.
 |A| [Getting the Digits](https://code.google.com/codejam/contest/11254486/dashboard#s=p0)| [Python](./Round 1B/getting-the-digits.py)| _O(N)_ | _O(1)_ | Easy | | Greedy |
 |B| [Close Match](https://code.google.com/codejam/contest/11254486/dashboard#s=p1)| [Python](./Round 1B/close-match.py)| _O(N^2)_ | _O(N)_ | Medium | | Greedy |
 |C| [Technobabble](https://code.google.com/codejam/contest/11254486/dashboard#s=p2)| [Python](./Round 1B/technobabble.py)| _O(N * sqrt(W))_ | _O(W)_ | Hard | | Graph, Bipartite Matching |
+
+## Round 1C
+| # | Title | Solution | Time | Space | Difficulty | Tag | Note |
+|---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
+|A| [Senate Evacuation](https://code.google.com/codejam/contest/4314486/dashboard#s=p0)| [Python](./Round 1B/getting-the-digits.py)| _O(PlogP)_ | _O(P)_ | Easy | | Heap, Math |
+|B| [Slides!](https://code.google.com/codejam/contest/4314486/dashboard#s=p1)| [Python](./Round 1C/senate-evacuation.py.py)| _O(B^2)_ | _O(1)_ | Easy | | Math |
+|C| [Fashion Police](https://code.google.com/codejam/contest/4314486/dashboard#s=p2)| [Python](./Round 1C/fashion-police.py)| _O(J * P * min(S, K))_ | _O(1)_ | Hard | | Math |
