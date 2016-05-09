@@ -26,6 +26,7 @@ def senate_evacuation():
         else:
             if len(heap) == 2:
                 # The two parties must have equal numbers of senators.
+                # We can evacuate them in pairs.
                 n1, p1 = heapq.heappop(heap)
                 n2, p2 = heapq.heappop(heap)
                 res.append(str(p1) + str(p2))
