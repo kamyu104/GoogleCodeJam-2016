@@ -33,5 +33,5 @@ Python solutions of Google Code Jam 2016.
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
 |A| [Senate Evacuation](https://code.google.com/codejam/contest/4314486/dashboard#s=p0)| [Python](./Round 1C/senate-evacuation.py)| _O(PlogP)_ | _O(P)_ | Easy | | Heap, Math |
-|B| [Slides!](https://code.google.com/codejam/contest/4314486/dashboard#s=p1)| [Python](./Round 1C/senate-evacuation.py.py)| _O(B^2)_ | _O(1)_ | Easy | | Math |
+|B| [Slides!](https://code.google.com/codejam/contest/4314486/dashboard#s=p1)| [Python](./Round 1C/slides.py)| _O(B^2)_ | _O(1)_ | Easy | | Math |
 |C| [Fashion Police](https://code.google.com/codejam/contest/4314486/dashboard#s=p2)| [Python](./Round 1C/fashion-police.py)| _O(J * P * min(S, K))_ | _O(1)_ | Hard | | Math |
