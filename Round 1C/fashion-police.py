@@ -11,7 +11,7 @@ def fashion_police():
     J, P, S, K = map(int, raw_input().strip().split())
     
     K = min(K, S)
-    # If S >= K:
+    # If J <= P <= K <= S:
     #   Let outfits be (j, p, s), and s = (j + p + d) % S, 0 <= j < J, 0 <= p < P, 0 <= d < K:
     #   - For pair (j, p), s = (j + p + d) % S is at most K choices due to d is at most K choices
     #   - For pair (j, s), p = (s - j - d) % S is at most K choices due to d is at most K choices
