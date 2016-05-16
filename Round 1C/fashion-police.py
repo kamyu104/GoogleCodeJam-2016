@@ -10,6 +10,9 @@
 def fashion_police():
     J, P, S, K = map(int, raw_input().strip().split())
     
+    # Maximum solution <= min(J * P * K, P * S * K, J * S * K)
+    # Since J <= P <= S, this puts an upper bound of J * P * K on our solution.
+    
     K = min(K, S)
     # If J <= P <= S and K <= S:
     #   Let outfits be (j, p, s), and s = (j + p + d) % S, 0 <= j < J, 0 <= p < P, 0 <= d < K:
