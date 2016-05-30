@@ -40,4 +40,4 @@ Python solutions of Google Code Jam 2016.
 ## Round 2
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
-|A| [Rather Perplexing Showdown](https://code.google.com/codejam/contest/10224486/dashboard#s=p0)| [Python](./Round 2/rather-perplexing-showdown.py)| _O(2^N)_ | _O(2^N)_ | Easy | | Math |
+|A| [Rather Perplexing Showdown](https://code.google.com/codejam/contest/10224486/dashboard#s=p0)| [Python](./Round 2/rather-perplexing-showdown.py)| _O(2^N)_ | _O(2^N)_ | Easy | | Math Analysis |
