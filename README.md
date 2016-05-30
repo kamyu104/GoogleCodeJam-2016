@@ -1,4 +1,4 @@
-# [GoogleCodeJam 2016](https://code.google.com/codejam/contests.html) ![Language](https://img.shields.io/badge/language-Python-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md) ![Progress](https://img.shields.io/badge/progress-13%20%2F%2017-ff69b4.svg)
+# [GoogleCodeJam 2016](https://code.google.com/codejam/contests.html) ![Language](https://img.shields.io/badge/language-Python-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md) ![Progress](https://img.shields.io/badge/progress-14%20%2F%2017-ff69b4.svg)
 
 Python solutions of Google Code Jam 2016.
 
@@ -6,6 +6,7 @@ Python solutions of Google Code Jam 2016.
 * [Round 1A](https://github.com/kamyu104/GoogleCodeJam-2016#round-1a)
 * [Round 1B](https://github.com/kamyu104/GoogleCodeJam-2016#round-1b)
 * [Round 1C](https://github.com/kamyu104/GoogleCodeJam-2016#round-1c)
+* [Round 2](https://github.com/kamyu104/GoogleCodeJam-2016#round-2)
 
 ## Qualification Round
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
@@ -35,3 +36,8 @@ Python solutions of Google Code Jam 2016.
 |A| [Senate Evacuation](https://code.google.com/codejam/contest/4314486/dashboard#s=p0)| [Python](./Round 1C/senate-evacuation.py)| _O(PlogP)_ | _O(P)_ | Easy | | Heap, Math Analysis |
 |B| [Slides!](https://code.google.com/codejam/contest/4314486/dashboard#s=p1)| [Python](./Round 1C/slides.py)| _O(B^2)_ | _O(1)_ | Easy | | Math Analysis |
 |C| [Fashion Police](https://code.google.com/codejam/contest/4314486/dashboard#s=p2)| [Python](./Round 1C/fashion-police.py)| _O(J * P * min(S, K))_ | _O(1)_ | Hard | | Math Analysis |
+
+## Round 2
+| # | Title | Solution | Time | Space | Difficulty | Tag | Note |
+|---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
+|A| [Rather Perplexing Showdown](https://code.google.com/codejam/contest/10224486/dashboard#s=p0)| [Python](./Round 2/rather-perplexing-showdown.py)| _O(2^N)_ | _O(2^N)_ | Easy | | Math |
