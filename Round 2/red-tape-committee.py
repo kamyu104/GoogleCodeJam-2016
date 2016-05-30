@@ -13,9 +13,8 @@ def red_tape_committee():
     result = 0
 
     for M in xrange(K+1):
-        # The best way to create a tie
-        # is to choose department members
-        # from one or both extremes
+        # The best way to create a tie is to choose department members
+        # from one or both extremes.
         V = P[:M] + P[N-K+M:]
 
         # dp[i][j]: i members with j yes votes.
