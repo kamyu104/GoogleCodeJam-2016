@@ -8,18 +8,18 @@
 #
 
 DOWN, LEFT, UP, RIGHT = 0, 1, 2, 3
-directions = {DOWN:(0, 1), LEFT:(-1, 0), UP:(0, -1), RIGHT:(1, 0)}
+directions = {DOWN:(1, 0), LEFT:(0, -1), UP:(-1, 0), RIGHT:(0, 1)}
 mirrors = {"/":{DOWN:LEFT, LEFT:DOWN, UP:RIGHT, RIGHT:UP}, \
            "\\":{DOWN:RIGHT, LEFT:UP, UP:LEFT, RIGHT:DOWN},}
 
 def position(v, R, C):
-    if v <= C: return DOWN, (v-1, -1)  # Upper side.
+    if v <= C: return DOWN, (-1, v-1)  # Upper side.
     v -= C
-    if v <= R: return LEFT, (C, v-1)  # Right side.
+    if v <= R: return LEFT, (v-1, C)  # Right side.
     v -= R
-    if v <= C: return UP, (C-v, R)  # Lower side.
+    if v <= C: return UP, (R, C-v)  # Lower side.
     v -= C
-    return RIGHT, (-1, R-v)  # Left side.
+    return RIGHT, (R-v, -1)  # Left side.
 
 
 def move(x, y, d):
@@ -41,11 +41,11 @@ def the_gardener_of_seville():
             A, B = B, A
         direction, (x, y) = position(A, R, C)
         x, y = move(x, y, direction)
-        while 0<=x<C and 0<=y<R:
-            if board[y][x] is None:
+        while 0<=x<R and 0<=y<C:
+            if board[x][y] is None:
                 # Install a hedge on a vacant cell to turn right.
-                board[y][x] = "/" if direction in (DOWN, UP) else "\\"
-            direction = mirrors[board[y][x]][direction]
+                board[x][y] = "/" if direction in (DOWN, UP) else "\\"
+            direction = mirrors[board[x][y]][direction]
             x, y = move(x, y, direction)
         if (x, y) != position(B, R, C)[1]:
             return "IMPOSSIBLE"
