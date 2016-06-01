@@ -21,11 +21,6 @@ def position(v, R, C):
     v -= C
     return RIGHT, (R-v, -1)  # Left side.
 
-
-def move(x, y, d):
-    return x + directions[d][0], y + directions[d][1]
-
-
 def the_gardener_of_seville():
     R, C = map(int, raw_input().strip().split())
     permutation = map(int, raw_input().strip().split())
@@ -40,13 +35,13 @@ def the_gardener_of_seville():
         if (A-B) % size > R+C:
             A, B = B, A
         direction, (x, y) = position(A, R, C)
-        x, y = move(x, y, direction)
+        x, y = x + directions[direction][0], y + directions[direction][1]
         while 0<=x<R and 0<=y<C:
             if board[x][y] is None:
                 # Install a hedge on a vacant cell to turn right.
                 board[x][y] = "/" if direction in (DOWN, UP) else "\\"
             direction = mirrors[board[x][y]][direction]
-            x, y = move(x, y, direction)
+            x, y = x + directions[direction][0], y + directions[direction][1]
         if (x, y) != position(B, R, C)[1]:
             return "IMPOSSIBLE"
     return "\n".join("".join(c or "/" for c in row) for row in board)
