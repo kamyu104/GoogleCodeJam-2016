@@ -9,8 +9,8 @@
 
 DOWN, LEFT, UP, RIGHT = 0, 1, 2, 3
 directions = {DOWN:(0, 1), LEFT:(-1, 0), UP:(0, -1), RIGHT:(1, 0)}
-mirror = {"/":{DOWN:LEFT, LEFT:DOWN, UP:RIGHT, RIGHT:UP}, \
-          "\\":{DOWN:RIGHT, LEFT:UP, UP:LEFT, RIGHT:DOWN},}
+mirrors = {"/":{DOWN:LEFT, LEFT:DOWN, UP:RIGHT, RIGHT:UP}, \
+           "\\":{DOWN:RIGHT, LEFT:UP, UP:LEFT, RIGHT:DOWN},}
 
 def position(v, R, C):
     if v <= C: return DOWN, (v-1, -1)  # Upper side.
@@ -45,7 +45,7 @@ def the_gardener_of_seville():
             if board[y][x] is None:
                 # Install a hedge on a vacant cell to turn right.
                 board[y][x] = "/" if direction in (DOWN, UP) else "\\"
-            direction = mirror[board[y][x]][direction]
+            direction = mirrors[board[y][x]][direction]
             x, y = move(x, y, direction)
         if (x, y) != position(B, R, C)[1]:
             return "IMPOSSIBLE"
