@@ -97,10 +97,10 @@ def freeform_factory():
                 initial_edges_count += 1
                 union_find.union_set(i, N + j)
 
-    groups = defaultdict(lambda:[0, 0])
+    groups_dict = defaultdict(lambda:[0, 0])
     for i in xrange(2 * N):
-        groups[union_find.find_set(i)][i >= N] += 1
-    group_pairs = map(tuple, groups.values())
+        groups_dict[union_find.find_set(i)][i >= N] += 1
+    group_pairs = map(tuple, groups_dict.values())
 
     # Every maximal matching is perfect if and only if
     # each connected component of the bipartite graph is a complete bipartite graph
