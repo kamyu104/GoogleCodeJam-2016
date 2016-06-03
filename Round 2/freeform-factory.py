@@ -64,6 +64,9 @@ def dfs(groups):
     return min_edges
 
 
+# We are given a bipartite graph with N vertices in each part,
+# and need to add the smallest amount of edges to this graph to
+# guarantee that every maximal matching is a perfect matching.
 def freeform_factory():
     N = input()
 
