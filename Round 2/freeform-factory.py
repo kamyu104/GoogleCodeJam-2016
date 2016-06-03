@@ -37,6 +37,23 @@ class memoized(object):
         return functools.partial(self.__call__, obj)
 
 
+class UnionFind(object):
+    def __init__(self, n):
+        self.set = range(n)
+        self.count = n
+
+    def find_set(self, x):
+       if self.set[x] != x:
+           self.set[x] = self.find_set(self.set[x])  # path compression.
+       return self.set[x]
+
+    def union_set(self, x, y):
+        x_root, y_root = map(self.find_set, (x, y))
+        if x_root != y_root:
+            self.set[min(x_root, y_root)] = max(x_root, y_root)
+            self.count -= 1
+
+
 @memoized
 def dfs(groups):
     # Count the sum of squares of rs.
@@ -62,23 +79,6 @@ def dfs(groups):
         new_groups.append(merged_group)
         min_edges = min(min_edges, edges + dfs(tuple(new_groups)))
     return min_edges
-
-
-class UnionFind(object):
-    def __init__(self, n):
-        self.set = range(n)
-        self.count = n
-
-    def find_set(self, x):
-       if self.set[x] != x:
-           self.set[x] = self.find_set(self.set[x])  # path compression.
-       return self.set[x]
-
-    def union_set(self, x, y):
-        x_root, y_root = map(self.find_set, (x, y))
-        if x_root != y_root:
-            self.set[min(x_root, y_root)] = max(x_root, y_root)
-            self.count -= 1
 
 
 # We are given a bipartite graph with N vertices in each part,
