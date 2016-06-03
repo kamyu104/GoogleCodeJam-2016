@@ -43,4 +43,4 @@ Python solutions of Google Code Jam 2016.
 |A| [Rather Perplexing Showdown](https://code.google.com/codejam/contest/10224486/dashboard#s=p0)| [Python](./Round 2/rather-perplexing-showdown.py)| _O(2^N)_ | _O(2^N)_ | Easy | | Math Analysis |
 |B| [Red Tape Committee](https://code.google.com/codejam/contest/10224486/dashboard#s=p1)| [Python](./Round 2/red-tape-committee.py)| _O(NlogN + K^3)_ | _O(N)_ | Easy | | DP, Probability |
 |C| [The Gardener of Seville](https://code.google.com/codejam/contest/10224486/dashboard#s=p2)| [Python](./Round 2/the-gardener-of-seville.py)| _O((R + C)log(R + C) + R * C)_ | _O(R * C)_ | Hard | | Simulate |
-|D| [Freeform Factory](https://code.google.com/codejam/contest/10224486/dashboard#s=p3)| [Python](./Round 2/freeform-factory.py)| _O(2^N)_ | _O(2^N)_ | Hard | | Memoization, DFS |
+|D| [Freeform Factory](https://code.google.com/codejam/contest/10224486/dashboard#s=p3)| [Python](./Round 2/freeform-factory.py)| _O(N + C * C!)_ | _O(N + C * C!)_ | Hard | | Memoization, DFS |
