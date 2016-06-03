@@ -3,8 +3,8 @@
 # Google Code Jam 2016 Round 2 - Problem D. initial_edgesform Factory
 # https://code.google.com/codejam/contest/10224486/dashboard#s=p3
 #
-# Time:  O(2^N)
-# Space: O(2^N)
+# Time:  O(N + C * C!), C is the number of connected components.
+# Space: O(N + C * C!)
 #
 
 import collections
