@@ -67,7 +67,6 @@ def dfs(groups):
         return edges
 
     # Choose the largest one to merge.
-    groups.sort(key=lambda g: max(g[0], g[1]))
     group_to_merge = groups.pop()
 
     # DFS
@@ -104,6 +103,7 @@ def freeform_factory():
     # Every maximal matching is perfect if and only if
     # each connected component of the bipartite graph is a complete bipartite graph
     # with same number of vertices in each part.
+    new_groups.sort(key=lambda g: max(g[0], g[1]))
     min_edges = dfs(tuple(new_groups))
 
     # The number of added edges is the total number of edges in the resulting graph
