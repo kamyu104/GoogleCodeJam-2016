@@ -55,28 +55,29 @@ class UnionFind(object):
 
 
 @memoized
-def dfs(groups):
+def dfs(group_pairs):
     # Count the sum of squares of rs.
     edges = 0
-    groups = list(groups)
-    for group in list(groups):
-        if group[0] == group[1]:
-            edges += group[0] ** 2
-            groups.remove(group)
-    if not groups:
+    cur_group_pairs = list(group_pairs)
+    for group_pair in list(group_pairs):
+        if group_pair[0] == group_pair[1]:
+            edges += group_pair[0] ** 2
+            cur_group_pairs.remove(group_pair)
+    if not cur_group_pairs:
         return edges
 
     # Choose the largest one to merge.
-    group_to_merge = groups.pop()
+    group_pair_to_merge = cur_group_pairs.pop()
 
     # DFS
     min_edges = float("inf")
-    for group in set(groups):
-        new_groups = list(groups)
-        merged_group = (group_to_merge[0] + group[0], group_to_merge[1] + group[1])
-        new_groups.remove(group)
-        new_groups.append(merged_group)
-        min_edges = min(min_edges, edges + dfs(tuple(new_groups)))
+    for group_pair in set(cur_group_pairs):
+        next_group_pairs = list(cur_group_pairs)
+        merged_group_pair = (group_pair_to_merge[0] + group_pair[0], \
+                             group_pair_to_merge[1] + group_pair[1])
+        next_group_pairs.remove(group_pair)
+        next_group_pairs.append(merged_group_pair)
+        min_edges = min(min_edges, edges + dfs(tuple(next_group_pairs)))
     return min_edges
 
 
@@ -98,14 +99,14 @@ def freeform_factory():
     groups = defaultdict(lambda:[0, 0])
     for i in xrange(2 * N):
         groups[union_find.find_set(i)][i >= N] += 1
-    new_groups = map(tuple, groups.values())
+    group_pairs = map(tuple, groups.values())
 
     # Every maximal matching is perfect if and only if
     # each connected component of the bipartite graph is a complete bipartite graph
     # with same number of vertices in each part.
     # => We try to construct this kind of graph with less number of edges as possible.
-    new_groups.sort(key=lambda g: max(g[0], g[1]))
-    min_edges = dfs(tuple(new_groups))
+    group_pairs.sort(key=lambda g: max(g[0], g[1]))
+    min_edges = dfs(tuple(group_pairs))
 
     # The number of added edges is the total number of edges in the resulting graph
     # minus the number edges we have initially.
