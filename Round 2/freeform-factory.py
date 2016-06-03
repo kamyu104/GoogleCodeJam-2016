@@ -87,9 +87,8 @@ def dfs(groups):
 def freeform_factory():
     N = input()
 
-    union_find = UnionFind(2 * N)
-
     # Group connected components.
+    union_find = UnionFind(2 * N)
     initial_edges = 0
     for i in xrange(N):
         for j, accessible in enumerate(map(int, list(raw_input().strip()))):
