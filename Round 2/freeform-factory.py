@@ -1,6 +1,6 @@
 # Copyright (c) 2016 kamyu. All rights reserved.
 #
-# Google Code Jam 2016 Round 2 - Problem D. initial_edgesform Factory
+# Google Code Jam 2016 Round 2 - Problem D. Freeform Factory
 # https://code.google.com/codejam/contest/10224486/dashboard#s=p3
 #
 # Time:  O(N + C * C!), C is the number of connected components.
@@ -57,28 +57,29 @@ class UnionFind(object):
 @memoized
 def dfs(group_pairs):
     # Count the sum of squares of rs.
-    edges = 0
+    edges_count = 0
     cur_group_pairs = list(group_pairs)
     for group_pair in list(group_pairs):
         if group_pair[0] == group_pair[1]:
-            edges += group_pair[0] ** 2
+            edges_count += group_pair[0] ** 2
             cur_group_pairs.remove(group_pair)
     if not cur_group_pairs:
-        return edges
+        return edges_count
 
     # Choose the largest one to merge.
     group_pair_to_merge = cur_group_pairs.pop()
 
     # DFS
-    min_edges = float("inf")
+    min_edges_count = float("inf")
     for group_pair in set(cur_group_pairs):
         next_group_pairs = list(cur_group_pairs)
         merged_group_pair = (group_pair_to_merge[0] + group_pair[0], \
                              group_pair_to_merge[1] + group_pair[1])
         next_group_pairs.remove(group_pair)
         next_group_pairs.append(merged_group_pair)
-        min_edges = min(min_edges, edges + dfs(tuple(next_group_pairs)))
-    return min_edges
+        min_edges_count = min(min_edges_count, \
+                              edges_count + dfs(tuple(next_group_pairs)))
+    return min_edges_count
 
 
 # We are given a bipartite graph with N vertices in each part,
@@ -89,11 +90,11 @@ def freeform_factory():
 
     # Group connected components.
     union_find = UnionFind(2 * N)
-    initial_edges = 0
+    initial_edges_count = 0
     for i in xrange(N):
         for j, accessible in enumerate(map(int, list(raw_input().strip()))):
             if accessible:
-                initial_edges += 1
+                initial_edges_count += 1
                 union_find.union_set(i, N + j)
 
     groups = defaultdict(lambda:[0, 0])
@@ -106,11 +107,11 @@ def freeform_factory():
     # with same number of vertices in each part.
     # => We try to construct this kind of graph with less number of edges as possible.
     group_pairs.sort(key=lambda g: max(g[0], g[1]))
-    min_edges = dfs(tuple(group_pairs))
+    min_edges_count = dfs(tuple(group_pairs))
 
     # The number of added edges is the total number of edges in the resulting graph
     # minus the number edges we have initially.
-    return min_edges - initial_edges
+    return min_edges_count - initial_edges_count
 
 
 for case in xrange(input()):
