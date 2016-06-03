@@ -103,6 +103,7 @@ def freeform_factory():
     # Every maximal matching is perfect if and only if
     # each connected component of the bipartite graph is a complete bipartite graph
     # with same number of vertices in each part.
+    # => We try to construct this kind of graph with less number of edges as possible.
     new_groups.sort(key=lambda g: max(g[0], g[1]))
     min_edges = dfs(tuple(new_groups))
 
