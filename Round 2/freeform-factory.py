@@ -64,49 +64,43 @@ def dfs(groups):
     return min_edges
 
 
+class UnionFind(object):
+    def __init__(self, n):
+        self.set = range(n)
+        self.count = n
+
+    def find_set(self, x):
+       if self.set[x] != x:
+           self.set[x] = self.find_set(self.set[x])  # path compression.
+       return self.set[x]
+
+    def union_set(self, x, y):
+        x_root, y_root = map(self.find_set, (x, y))
+        if x_root != y_root:
+            self.set[min(x_root, y_root)] = max(x_root, y_root)
+            self.count -= 1
+
+
 # We are given a bipartite graph with N vertices in each part,
 # and need to add the smallest amount of edges to this graph to
 # guarantee that every maximal matching is a perfect matching.
 def freeform_factory():
     N = input()
 
-    groups = []
-    for i in xrange(N):
-        groups.append(set(['w_' + str(i)]))
-        groups.append(set(['m_' + str(i)]))
+    union_find = UnionFind(2 * N)
 
     # Group connected components.
     initial_edges = 0
-    for w in xrange(N):
-        accessible_machines = map(int, list(raw_input().strip()))
-        new_group = set(['w_' + str(w)])
-        for m in xrange(N):
-            if accessible_machines[m-1]:
+    for i in xrange(N):
+        for j, accessible in enumerate(map(int, list(raw_input().strip()))):
+            if accessible:
                 initial_edges += 1
-                new_group.add('m_' + str(m))
-        groups_to_merge = []
-        for group in groups:
-            group_acquired = False
-            for elem in new_group:
-                if group_acquired:
-                    continue
-                if elem in group:
-                    groups_to_merge.append(group)
-                    group_acquired = True
-        for group in groups_to_merge:
-            groups.remove(group)
-            new_group = new_group.union(group)
-        groups.append(new_group)
+                union_find.union_set(i, N + j)
 
-    new_groups = []
-    for group in groups:
-        g = [0,0]
-        for elem in group:
-            if elem[0] == 'w':
-                g[0] += 1
-            else:
-                g[1] += 1
-        new_groups.append((g[0], g[1]))
+    groups = collections.defaultdict(lambda:[0, 0])
+    for i in xrange(2 * N):
+        groups[union_find.find_set(i)][i >= N] += 1
+    new_groups = map(tuple, groups.values())
 
     # Every maximal matching is perfect if and only if
     # each connected component of the bipartite graph is a complete bipartite graph
