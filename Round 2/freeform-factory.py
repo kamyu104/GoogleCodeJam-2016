@@ -7,8 +7,8 @@
 # Space: O(N + C * C!)
 #
 
-import collections
-import functools
+from collections import Hashable, defaultdict
+from functools import partial
 
 class memoized(object):
     '''Decorator. Caches a function's return value each time it is called.
@@ -19,7 +19,7 @@ class memoized(object):
         self.func = func
         self.cache = {}
     def __call__(self, *args):
-        if not isinstance(args, collections.Hashable):
+        if not isinstance(args, Hashable):
             # uncacheable. a list, for instance.
             # better to not cache than blow up.
             return self.func(*args)
@@ -34,7 +34,7 @@ class memoized(object):
         return self.func.__doc__
     def __get__(self, obj, objtype):
         '''Support instance methods.'''
-        return functools.partial(self.__call__, obj)
+        return partial(self.__call__, obj)
 
 
 class UnionFind(object):
@@ -95,7 +95,7 @@ def freeform_factory():
                 initial_edges += 1
                 union_find.union_set(i, N + j)
 
-    groups = collections.defaultdict(lambda:[0, 0])
+    groups = defaultdict(lambda:[0, 0])
     for i in xrange(2 * N):
         groups[union_find.find_set(i)][i >= N] += 1
     new_groups = map(tuple, groups.values())
