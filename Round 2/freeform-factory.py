@@ -108,6 +108,9 @@ def freeform_factory():
                 g[1] += 1
         new_groups.append((g[0], g[1]))
 
+    # Every maximal matching is perfect if and only if
+    # each connected component of the bipartite graph is a complete bipartite graph
+    # with same number of vertices in each part.
     min_edges = dfs(tuple(new_groups))
 
     # The number of added edges is the total number of edges in the resulting graph
