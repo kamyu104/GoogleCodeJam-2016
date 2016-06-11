@@ -7,8 +7,6 @@
 # Space: O(S)
 #
 
-from collections import deque
-
 def teaching_assistant():
     S = raw_input().strip()
     mood = []
