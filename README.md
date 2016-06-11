@@ -1,4 +1,4 @@
-# [GoogleCodeJam 2016](https://code.google.com/codejam/contests.html) ![Language](https://img.shields.io/badge/language-Python-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md) ![Progress](https://img.shields.io/badge/progress-17%20%2F%2017-ff69b4.svg)
+# [GoogleCodeJam 2016](https://code.google.com/codejam/contests.html) ![Language](https://img.shields.io/badge/language-Python-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md) ![Progress](https://img.shields.io/badge/progress-18%20%2F%2021-ff69b4.svg)
 
 Python solutions of Google Code Jam 2016.
 
@@ -7,6 +7,7 @@ Python solutions of Google Code Jam 2016.
 * [Round 1B](https://github.com/kamyu104/GoogleCodeJam-2016#round-1b)
 * [Round 1C](https://github.com/kamyu104/GoogleCodeJam-2016#round-1c)
 * [Round 2](https://github.com/kamyu104/GoogleCodeJam-2016#round-2)
+* [Round 3](https://github.com/kamyu104/GoogleCodeJam-2016#round-3)
 
 ## Qualification Round
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
@@ -44,3 +45,8 @@ Python solutions of Google Code Jam 2016.
 |B| [Red Tape Committee](https://code.google.com/codejam/contest/10224486/dashboard#s=p1)| [Python](./Round 2/red-tape-committee.py)| _O(NlogN + K^3)_ | _O(N)_ | Easy | | DP, Probability |
 |C| [The Gardener of Seville](https://code.google.com/codejam/contest/10224486/dashboard#s=p2)| [Python](./Round 2/the-gardener-of-seville.py)| _O((R + C)log(R + C) + R * C)_ | _O(R * C)_ | Hard | | Simulate |
 |D| [Freeform Factory](https://code.google.com/codejam/contest/10224486/dashboard#s=p3)| [Python](./Round 2/freeform-factory.py)| _O(N + C * C!)_ | _O(N + C * C!)_ | Hard | | Memoization, DFS |
+
+## Round 3
+| # | Title | Solution | Time | Space | Difficulty | Tag | Note |
+|---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
+|A| [Teaching Assistant](https://code.google.com/codejam/contest/3224486/dashboard#s=p0)| [Python](./Round 3/teaching-assistant.py)| _O(S)_ | _O(S)_ | Easy | | Greedy |
