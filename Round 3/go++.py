@@ -34,7 +34,7 @@ def gopp():
             P2 += "0?",
     # Remove the last "01"/"10" of P1 to reduce the count of 0s and 1s by one.
     # It could still produce a set of all possible strings consisting of 0s and/or 1s
-    # except for B because the count of 0s/1s is not enough to make.
+    # except for B because the count of matchable 0s/1s is not enough to make.
     P1.pop()
 
     return "".join(P1) + " " + "".join(P2)
