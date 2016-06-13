@@ -7,20 +7,20 @@
 # Space: O(N)
 #
 
-from random import randrange
+from random import randint
 
 def sample(children, children_size, name):
     sequence = []
 
     stack, left_cnt = [0], len(children)
     while stack:
-        k = randrange(left_cnt)
+        k = randint(1, left_cnt)
 
-        # Find the parent of the (k+1)th remaining courses.
+        # Find the parent of the kth remaining courses.
         cnt = 0
         for i in xrange(len(stack)):
             cnt += children_size[stack[i]]
-            if cnt > k: break
+            if cnt >= k: break
         chosen = stack[i]
 
         # Add the chosen course to the sequence.
