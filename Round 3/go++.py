@@ -1,7 +1,7 @@
 # Copyright (c) 2016 kamyu. All rights reserved.
 #
 # Google Code Jam 2016 Round 3 - Problem D. Go++
-# https://code.google.com/codejam/contest/3224486/dashboard#s=p4
+# https://code.google.com/codejam/contest/3224486/dashboard#s=p3
 #
 # Time:  O(L)
 # Space: O(L)
