@@ -57,11 +57,11 @@ def forest_university():
                 children_tmp[i] = None
                 done += 1
 
-    times = 3000
+    times = 2000
     for _ in xrange(times):
-        res = sample(children, children_size, name)
+        sequence = sample(children, children_size, name)
         for i in xrange(M):
-            if cool[i] in res: cnts[i] += 1
+            if cool[i] in sequence: cnts[i] += 1
 
     return " ".join(map(str, [1.0 * cnts[i] / times for i in xrange(M)]))
 
