@@ -50,7 +50,7 @@ def forest_university():
     children_size = [1] * (N+1)
     left_cnt = N
     while left_cnt:
-        for i in xrange(N+1):
+        for i in xrange(1, N+1):
             if children_tmp[i] == set():
                 children_size[parent[i]] += children_size[i]
                 children_tmp[parent[i]].remove(i)
