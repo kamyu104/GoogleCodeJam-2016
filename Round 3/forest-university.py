@@ -12,23 +12,23 @@ from random import randint
 def sample(children, descendants_cnt, name):
     sequence = []
 
-    stack, left_cnt = [0], len(children)
-    while stack:
+    candidates, left_cnt = [0], len(children)
+    while candidates:
         k = randint(1, left_cnt)
 
         # Find the prerequisite course of the kth remaining courses.
         cnt = 0
-        for i in xrange(len(stack)):
-            cnt += descendants_cnt[stack[i]]
+        for i in xrange(len(candidates)):
+            cnt += descendants_cnt[candidates[i]]
             if cnt >= k: break
-        chosen = stack[i]
+        chosen = candidates[i]
 
         # Add the chosen course to the sequence.
         sequence.append(name[chosen])
 
         # Expand the chosen course to the children courses.
-        del stack[i]
-        stack.extend(children[chosen])
+        del candidates[i]
+        candidates.extend(children[chosen])
         left_cnt -= 1
 
     return "".join(sequence)
