@@ -57,7 +57,7 @@ def forest_university():
                 children_tmp[i] = None
                 done += 1
 
-    times = 2000
+    times = 3000
     for _ in xrange(times):
         sequence = sample(children, children_size, name)
         for i in xrange(M):
