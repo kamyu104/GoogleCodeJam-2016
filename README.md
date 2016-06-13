@@ -50,4 +50,4 @@ Python solutions of Google Code Jam 2016.
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
 |A| [Teaching Assistant](https://code.google.com/codejam/contest/3224486/dashboard#s=p0)| [Python](./Round 3/teaching-assistant.py)| _O(S)_ | _O(S)_ | Easy | | Greedy |
-|D| [Go++](https://code.google.com/codejam/contest/3224486/dashboard#s=p3)| [Python](./Round 3/go++.py)| _O(L)_ | _O(L)_ | Hard | Math Analysis |
+|D| [Go++](https://code.google.com/codejam/contest/3224486/dashboard#s=p3)| [Python](./Round 3/go++.py)| _O(L)_ | _O(L)_ | Hard | | Math Analysis |
