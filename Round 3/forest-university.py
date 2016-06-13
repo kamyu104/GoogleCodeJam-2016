@@ -16,7 +16,7 @@ def sample(children, descendants_cnt, name):
     while stack:
         k = randint(1, left_cnt)
 
-        # Find the parent of the kth remaining courses.
+        # Find the prerequisite course of the kth remaining courses.
         cnt = 0
         for i in xrange(len(stack)):
             cnt += descendants_cnt[stack[i]]
