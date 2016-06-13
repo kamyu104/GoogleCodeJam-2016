@@ -23,8 +23,8 @@ def gopp():
 
     P1, P2 = [], []
     for c in B:
-        # Because executing each pair of ("10", "1?") and ()"01", "0?")
-        # results in either 1 or 0, the composed P1 and P2 form a set of
+        # Because executing each pair of ("10", "1?") and ("01", "0?")
+        # could result in either 1 or 0, the written P1 and P2 produce a set of
         # all possible strings consisting of 0s and/or 1s.
         if c == '0':
             P1 += "10",
@@ -33,7 +33,8 @@ def gopp():
             P1 += "01",
             P2 += "0?",
     # Remove the last "01"/"10" of P1 to reduce the count of 0s and 1s by one.
-    # It makes it impossible to create B because the count of 0s/1s is not enough.
+    # It could still produce a set of all possible strings consisting of 0s and/or 1s
+    # except for B because the count of 0s/1s is not enough to make.
     P1.pop()
 
     return "".join(P1) + " " + "".join(P2)
