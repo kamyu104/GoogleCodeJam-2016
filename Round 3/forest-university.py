@@ -9,7 +9,7 @@
 
 from random import randint
 
-def sample(children, children_size, name):
+def sample(children, descendants_cnt, name):
     sequence = []
 
     stack, left_cnt = [0], len(children)
@@ -19,7 +19,7 @@ def sample(children, children_size, name):
         # Find the parent of the kth remaining courses.
         cnt = 0
         for i in xrange(len(stack)):
-            cnt += children_size[stack[i]]
+            cnt += descendants_cnt[stack[i]]
             if cnt >= k: break
         chosen = stack[i]
 
@@ -47,19 +47,19 @@ def forest_university():
         children[parent[i]].add(i)
         children_tmp[parent[i]].add(i)
 
-    children_size = [1] * (N+1)
+    descendants_cnt = [1] * (N+1)
     left_cnt = N
     while left_cnt:
         for i in xrange(1, N+1):
             if children_tmp[i] == set():
-                children_size[parent[i]] += children_size[i]
+                descendants_cnt[parent[i]] += descendants_cnt[i]
                 children_tmp[parent[i]].remove(i)
                 children_tmp[i] = None
                 left_cnt -= 1
 
     times = 3000
     for _ in xrange(times):
-        sequence = sample(children, children_size, name)
+        sequence = sample(children, descendants_cnt, name)
         for i in xrange(M):
             if cool[i] in sequence: cnts[i] += 1
 
