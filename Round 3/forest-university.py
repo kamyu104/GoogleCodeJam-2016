@@ -48,14 +48,14 @@ def forest_university():
         children_tmp[parent[i]].add(i)
 
     children_size = [1] * (N+1)
-    done = 0
-    while done < N:
+    left_cnt = N
+    while left_cnt:
         for i in xrange(N+1):
             if children_tmp[i] == set():
                 children_size[parent[i]] += children_size[i]
                 children_tmp[parent[i]].remove(i)
                 children_tmp[i] = None
-                done += 1
+                left_cnt -= 1
 
     times = 3000
     for _ in xrange(times):
@@ -63,7 +63,7 @@ def forest_university():
         for i in xrange(M):
             if cool[i] in sequence: cnts[i] += 1
 
-    return " ".join(map(str, [1.0 * cnts[i] / times for i in xrange(M)]))
+    return " ".join(map(str, [1.0 * cnt / times for cnt in cnts]))
 
 
 for case in xrange(input()):
