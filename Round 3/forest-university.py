@@ -18,7 +18,7 @@ def sample(children, descendants_cnt, name):
 
         # Uniformly choose the candidate course by its weight.
         # The weight of a candidate course is proportional to its descendants_cnt.
-        # In other words, randomly find the kth remaining course and
+        # In other words, randomly find a remaining course and
         # choose its prerequisite course in candidates.
         cnt = 0
         for i in xrange(len(candidates)):
