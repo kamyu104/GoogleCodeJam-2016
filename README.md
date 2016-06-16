@@ -51,5 +51,5 @@ Python solutions of Google Code Jam 2016.
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
 |A| [Teaching Assistant](https://code.google.com/codejam/contest/3224486/dashboard#s=p0)| [Python](./Round 3/teaching-assistant.py)| _O(S)_ | _O(S)_ | Easy | | Greedy |
 |B| [Forest University](https://code.google.com/codejam/contest/3224486/dashboard#s=p1)| [Python](./Round 3/forest-university.py)| _O(T * N^2)_ | _O(N)_ | Medium | | Simulate |
-|C| [Rebel Against The Empire](https://code.google.com/codejam/contest/3224486/dashboard#s=p2)| [C++](./Round 3/rebel-against-the-empire.cpp)| _O(logN * (N^2 + L * N))_ | _O(N^2)_ | Hard | | Graph, Binary Search |
+|C| [Rebel Against The Empire](https://code.google.com/codejam/contest/3224486/dashboard#s=p2)| [C++](./Round 3/rebel-against-the-empire.cpp) [*Python](./Round 3/rebel-against-the-empire.py) | _O(logN * (N^2 + L * N))_ | _O(N^2)_ | Hard | | Graph, Binary Search |
 |D| [Go++](https://code.google.com/codejam/contest/3224486/dashboard#s=p3)| [Python](./Round 3/go++.py)| _O(L)_ | _O(L)_ | Medium | | Math Analysis |
