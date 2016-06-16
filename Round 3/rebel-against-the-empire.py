@@ -46,8 +46,8 @@ def compare(N, S, P, V, D):
                         jump_begin[i][j] = (-B - sqrt(B**2 - 4*A*(C-D))) / 2 / A
                         jump_end[i][j] = (-B + sqrt(B**2 - 4*A*(C-D))) / 2 / A
 
-    stay_begin[0] = 0;
-    stay_end[0] = S;
+    stay_begin[0] = 0
+    stay_end[0] = S
     planet_in_time_line = deque()
     planet_in_time_line.append(0)
     while planet_in_time_line:
@@ -76,11 +76,11 @@ def rebel_against_the_empire():
     left, right = 0.0, 3 * 1000**2
     times = log((right - left) / (PRECISION * PRECISION), 2) + 1
     for _ in xrange(int(times)):
-        mid = left + (right - left) / 2;
+        mid = left + (right - left) / 2
         if compare(N, S, P, V, mid):
-            right = mid;
+            right = mid
         else:
-            left = mid;
+            left = mid
     return sqrt(mid)
 
 
