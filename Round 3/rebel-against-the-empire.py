@@ -73,7 +73,7 @@ def rebel_against_the_empire():
     for i in xrange(N):
         P[i][0], P[i][1], P[i][2], V[i][0], V[i][1], V[i][2] = map(int, raw_input().strip().split())
 
-    left, right = 0.0, 3 * (1000))**2
+    left, right = 0.0, 3 * 1000**2
     times = log((right - left) / (PRECISION * PRECISION), 2) + 1
     for _ in xrange(int(times)):
         mid = left + (right - left) / 2;
