@@ -6,6 +6,8 @@
 # Time:  O(logN * (N^2 + L * N)), L is the length of possible planets in the timeline.
 # Space: O(N^2)
 #
+# TLE in large input (Although it fails in Python, it could pass in C++ within 20 seconds)
+#
 
 from collections import deque
 from math import sqrt, log
