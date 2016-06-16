@@ -1,4 +1,4 @@
-# [GoogleCodeJam 2016](https://code.google.com/codejam/contests.html) ![Language](https://img.shields.io/badge/language-Python-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md) ![Progress](https://img.shields.io/badge/progress-20%20%2F%2021-ff69b4.svg)
+# [GoogleCodeJam 2016](https://code.google.com/codejam/contests.html) ![Language](https://img.shields.io/badge/language-Python-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md) ![Progress](https://img.shields.io/badge/progress-21%20%2F%2021-ff69b4.svg)
 
 Python solutions of Google Code Jam 2016.
 
@@ -51,4 +51,5 @@ Python solutions of Google Code Jam 2016.
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
 |A| [Teaching Assistant](https://code.google.com/codejam/contest/3224486/dashboard#s=p0)| [Python](./Round 3/teaching-assistant.py)| _O(S)_ | _O(S)_ | Easy | | Greedy |
 |B| [Forest University](https://code.google.com/codejam/contest/3224486/dashboard#s=p1)| [Python](./Round 3/forest-university.py)| _O(T * N^2)_ | _O(N)_ | Medium | | Simulate |
+|C| [Rebel Against The Empire](https://code.google.com/codejam/contest/3224486/dashboard#s=p2)| [C++](./Round 3/rebel-against-the-empire.cpp)| _O(logN * (N^2 + L * N))_ | _O(N^2)_ | Hard | | Graph, Binary Search |
 |D| [Go++](https://code.google.com/codejam/contest/3224486/dashboard#s=p3)| [Python](./Round 3/go++.py)| _O(L)_ | _O(L)_ | Medium | | Math Analysis |
