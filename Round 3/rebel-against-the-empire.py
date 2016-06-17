@@ -15,8 +15,8 @@ from math import sqrt, log
 INF = 1e10
 MAX_N = 1000
 PRECISION = 1e-4
-
 START, END = 0, 1
+
 P = [[0 for _ in xrange(3)] for _ in xrange(MAX_N)]
 V = [[0 for _ in xrange(3)] for _ in xrange(MAX_N)]
 
