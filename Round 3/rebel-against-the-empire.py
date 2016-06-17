@@ -69,10 +69,10 @@ def compare(N, S, P, V, D):
                         return True
                     R = jump_end[i][j]
                     if L < stay_begin[j] or R + S > stay_end[j]:
-                        # Update the time interval on planet j
-                        q.append(j)
+                        # Add unvisited / updated planet to queue.
                         stay_begin[j] = min(stay_begin[j], L)
                         stay_end[j] = max(stay_end[j], R + S)
+                        q.append(j)
 
     return False
 
