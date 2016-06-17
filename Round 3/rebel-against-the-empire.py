@@ -6,7 +6,7 @@
 # Time:  O(logN * (N^2 + H * N)), H is the length of possible planets in the timeline. (Height of BFS)
 # Space: O(N^2)
 #
-# TLE in large input (Although it fails in Python, it could pass in C++ within 20 seconds)
+# TLE (Although it fails in Python, it could pass in C++ within 20 seconds)
 #
 
 from collections import deque
