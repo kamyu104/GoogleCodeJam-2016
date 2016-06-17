@@ -78,8 +78,9 @@ bool compare(const double D) {
     stay_end[0] = S;
 
     // BFS
+    const int START = 0, END = 1;
     queue<int> q;
-    q.emplace(0);
+    q.emplace(START);
     while (!q.empty()) {
         auto i = q.front();
         q.pop();
@@ -88,7 +89,7 @@ bool compare(const double D) {
                 auto L = max(stay_begin[i], jump_begin[i][j]);
                 auto R = min(stay_end[i], jump_end[i][j]);
                 if (L <= R) {
-                    if (j == 1) {
+                    if (j == END) {
                         return true;
                     }
                     R = jump_end[i][j];
