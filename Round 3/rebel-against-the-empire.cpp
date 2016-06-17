@@ -82,6 +82,7 @@ bool compare(const double D) {
     q.emplace(0);
     while (!q.empty()) {
         auto i = q.front();
+        q.pop();
         for (int j = 0; j < N; ++j) {
             if (j != i && jump_begin[i][j] < jump_end[i][j]) {
                 auto L = max(stay_begin[i], jump_begin[i][j]);
@@ -100,7 +101,6 @@ bool compare(const double D) {
                 }
             }
         }
-        q.pop();
     }
 
     return false;
