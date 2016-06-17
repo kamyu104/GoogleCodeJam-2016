@@ -4,18 +4,18 @@
  * Google Code Jam 2016 Round 3 - Problem C. Rebel Against The Empire
  * https://code.google.com/codejam/contest/3224486/dashboard#s=p2
  *
- * Time:  O(logN * (N^2 + L * N)), L is the length of possible planets in the timeline.
+ * Time:  O(logN * (N^2 + H * N)), H is the length of possible planets in the timeline. (Height of BFS)
  * Space: O(N^2)
  *
  */
 
 #include <iostream>
-#include <deque>
+#include <queue>
 #include <cmath>
 #include <algorithm>
 #include <limits>
 
-using std::deque;
+using std::queue;
 using std::cin;
 using std::cout;
 using std::endl;
@@ -77,10 +77,11 @@ bool compare(const double D) {
     stay_begin[0] = 0;
     stay_end[0] = S;
 
-    deque<int> planet_in_time_line;
-    planet_in_time_line.emplace_back(0);
-    while (!planet_in_time_line.empty()) {
-        auto i = planet_in_time_line.front();
+    // BFS
+    queue<int> q;
+    q.emplace(0);
+    while (!q.empty()) {
+        auto i = q.front();
         for (int j = 0; j < N; ++j) {
             if (j != i && jump_begin[i][j] < jump_end[i][j]) {
                 auto L = max(stay_begin[i], jump_begin[i][j]);
@@ -91,14 +92,14 @@ bool compare(const double D) {
                     }
                     R = jump_end[i][j];
                     if (L < stay_begin[j] || R + S > stay_end[j]) {
-                        planet_in_time_line.emplace_back(j);
+                        q.emplace(j);
                         stay_begin[j] = min(stay_begin[j], L);
                         stay_end[j] = max(stay_end[j], R + S);
                     }
                 }
             }
         }
-        planet_in_time_line.pop_front();
+        q.pop();
     }
 
     return false;

@@ -3,7 +3,7 @@
 # Google Code Jam 2016 Round 3 - Problem C. Rebel Against The Empire
 # https://code.google.com/codejam/contest/3224486/dashboard#s=p2
 #
-# Time:  O(logN * (N^2 + L * N)), L is the length of possible planets in the timeline.
+# Time:  O(logN * (N^2 + H * N)), H is the length of possible planets in the timeline. (Height of BFS)
 # Space: O(N^2)
 #
 # TLE in large input (Although it fails in Python, it could pass in C++ within 20 seconds)
@@ -48,12 +48,17 @@ def compare(N, S, P, V, D):
                         jump_begin[i][j] = (-B - sqrt(B**2 - 4*A*(C-D))) / 2 / A
                         jump_end[i][j] = (-B + sqrt(B**2 - 4*A*(C-D))) / 2 / A
 
+    for i in xrange(N):
+        stay_begin[i] = INF
+        stay_end[i] = -INF
     stay_begin[0] = 0
     stay_end[0] = S
-    planet_in_time_line = deque()
-    planet_in_time_line.append(0)
-    while planet_in_time_line:
-        i = planet_in_time_line.popleft()
+
+    # BFS
+    q = deque()
+    q.append(0)
+    while q:
+        i = q.popleft()
         # Jump to possible planet.
         for j in xrange(N):
             if j != i and jump_begin[i][j] < jump_end[i][j]:
@@ -65,9 +70,10 @@ def compare(N, S, P, V, D):
                     R = jump_end[i][j]
                     if L < stay_begin[j] or R + S > stay_end[j]:
                         # Update the time interval on planet j
-                        planet_in_time_line.append(j)
+                        q.append(j)
                         stay_begin[j] = min(stay_begin[j], L)
                         stay_end[j] = max(stay_end[j], R + S)
+
     return False
 
 def rebel_against_the_empire():
