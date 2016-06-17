@@ -27,6 +27,7 @@ using std::numeric_limits;
 
 const int MAX_N = 1000;
 const double PRECISION = 1e-4;
+const int START = 0, END = 1;
 
 int N, S;
 int x[MAX_N], y[MAX_N], z[MAX_N], vx[MAX_N], vy[MAX_N], vz[MAX_N];
@@ -78,7 +79,6 @@ bool compare(const double D) {
     stay_end[0] = S;
 
     // BFS
-    const int START = 0, END = 1;
     queue<int> q;
     q.emplace(START);
     while (!q.empty()) {
