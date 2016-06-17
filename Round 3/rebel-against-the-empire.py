@@ -16,6 +16,7 @@ INF = 1e10
 MAX_N = 1000
 PRECISION = 1e-4
 
+START, END = 0, 1
 P = [[0 for _ in xrange(3)] for _ in xrange(MAX_N)]
 V = [[0 for _ in xrange(3)] for _ in xrange(MAX_N)]
 
@@ -56,7 +57,7 @@ def compare(N, S, P, V, D):
 
     # BFS
     q = deque()
-    q.append(0)
+    q.append(START)
     while q:
         i = q.popleft()
         # Jump to possible planet.
@@ -65,7 +66,7 @@ def compare(N, S, P, V, D):
                 L = max(stay_begin[i], jump_begin[i][j])
                 R = min(stay_end[i], jump_end[i][j])
                 if L <= R:
-                    if j == 1:
+                    if j == END:
                         return True
                     R = jump_end[i][j]
                     if L < stay_begin[j] or R + S > stay_end[j]:
