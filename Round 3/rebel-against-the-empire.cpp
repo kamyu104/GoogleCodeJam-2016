@@ -92,6 +92,7 @@ bool compare(const double D) {
                     }
                     R = jump_end[i][j];
                     if (L < stay_begin[j] || R + S > stay_end[j]) {
+                        // Add unvisited / updated planet to queue.
                         q.emplace(j);
                         stay_begin[j] = min(stay_begin[j], L);
                         stay_end[j] = max(stay_end[j], R + S);
