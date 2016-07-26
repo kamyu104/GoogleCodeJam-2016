@@ -60,7 +60,14 @@ def forest_university():
                 children_tmp[i] = None
                 left_cnt -= 1
 
-    times = 3000
+    # 1. sigma = sqrt(p * (1-p) / times) <= 0.5 / sqrt(times)
+    # 2. Precision / sigma >= 6  means error rate < 2e-7
+    # 1 + 2 => 3e-2 / sigma >= 6
+    #       => 3e-2 / 0.5 * sqrt(times) >= 6
+    #       => sqrt(times) >= 6 * 0.5 / 3e-2
+    #       => times >= (6 * 0.5 / 3e-2) ** 2
+    times = int((6 * 0.5 / 3e-2) ** 2)
+
     for _ in xrange(times):
         sequence = sample(children, descendants_cnt, name)
         for i in xrange(M):
