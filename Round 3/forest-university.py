@@ -62,7 +62,10 @@ def forest_university():
                 left_cnt -= 1
 
     # 1. sigma = sqrt(p * (1-p) / times) <= 0.5 / sqrt(times)
+    #    (https://en.wikipedia.org/wiki/Binomial_distribution#Normal_approximation)
     # 2. precision / sigma >= 6 means error rate < 2e-7
+    #    (https://en.wikipedia.org/wiki/Standard_deviation)
+    #
     # 1 & 2 => 3e-2 / sigma >= 6
     #       => 3e-2 / 0.5 * sqrt(times) >= 6
     #       => sqrt(times) >= 6 * 0.5 / 3e-2
