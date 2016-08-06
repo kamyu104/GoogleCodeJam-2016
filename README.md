@@ -56,7 +56,7 @@ Python solutions of Google Code Jam 2016.
 |D| [Go++](https://code.google.com/codejam/contest/3224486/dashboard#s=p3)| [Python](./Round 3/go++.py)| _O(L)_ | _O(L)_ | Medium | | Math Analysis |
 
 ## World Finals
-You can relive the magic of the 2015 Code Jam World Finals by watching the [Live Stream Recording](https://www.youtube.com/watch?v=4diQ6JXY4cI) of the competition, problem explanations, interviews with Google and Code Jam engineers, and announcement of winners.
+You can relive the magic of the 2016 Code Jam World Finals by watching the [Live Stream Recording](https://www.youtube.com/watch?v=4diQ6JXY4cI) of the competition, problem explanations, interviews with Google and Code Jam engineers, and announcement of winners.
 
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
