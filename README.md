@@ -57,6 +57,7 @@ Python solutions of Google Code Jam 2016.
 
 ## World Finals
 You can relive the magic of the 2015 Code Jam World Finals by watching the [Live Stream Recording](https://www.youtube.com/watch?v=4diQ6JXY4cI) of the competition, problem explanations, interviews with Google and Code Jam engineers, and announcement of winners.
+
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
 |A| [Integeregex](https://code.google.com/codejam/contest/7234486/dashboard#s=p0)| | | | | | |
