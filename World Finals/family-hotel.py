@@ -27,15 +27,16 @@ def inv(x):
 f = [0] * MAX_N
 s = [0] * 3
 f[0] = 1
-s[0], s[1] = 1, 1
-for i in xrange(2, MAX_N):
-    # f[n] = 1/(n-1) * (1 + f[1] + f[2] + ... + f[n-2])
-    f[i] = mul(s[(i - 2) % 3], inv(i))
-    s[i % 3] = add(s[(i - 1) % 3], f[i])
+s[0], s[1] = f[0], f[0] + f[1]
+for n in xrange(2, MAX_N):
+    # f[n] = 1/n * (1 + f[1] + f[2] + ... + f[n-2])
+    f[n] = mul(inv(n), s[(n-2) % 3])
+    s[n % 3] = add(s[(n-1) % 3], f[n])
 
 def family_hotel():
     N, K = map(int, raw_input().strip().split())
     left, right = K - 1, N - K
+    # 1 - P(left & right both occupied)
     return sub(1, mul(f[left], f[right]))
 
 for case in xrange(input()):
