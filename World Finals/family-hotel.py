@@ -25,12 +25,13 @@ def inv(x):
     return pow(x, prime - 2, prime)
 
 f = [0] * MAX_N
-s = [0] * MAX_N
+s = [0] * 3
 f[0] = 1
 s[0], s[1] = 1, 1
 for i in xrange(2, MAX_N):
-    f[i] = mul(s[i - 2], inv(i))
-    s[i] = add(s[i - 1], f[i])
+    # f[n] = 1/(n-1) * (1 + f[1] + f[2] + ... + f[n-2])
+    f[i] = mul(s[(i - 2) % 3], inv(i))
+    s[i % 3] = add(s[(i - 1) % 3], f[i])
 
 def family_hotel():
     N, K = map(int, raw_input().strip().split())
