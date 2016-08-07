@@ -1,4 +1,4 @@
-# [GoogleCodeJam 2016](https://code.google.com/codejam/contests.html) ![Language](https://img.shields.io/badge/language-Python-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md) ![Progress](https://img.shields.io/badge/progress-21%20%2F%2021-ff69b4.svg)
+# [GoogleCodeJam 2016](https://code.google.com/codejam/contests.html) ![Language](https://img.shields.io/badge/language-Python-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md) ![Progress](https://img.shields.io/badge/progress-21%20%2F%2026-ff69b4.svg)
 
 Python solutions of Google Code Jam 2016.
 
@@ -8,6 +8,7 @@ Python solutions of Google Code Jam 2016.
 * [Round 1C](https://github.com/kamyu104/GoogleCodeJam-2016#round-1c)
 * [Round 2](https://github.com/kamyu104/GoogleCodeJam-2016#round-2)
 * [Round 3](https://github.com/kamyu104/GoogleCodeJam-2016#round-3)
+* [World Finals](https://github.com/kamyu104/GoogleCodeJam-2016#world-finals)
 
 ## Qualification Round
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
@@ -53,3 +54,14 @@ Python solutions of Google Code Jam 2016.
 |B| [Forest University](https://code.google.com/codejam/contest/3224486/dashboard#s=p1)| [Python](./Round 3/forest-university.py)| _O(T * N^2)_ | _O(N)_ | Medium | | Simulate |
 |C| [Rebel Against The Empire](https://code.google.com/codejam/contest/3224486/dashboard#s=p2)| [C++](./Round 3/rebel-against-the-empire.cpp) [*Python](./Round 3/rebel-against-the-empire.py) | _O(logN * (N^2 + H * N))_ | _O(N^2)_ | Hard | | Graph, BFS, Binary Search |
 |D| [Go++](https://code.google.com/codejam/contest/3224486/dashboard#s=p3)| [Python](./Round 3/go++.py)| _O(L)_ | _O(L)_ | Medium | | Math Analysis |
+
+## World Finals
+You can relive the magic of the 2016 Code Jam World Finals by watching the [Live Stream Recording](https://www.youtube.com/watch?v=4diQ6JXY4cI) of the competition, problem explanations, interviews with Google and Code Jam engineers, and announcement of winners.
+
+| # | Title | Solution | Time | Space | Difficulty | Tag | Note |
+|---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
+|A| [Integeregex](https://code.google.com/codejam/contest/7234486/dashboard#s=p0)| | | | | | |
+|B| [Family Hotel](https://code.google.com/codejam/contest/7234486/dashboard#s=p1)| | | | | | |
+|C| [Gallery of Pillars](https://code.google.com/codejam/contest/7234486/dashboard#s=p2)| | | | | | |
+|D| [Map Reduce](https://code.google.com/codejam/contest/7234486/dashboard#s=p3)| | | | | | |
+|E| [Radioactive Islands](https://code.google.com/codejam/contest/7234486/dashboard#s=p4)| | | | | | |
