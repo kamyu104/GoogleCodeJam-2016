@@ -30,8 +30,10 @@ f[0] = 1
 s[0], s[1] = f[0], f[0] + f[1]
 for n in xrange(2, MAX_N):
     # f[n]: the probability of first two rooms are occupied in the n rooms.
+    # f[0] = 1, f[1] = 0
     # f[n] = 1/n * (1 + f[1] + f[2] + ... + f[n-2])
     f[n] = mul(inv(n), s[(n-2) % 3])
+    # s[n]: 1 + f[1] + f[2] + ... + f[n]
     s[n % 3] = add(s[(n-1) % 3], f[n])
 
 def family_hotel():
