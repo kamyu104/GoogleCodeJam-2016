@@ -33,7 +33,7 @@ for n in xrange(2, MAX_N):
     # f[0] = 1, f[1] = 0
     # f[n] = 1/n * (1 + f[1] + f[2] + ... + f[n-2])
     f[n] = mul(inv(n), s[(n-2) % 3])
-    # s[n]: 1 + f[1] + f[2] + ... + f[n]
+    # s[n] = 1 + f[1] + f[2] + ... + f[n]
     s[n % 3] = add(s[(n-1) % 3], f[n])
 
 def family_hotel():
