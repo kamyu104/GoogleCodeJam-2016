@@ -39,7 +39,7 @@ for n in xrange(2, MAX_N):
 def family_hotel():
     N, K = map(int, raw_input().strip().split())
     left, right = K - 1, N - K
-    # 1 - P(left & right both occupied)
+    # 1 - P(left & right both assigned)
     return sub(1, mul(f[left], f[right]))
 
 for case in xrange(input()):
