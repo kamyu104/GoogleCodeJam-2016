@@ -27,7 +27,7 @@ def gallery_of_pillars():
     # count pairs of |(x, y)| < M/R and 0 <= x, y <= N-1 and gcd(x, y) = 1
     result = 0
     r_square = (M*M-1)//R//R
-    for k in xrange(1, min(N-1, int(sqrt(r_square)))+1):  # sum of O(N/k) = O(NlogN)
+    for k in xrange(1, min(N-1, int(sqrt(r_square)))+1):  # sum of O(N/k) = O(NlogN), see https://math.stackexchange.com/questions/306371/simple-proof-of-showing-the-harmonic-number-h-n-theta-log-n
         if MOBIOUS[k]:
             result += MOBIOUS[k] * count((N-1)//k, r_square//k//k)
     return result
