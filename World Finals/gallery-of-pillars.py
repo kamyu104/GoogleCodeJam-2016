@@ -23,10 +23,10 @@ def count(max_x, r_square):
 def gallery_of_pillars():
     N, R = map(int, raw_input().strip().split())
     result = 0
-    r = (M*M-1)//R//R
-    for k in xrange(1, int(sqrt(r))+1):
+    r_square = (M*M-1)//R//R
+    for k in xrange(1, int(sqrt(r_square))+1):
         if MOBIOUS[k] and (N-1)//k >= 1:
-            result += MOBIOUS[k] * count((N-1)//k, r//k//k)
+            result += MOBIOUS[k] * count((N-1)//k, r_square//k//k)
     return result
 
 def sieve_of_eratosthenes(N):
