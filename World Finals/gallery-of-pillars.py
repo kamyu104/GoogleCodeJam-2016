@@ -13,10 +13,8 @@ def count(max_x, r_square):
     # for 0 <= x, y <= max_x, (x, y) != (0, 0), count (x, y) s.t. x^2 + y^2 <= r^2
     result = 0
     y = min(max_x, int(sqrt(r_square)))
-    for x in xrange(max_x+1):
-        if x*x > r_square:
-            break
-        while x*x +y*y > r_square:
+    for x in xrange(y+1):
+        while x*x + y*y > r_square:
             y -= 1
         result += y+1  # (x, 0) ~ (x, y)
     result -= 1  # exclude (0, 0)
