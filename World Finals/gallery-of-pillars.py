@@ -10,8 +10,7 @@
 from math import sqrt
 
 def count(side_len, r_square):  # Time: O(side_length) = O(N/k), Space: O(1)
-    # count pairs of |(x, y)|^2 <= r_square and
-    # 0 <= x, y <= min(side_len, int(sqrt(r_square))) and (x, y) != (0, 0)
+    # count pairs of |(x, y)|^2 <= r_square and 0 <= x, y <= side_len, (x, y) != (0, 0)
     result = 0
     y = side_len
     if r_square < y*y:
@@ -24,7 +23,7 @@ def count(side_len, r_square):  # Time: O(side_length) = O(N/k), Space: O(1)
 
 def gallery_of_pillars():
     N, R = map(int, raw_input().strip().split())
-    # count pairs of |(x, y)| < M/R and 0 <= x, y <= N-1 and gcd(x, y) = 1
+    # count pairs of |(x, y)| < M/R and gcd(x, y) = 1
     result = 0
     r_square = (M*M-1)//R//R
     for k in xrange(1, min(N-1, int(sqrt(r_square)))+1):  # sum of O(N/k) = O(NlogN)
