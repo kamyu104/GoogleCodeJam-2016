@@ -9,10 +9,10 @@
 
 from math import sqrt
 
-def count(max_x, r_square):
-    # for 0 <= x, y <= max_x, (x, y) != (0, 0), count (x, y) s.t. x^2 + y^2 <= r^2
+def count(side_len, r_square):
+    # for 0 <= x, y <= side_len, (x, y) != (0, 0), count (x, y) s.t. x^2 + y^2 <= r^2
     result = 0
-    y = min(max_x, int(sqrt(r_square)))
+    y = min(side_len, int(sqrt(r_square)))
     for x in xrange(y+1):
         while x*x + y*y > r_square:
             y -= 1
@@ -22,6 +22,7 @@ def count(max_x, r_square):
 
 def gallery_of_pillars():
     N, R = map(int, raw_input().strip().split())
+    # count pairs of |(x, y)| < M/R and gcd(x, y) = 1
     result = 0
     r_square = (M*M-1)//R//R
     for k in xrange(1, int(sqrt(r_square))+1):
