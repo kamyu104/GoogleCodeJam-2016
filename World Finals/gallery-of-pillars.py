@@ -19,8 +19,7 @@ def count(side_len, r_square):  # Time: O(side_length) = O(N/k), Space: O(1)
         while x*x + y*y > r_square:
             y -= 1
         result += y+1  # (x, 0) ~ (x, y)
-    result -= 1  # exclude (0, 0)
-    return result
+    return result-1  # exclude (0, 0)
 
 def gallery_of_pillars():
     N, R = map(int, raw_input().strip().split())
