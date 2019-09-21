@@ -11,21 +11,21 @@ from math import sqrt
 
 def count(side_len, r_square):  # Time: O(side_length) = O(N/k), Space: O(1)
     # count pairs of |(x, y)|^2 <= r_square and
-    # 1 <= x, y <= min(side_len, int(sqrt(r_square)))
+    # 0 <= x, y <= min(side_len, int(sqrt(r_square))) and (x, y) != (0, 0)
     result = 0
     y = side_len
     if r_square < y*y:
         y = int(sqrt(r_square))  # Time: O(log(N/k))
-    for x in xrange(1, y+1):
+    for x in xrange(y+1):
         while x*x + y*y > r_square:
             y -= 1  # Time: O(N/k)
-        result += y  # (x, 1) ~ (x, y)
-    return result
+        result += y+1  # (x, 0) ~ (x, y)
+    return result-1  # exclude (0, 0)
 
 def gallery_of_pillars():
     N, R = map(int, raw_input().strip().split())
-    # result = count of [(1, 0), (0, 1)] + [pairs of |(x, y)| < M/R and 1 <= x, y <= N-1 and gcd(x, y) = 1]
-    result = 2
+    # count pairs of |(x, y)| < M/R and 0 <= x, y <= N-1 and gcd(x, y) = 1
+    result = 0
     r_square = (M*M-1)//R//R
     for k in xrange(1, min(N-1, int(sqrt(r_square)))+1):  # sum of O(N/k) = O(NlogN)
         if MOBIOUS[k]:
