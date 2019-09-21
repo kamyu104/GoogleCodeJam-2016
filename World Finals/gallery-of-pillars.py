@@ -10,7 +10,7 @@
 from math import sqrt
 
 def count(side_len, r_square):  # Time: O(side_length) = O(N/k), Space: O(1)
-    # for 0 <= x, y <= side_len, (x, y) != (0, 0), count (x, y) s.t. x^2 + y^2 <= r^2
+    # count pairs of |(x, y)|^2 <= r_square, s.t. 0 <= x, y <= side_len, (x, y) != (0, 0)
     result = 0
     y = side_len
     if r_square < y*y:
