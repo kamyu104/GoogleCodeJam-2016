@@ -14,10 +14,10 @@ def count(side_len, r_square):  # Time: O(side_length) = O(N/k), Space: O(1)
     result = 0
     y = side_len
     if r_square < y*y:
-        y = int(sqrt(r_square))
+        y = int(sqrt(r_square))  # Time: O(log(N/k))
     for x in xrange(y+1):
         while x*x + y*y > r_square:
-            y -= 1
+            y -= 1  # Time: O(N/k)
         result += y+1  # (x, 0) ~ (x, y)
     return result-1  # exclude (0, 0)
 
