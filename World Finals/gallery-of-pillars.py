@@ -34,18 +34,18 @@ def gallery_of_pillars():
 
 def sieve_of_eratosthenes(n):  # Time: O(M), Space: O(M)
     is_prime = [True]*n
-    mobious = [1]*n
+    mobius = [1]*n
     for i in xrange(2, n):
         if not is_prime[i]:
             continue
         for j in xrange(i+i, n, i):
             is_prime[j] = False
         for j in xrange(i, n, i):
-            mobious[j] = -mobious[j]
+            mobius[j] = -mobius[j]
         if i <= n//i:
             for j in xrange(i*i, n, i*i):
-                mobious[j] = 0
-    return mobious
+                mobius[j] = 0
+    return mobius
 
 M = 10**6
 MOBIUS = sieve_of_eratosthenes(M)
