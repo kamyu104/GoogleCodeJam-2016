@@ -28,8 +28,8 @@ def gallery_of_pillars():
     result = 0
     r_square = (M*M-1)//R//R
     for k in xrange(1, min(N-1, int(sqrt(r_square)))+1):  # Time: sum of O(N/k) = O(NlogN), see https://math.stackexchange.com/questions/306371/simple-proof-of-showing-the-harmonic-number-h-n-theta-log-n
-        if MOBIOUS[k]:
-            result += MOBIOUS[k] * count((N-1)//k, r_square//k//k)
+        if MOBIUS[k]:
+            result += MOBIUS[k] * count((N-1)//k, r_square//k//k)
     return result
 
 def sieve_of_eratosthenes(n):  # Time: O(M), Space: O(M)
@@ -48,6 +48,6 @@ def sieve_of_eratosthenes(n):  # Time: O(M), Space: O(M)
     return mobious
 
 M = 10**6
-MOBIOUS = sieve_of_eratosthenes(M)
+MOBIUS = sieve_of_eratosthenes(M)
 for case in xrange(input()):
     print 'Case #%d: %s' % (case+1, gallery_of_pillars())
