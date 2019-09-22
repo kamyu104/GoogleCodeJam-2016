@@ -9,16 +9,16 @@
 
 from math import sqrt
 
-def count(side_len, r_square):  # Time: O(side_length) = O(N/k), Space: O(1)
+def count(side_len, r_square):  # Time: O(side_length) = O(N/d), Space: O(1)
     # count pairs of |(x, y)|^2 <= r_square and
     # 0 <= x, y <= min(side_len, int(sqrt(r_square))) and (x, y) != (0, 0)
     result = 0
     y = side_len
     if r_square < y*y:
-        y = int(sqrt(r_square))  # Time: O(log(N/k))
+        y = int(sqrt(r_square))  # Time: O(log(N/d))
     for x in xrange(y+1):
         while x*x + y*y > r_square:
-            y -= 1  # Time: O(N/k)
+            y -= 1  # Time: O(N/d)
         result += y+1  # (x, 0) ~ (x, y)
     return result-1  # exclude (0, 0)
 
@@ -27,9 +27,9 @@ def gallery_of_pillars():
     # count pairs of |(x, y)| < M/R and 0 <= x, y <= N-1 and gcd(x, y) = 1
     result = 0
     r_square = (M*M-1)//R//R
-    for k in xrange(1, min(N-1, int(sqrt(r_square)))+1):  # Time: sum of O(N/k) = O(NlogN), see https://math.stackexchange.com/questions/306371/simple-proof-of-showing-the-harmonic-number-h-n-theta-log-n
-        if MU[k]:
-            result += MU[k] * count((N-1)//k, r_square//k//k)
+    for d in xrange(1, min(N-1, int(sqrt(r_square)))+1):  # Time: sum of O(N/d) = O(NlogN), see https://math.stackexchange.com/questions/306371/simple-proof-of-showing-the-harmonic-number-h-n-theta-log-n
+        if MU[d]:  # see https://artofproblemsolving.com/wiki/index.php/Mobius_function
+            result += MU[d] * count((N-1)//d, r_square//d//d)
     return result
 
 def sieve_of_eratosthenes(n):  # Time: O(M), Space: O(M)
