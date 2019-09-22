@@ -26,10 +26,10 @@ def gallery_of_pillars():
     N, R = map(int, raw_input().strip().split())
     # count pairs of |(x, y)| < M/R and 0 <= x, y <= N-1 and gcd(x, y) = 1
     result = 0
-    r_square = (M*M-1)//R//R
+    r_square = (M*M-1)//(R*R)
     for d in xrange(1, min(N-1, int(sqrt(r_square)))+1):  # Time: sum of O(N/d) = O(NlogN), see https://math.stackexchange.com/questions/306371/simple-proof-of-showing-the-harmonic-number-h-n-theta-log-n
         if MU[d]:  # see https://artofproblemsolving.com/wiki/index.php/Mobius_function
-            result += MU[d] * count((N-1)//d, r_square//d//d)
+            result += MU[d] * count((N-1)//d, r_square//(d*d))
     return result
 
 def sieve_of_eratosthenes(n):  # Time: O(M), Space: O(M)
