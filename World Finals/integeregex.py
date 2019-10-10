@@ -10,9 +10,8 @@
 from collections import defaultdict
 
 def make_state(state_count):
-    state = "s{}".format(state_count[0])
     state_count[0] += 1
-    return state
+    return "s{}".format(state_count[0])
 
 def make_E_NFA(R, start, state_count, transitions):
     initial_state, final_state = make_state(state_count), make_state(state_count)
