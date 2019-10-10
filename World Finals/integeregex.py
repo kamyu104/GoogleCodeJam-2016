@@ -3,8 +3,8 @@
 # Google Code Jam 2016 World Finals - Problem A. Integeregex
 # https://code.google.com/codejam/contest/7234486/dashboard#s=p0
 #
-# Time:  O(R^2)
-# Space: O(R^2)
+# Time:  O(R*2^R)
+# Space: O(R*2^R)
 #
 
 from collections import defaultdict
@@ -41,7 +41,6 @@ def make_E_NFA(R, start, state_count, transitions):
             transitions[new_final_state][''] = set([final_state])
             if R[start[0]-1] == ')':
                 break
-    # print "make_E_NFA:", R[i:start[0]]
     return initial_state, final_state
 
 # Thompson's construction
@@ -56,7 +55,6 @@ def make_NFA(R, start, state_count, transitions):
         if final_state is not None:
             transitions[final_state][''] = set([new_initial_state])
         final_state = new_final_state
-    # print "make_NFA:  ", R[i:] if start[0] == len(R) else R[i:start[0]]
     return initial_state, final_state
 
 def expand_epsilon_reached_states(transitions, final_state):  # Time: O(R^2), Space: O(R^2)
@@ -96,23 +94,16 @@ def match_NFA(X, transitions, initial_state, final_state):
         count_state = new_count_state
     count_match = 0
     for (_, _, states), count in count_state.iteritems():
-        for end_state in states:
-            if final_state in transitions[end_state]['']:
-                count_match += count
-    # print count_state, initial_state, final_state
+        if any(final_state in transitions[end_state][''] for end_state in states):
+            count_match += count
     return count_match
 
 def integeregex():
     A, B = map(int, raw_input().strip().split())
     R = raw_input().strip()
-    #print A, B
-    #print R
     transitions = defaultdict(lambda: defaultdict(set))
     initial_state, final_state = make_NFA(R, [0], [0], transitions)
-    #print transitions
     expand_epsilon_reached_states(transitions, final_state)
-    #print transitions
-    #print R, transitions, initial_state, final_state
     return match_NFA(B, transitions, initial_state, final_state) - \
            match_NFA(A-1, transitions, initial_state, final_state)
 
