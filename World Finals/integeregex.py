@@ -15,6 +15,7 @@ def make_state(state_count):
 
 def make_E_NFA(R, start, state_count, transitions):
     initial_state, final_state = make_state(state_count), make_state(state_count)
+    assert(state_count[0] <= 2*len(R))
     i = start[0]
     if R[start[0]].isdigit():
         transitions[initial_state][int(R[start[0]])] = set([final_state])
