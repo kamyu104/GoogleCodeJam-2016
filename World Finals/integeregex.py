@@ -30,13 +30,12 @@ def make_E_NFA(R, start, state_count, transitions):
             if not new_initial_state or not new_final_state:
                 break
             if start[0]+1 != len(R) and R[start[0]:start[0]+2] == ")*":
-                # repetition
-                start[0] += 2
+                start[0] += 2  # repetition
                 transitions[new_final_state][''] = set([new_initial_state, final_state])
                 transitions[initial_state][''] |= set([new_initial_state, final_state])
                 break
             assert(R[start[0]] in ")|")
-            start[0] += 1
+            start[0] += 1  # disjunction
             transitions[initial_state][''].add(new_initial_state)
             transitions[new_final_state][''] = set([final_state])
             if R[start[0]-1] == ')':
@@ -49,8 +48,7 @@ def make_NFA(R, start, state_count, transitions):  # Time: O(R), Space: O(R)
     initial_state, final_state = None, None
     i = start[0]
     while start[0] != len(R) and (R[start[0]] == '(' or R[start[0]].isdigit()):
-        # concatenation
-        new_initial_state, new_final_state = make_E_NFA(R, start, state_count, transitions)
+        new_initial_state, new_final_state = make_E_NFA(R, start, state_count, transitions)  # concatenation
         if initial_state is None:
             initial_state = new_initial_state
         if final_state is not None:
