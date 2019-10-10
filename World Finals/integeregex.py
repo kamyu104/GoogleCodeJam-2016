@@ -31,12 +31,12 @@ def make_E_NFA(R, start, state_count, transitions):
                 break
             if start[0]+1 != len(R) and R[start[0]:start[0]+2] == ")*":
                 start[0] += 2  # repetition
-                transitions[new_final_state][''] = set([new_initial_state, final_state])
                 transitions[initial_state][''] |= set([new_initial_state, final_state])
+                transitions[new_final_state][''] = set([new_initial_state, final_state])
                 break
             assert(R[start[0]] in ")|")
             start[0] += 1  # disjunction
-            transitions[initial_state][''].add(new_initial_state)
+            transitions[initial_state][''] |= set([new_initial_state])
             transitions[new_final_state][''] = set([final_state])
             if R[start[0]-1] == ')':
                 break
