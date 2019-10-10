@@ -32,12 +32,12 @@ def make_E_NFA(R, start, state_count, transitions):
             if not new_initial_state and not new_final_state:
                 break
             if start[0]+1 != len(R) and R[start[0]:start[0]+2] == ')*':
-                # f(E = (E1)*)
+                # repetition
                 start[0] += 2
                 transitions[new_final_state][''] = set([new_initial_state, final_state])
                 transitions[initial_state][''] |= set([new_initial_state, final_state])
                 break
-            # f(E = (E1|E2|...|EN))
+            # disjunction
             start[0] += 1
             if R[prev_start:start[0]-1] in lookup:
                 continue
@@ -51,9 +51,7 @@ def make_NFA(R, start, state_count, transitions):
     initial_state, final_state = None, None
     i = start[0]
     while start[0] < len(R) and (R[start[0]] == '(' or R[start[0]].isdigit()):
-        # f(E = E1E2):
-        #   use the initial state of f(E1) as initial state of f(E), the final state of f(E2) as final state,
-        #   and add an epsilon-transition from the final state of f(E1) to the initial state of f(E2)
+        # concatenation
         new_initial_state, new_final_state = make_E_NFA(R, start, state_count, transitions)
         if initial_state is None:
             initial_state = new_initial_state
