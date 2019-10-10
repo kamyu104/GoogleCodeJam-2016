@@ -44,6 +44,7 @@ def make_E_NFA(R, start, state_count, transitions):
     return initial_state, final_state
 
 # Thompson's construction
+# references: https://www.researchgate.net/profile/Shin-ichi_Minato/publication/221580042/figure/fig1/AS:341447451660288@1458418824089/The-construction-of-Thompson-automata-TNFAs.png
 def make_NFA(R, start, state_count, transitions):
     initial_state, final_state = None, None
     i = start[0]
