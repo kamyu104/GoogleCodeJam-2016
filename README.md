@@ -1,4 +1,4 @@
-# [GoogleCodeJam 2016](https://code.google.com/codejam/contests.html) ![Language](https://img.shields.io/badge/language-Python-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md) ![Progress](https://img.shields.io/badge/progress-23%20%2F%2026-ff69b4.svg)
+# [GoogleCodeJam 2016](https://code.google.com/codejam/contests.html) ![Language](https://img.shields.io/badge/language-Python-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md) ![Progress](https://img.shields.io/badge/progress-24%20%2F%2026-ff69b4.svg)
 
 Python solutions of Google Code Jam 2016.
 
@@ -60,7 +60,7 @@ You can relive the magic of the 2016 Code Jam World Finals by watching the [Live
 
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
-|A| [Integeregex](https://code.google.com/codejam/contest/7234486/dashboard#s=p0)| | | | | | |
+|A| [Integeregex](https://code.google.com/codejam/contest/7234486/dashboard#s=p0)| Python](./World%20Finals/integeregex.py) | _O(R*2^R)_ | _O(R*2^R)_ | Medium | | NFA, Thompson's Construction, DP |
 |B| [Family Hotel](https://code.google.com/codejam/contest/7234486/dashboard#s=p1)| [Python](./World%20Finals/family-hotel.py) | _O(N)_ | _O(N)_ | Medium | | DP, Probability, Euler's Theorem |
 |C| [Gallery of Pillars](https://code.google.com/codejam/contest/7234486/dashboard#s=p2)| [Python](./World%20Finals/gallery-of-pillars.py) | _O(NlogN)_ | _O(M)_ | Medium | | Inclusion-Exclusion Principle, Möbius Function, Sieve Of Eratosthenes, Math Analysis |
 |D| [Map Reduce](https://code.google.com/codejam/contest/7234486/dashboard#s=p3)| | | | | | |
