@@ -18,13 +18,12 @@ def make_E_NFA(R, start, state_count, transitions):
     initial_state, final_state = make_state(state_count), make_state(state_count)
     i = start[0]
     if R[start[0]].isdigit():
-        transitions[initial_state][int(R[start[0]])] = final_state
+        transitions[initial_state][int(R[start[0]])] = set([final_state])
         start[0] += 1
     else:
         assert(R[start[0]] == '(')
         start[0] += 1
         transitions[initial_state][''] = set()
-        # lookup = set()
         while True:
             prev_start = start[0]
             new_initial_state, new_final_state = make_NFA(R, start, state_count, transitions)
@@ -38,17 +37,11 @@ def make_E_NFA(R, start, state_count, transitions):
                 break
             assert(R[start[0]] in ")|")
             start[0] += 1
-            # if R[prev_start:start[0]-1] in lookup:
-            #     if R[start[0]-1] == ')':
-            #         break
-            #     continue
-            # lookup.add(R[prev_start:start[0]-1])
             transitions[initial_state][''].add(new_initial_state)
             transitions[new_final_state][''] = set([final_state])
             if R[start[0]-1] == ')':
                 break
     # print "make_E_NFA:", R[i:start[0]]
-    # print "make_E_NFA:", R[i:start[0]], transitions, initial_state, final_state
     return initial_state, final_state
 
 # Thompson's construction
@@ -64,13 +57,10 @@ def make_NFA(R, start, state_count, transitions):
             transitions[final_state][''] = set([new_initial_state])
         final_state = new_final_state
     # print "make_NFA:  ", R[i:] if start[0] == len(R) else R[i:start[0]]
-    # print "make_NFA:  ", R[i:] if start[0] == len(R) else R[i:start[0]], transitions, initial_state, final_state
     return initial_state, final_state
 
 def expand_epsilon_transitions(transitions, final_state):
-    def dfs(start_state, transitions, lookup):
-        if '' not in transitions[start_state]:
-            transitions[start_state][''] = set()
+    def dfs(start_state, transitions, lookup=set()):
         epsilon_set = set()
         for state in transitions[start_state]['']:
             if state not in lookup:
@@ -80,12 +70,8 @@ def expand_epsilon_transitions(transitions, final_state):
         epsilon_set.add(start_state)
         transitions[start_state][''] = epsilon_set
 
-    lookup = set()
     for state in transitions.keys():
-        if state in lookup:
-            continue
-        lookup.add(state)
-        dfs(state, transitions, lookup)
+        dfs(state, transitions)
     transitions[final_state][''] = set([final_state])
 
 def match_NFA(X, transitions, initial_state, final_state):
@@ -104,8 +90,7 @@ def match_NFA(X, transitions, initial_state, final_state):
                 new_possible_states = set()
                 for start_state in states:
                     for epsilon_state in transitions[start_state]['']:
-                        if new_digit in transitions[epsilon_state]:
-                            new_possible_states.add(transitions[epsilon_state][new_digit])
+                        new_possible_states |= transitions[epsilon_state][new_digit]
                 if not new_possible_states:
                     continue
                 new_count_state[False, is_prefix_of_x and new_digit == x_digits[index], frozenset(new_possible_states)] += count
@@ -115,14 +100,14 @@ def match_NFA(X, transitions, initial_state, final_state):
         for end_state in states:
             if final_state in transitions[end_state]['']:
                 count_match += count
-    #print count_match
+    #print count_state, initial_state, final_state
     return count_match
 
 def integeregex():
     A, B = map(int, raw_input().strip().split())
     R = raw_input().strip()
-    # print R
-    transitions = defaultdict(dict)
+    #print R
+    transitions = defaultdict(lambda: defaultdict(set))
     initial_state, final_state = make_NFA(R, [0], [0], transitions)
     expand_epsilon_transitions(transitions, final_state)
     #print R, transitions, initial_state, final_state
