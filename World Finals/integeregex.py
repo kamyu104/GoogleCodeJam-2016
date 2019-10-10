@@ -30,7 +30,7 @@ def make_E_NFA(R, start, state_count, transitions):
             new_initial_state, new_final_state = make_NFA(R, start, state_count, transitions)
             if not new_initial_state or not new_final_state:
                 break
-            if start[0]+1 != len(R) and R[start[0]:start[0]+2] == ')*':
+            if start[0]+1 != len(R) and R[start[0]:start[0]+2] == ")*":
                 # repetition
                 start[0] += 2
                 transitions[new_final_state][''] = set([new_initial_state, final_state])
@@ -43,14 +43,17 @@ def make_E_NFA(R, start, state_count, transitions):
             lookup.add(R[prev_start:start[0]-1])
             transitions[initial_state][''].add(new_initial_state)
             transitions[new_final_state][''] = set([final_state])
-    #print "make_E_NFA:", R[i:start[0]], transitions, initial_state, final_state
+            if R[start[0]-1] == ')':
+                break
+    # print "make_E_NFA:", R[i:start[0]]
+    # print "make_E_NFA:", R[i:start[0]], transitions, initial_state, final_state
     return initial_state, final_state
 
 # Thompson's construction
 def make_NFA(R, start, state_count, transitions):
     initial_state, final_state = None, None
     i = start[0]
-    while start[0] < len(R) and (R[start[0]] == '(' or R[start[0]].isdigit()):
+    while start[0] != len(R) and (R[start[0]] == '(' or R[start[0]].isdigit()):
         # concatenation
         new_initial_state, new_final_state = make_E_NFA(R, start, state_count, transitions)
         if initial_state is None:
@@ -58,6 +61,7 @@ def make_NFA(R, start, state_count, transitions):
         if final_state is not None:
             transitions[final_state][''] = set([new_initial_state])
         final_state = new_final_state
+    # print "make_NFA:  ", R[i:] if start[0] == len(R) else R[i:start[0]]
     # print "make_NFA:  ", R[i:] if start[0] == len(R) else R[i:start[0]], transitions, initial_state, final_state
     return initial_state, final_state
 
@@ -115,6 +119,7 @@ def match_NFA(X, transitions, initial_state, final_state):
 def integeregex():
     A, B = map(int, raw_input().strip().split())
     R = raw_input().strip()
+    print R
     transitions = defaultdict(dict)
     initial_state, final_state = make_NFA(R, [0], [0], transitions)
     expand_epsilon_transitions(transitions, final_state)
