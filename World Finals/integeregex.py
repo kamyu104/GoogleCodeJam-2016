@@ -83,9 +83,8 @@ def match_NFA(X, transitions, initial_state, final_state):
                     continue  # numbers can't start with 0.
                 if is_prefix_of_x and new_digit > x_digits[index]:
                     continue  # numbers can't be greater than X.
-                # find all possible states if new_digit was next in the string
                 new_possible_states = set()
-                for start_state in states:
+                for start_state in states:  # find all possible states if new_digit was next in the string
                     for epsilon_state in transitions[start_state]['']:
                         new_possible_states |= transitions[epsilon_state][new_digit]
                 if not new_possible_states:
