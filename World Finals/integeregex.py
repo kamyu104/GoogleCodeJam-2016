@@ -59,16 +59,15 @@ def make_NFA(R, start, state_count, transitions):
 
 def expand_epsilon_reached_states(transitions, final_state):  # Time: O(R^2), Space: O(R^2)
     def dfs(start_state, curr_state, transitions, lookup):
-        transitions[start_state][''] |= set(state for state in transitions[curr_state][''] if state not in lookup)
         for state in set(transitions[curr_state]['']):
             if state in lookup:
                 continue
             lookup.add(state)
             dfs(start_state, state, transitions, lookup)
+        transitions[start_state][''].add(curr_state)
 
     for state in transitions.keys():
         dfs(state, state, transitions, set())
-        transitions[state][''].add(state)
     transitions[final_state][''] = set([final_state])
 
 def match_NFA(X, transitions, initial_state, final_state):
