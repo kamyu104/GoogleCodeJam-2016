@@ -18,13 +18,12 @@ def make_E_NFA(R, start, state_count, transitions):
     assert(state_count[0] <= 2*len(R))
     i = start[0]
     if R[start[0]].isdigit():
-        transitions[initial_state][int(R[start[0]])] = set([final_state])
         start[0] += 1
+        transitions[initial_state][int(R[start[0]-1])] = set([final_state])
     else:
         assert(R[start[0]] == '(')
         start[0] += 1
         while True:
-            prev_start = start[0]
             new_initial_state, new_final_state = make_NFA(R, start, state_count, transitions)
             if not new_initial_state or not new_final_state:
                 break
