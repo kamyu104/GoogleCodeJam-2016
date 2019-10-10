@@ -46,6 +46,7 @@ def make_E_NFA(R, start, state_count, transitions):
     #print "make_E_NFA:", R[i:start[0]], transitions, initial_state, final_state
     return initial_state, final_state
 
+# Thompson's construction
 def make_NFA(R, start, state_count, transitions):
     initial_state, final_state = None, None
     i = start[0]
