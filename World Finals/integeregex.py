@@ -80,9 +80,9 @@ def match_NFA(X, transitions, initial_state, final_state):
         for (is_empty, is_prefix_of_x, states), count in count_state.iteritems():
             for new_digit in xrange(10):
                 if is_empty and new_digit == 0:
-                    continue  # numbers can't start with 0.
+                    continue  # numbers can't start with 0
                 if is_prefix_of_x and new_digit > x_digits[index]:
-                    continue  # numbers can't be greater than X.
+                    continue  # numbers can't be greater than X
                 new_possible_states = set()
                 for start_state in states:  # find all possible states if new_digit was next in the string
                     for epsilon_state in transitions[start_state]['']:
