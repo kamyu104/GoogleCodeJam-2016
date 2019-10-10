@@ -26,34 +26,38 @@ def make_E_NFA(R, start, state_count, transitions):
     else:
         assert(R[start[0]] == '(')
         start[0] += 1
+        lookup = set()
         while True:
+            prev_start = start[0]
             new_initial_state, new_final_state = make_NFA(R, start, state_count, transitions)
-            if start[0] == len(R):
+            if not new_initial_state and not new_final_state:
                 break
-            if R[start[0]] == '|':
-                # f(E = (E1|E2|...|EN)):
-                #   add an epsilon-transition from the initial state of f(E) to each initial state of an f(Ei)
-                #   and from the final state of each f(Ei) to the final state of f(E)
-                if initial_state is None:
-                    initial_state, final_state = make_state(state_count), make_state(state_count)
-                    transitions[initial_state][''] = set()
-                transitions[initial_state][''].add(new_initial_state)
-                transitions[new_final_state][''] = set([final_state])
-                start[0] += 1
-            else:
-                assert(R[start[0]] == ')')
-                start[0] += 1
-                if start[0] != len(R) and R[start[0]] == '*':
-                    # f(E = (E1)*):
-                    #   add an epsilon-transition from the final state of f(E1) to the initial state of f(E1)
-                    #   and from the initial state of f(E1) to the final state of f(E)
-                    initial_state, final_state = new_initial_state, make_state(state_count)
-                    transitions[new_final_state][''] = set([new_initial_state])
-                    if '' not in transitions[new_initial_state]:
-                        transitions[new_initial_state][''] = set()
-                    transitions[new_initial_state][''].add(final_state)
-                    start[0] += 1
+            if start[0]+1 != len(R) and R[start[0]:start[0]+2] == ')*':
+                # f(E = (E1)*):
+                #   add an epsilon-transition from the final state of f(E1) to the initial state of f(E1)
+                #   and from the initial state of f(E1) to the final state of f(E)
+                start[0] += 2
+                initial_state, final_state = new_initial_state, make_state(state_count)
+                transitions[new_final_state][''] = set([new_initial_state])
+                if '' not in transitions[new_initial_state]:
+                    transitions[new_initial_state][''] = set()
+                transitions[new_initial_state][''].add(final_state)
                 break
+            # f(E = (E1|E2|...|EN)):
+            #   add an epsilon-transition from the initial state of f(E) to each initial state of an f(Ei)
+            #   and from the final state of each f(Ei) to the final state of f(E)
+            start[0] += 1
+            if R[prev_start:start[0]-1] in lookup:
+                continue
+            lookup.add(R[prev_start:start[0]-1])
+            #print lookup
+            if initial_state is None:
+                initial_state, final_state = make_state(state_count), make_state(state_count)
+                transitions[initial_state][''] = set()
+            #print initial_state, new_initial_state, new_final_state, final_state
+            transitions[initial_state][''].add(new_initial_state)
+            transitions[new_final_state][''] = set([final_state])
+            
     #print "make_E_NFA:", R[i:start[0]], transitions, initial_state, final_state
     return initial_state, final_state
 
