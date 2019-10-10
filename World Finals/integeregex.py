@@ -4,7 +4,7 @@
 # https://code.google.com/codejam/contest/7234486/dashboard#s=p0
 #
 # Time:  O(R*2^R)
-# Space: O(R*2^R)
+# Space: O(R)
 #
 
 from collections import defaultdict
