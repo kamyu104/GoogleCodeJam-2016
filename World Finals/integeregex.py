@@ -19,7 +19,6 @@ def make_E_NFA(R, start, state_count, transitions):
     i = start[0]
     if R[start[0]].isdigit():
         # E: digit
-        #   two special states linked with a transition labeled with E
         transitions[initial_state][int(R[start[0]])] = final_state
         start[0] += 1
     else:
@@ -33,21 +32,16 @@ def make_E_NFA(R, start, state_count, transitions):
             if not new_initial_state and not new_final_state:
                 break
             if start[0]+1 != len(R) and R[start[0]:start[0]+2] == ')*':
-                # f(E = (E1)*):
-                #   add an epsilon-transition from the final state of f(E1) to the initial state of f(E1) & the final state of f(E)
-                #   and from the initial state of f(E) to the initial state of f(E1) & the final state of f(E)
+                # f(E = (E1)*)
                 start[0] += 2
                 transitions[new_final_state][''] = set([new_initial_state, final_state])
                 transitions[initial_state][''] |= set([new_initial_state, final_state])
                 break
-            # f(E = (E1|E2|...|EN)):
-            #   add an epsilon-transition from the initial state of f(E) to each initial state of an f(Ei)
-            #   and from the final state of each f(Ei) to the final state of f(E)
+            # f(E = (E1|E2|...|EN))
             start[0] += 1
             if R[prev_start:start[0]-1] in lookup:
                 continue
             lookup.add(R[prev_start:start[0]-1])
-            #print initial_state, new_initial_state, new_final_state, final_state
             transitions[initial_state][''].add(new_initial_state)
             transitions[new_final_state][''] = set([final_state])
     #print "make_E_NFA:", R[i:start[0]], transitions, initial_state, final_state
@@ -92,10 +86,8 @@ def expand_epsilon_transitions(transitions, final_state):
 
 def match_NFA(X, transitions, initial_state, final_state):
     x_digits = map(int, list(str(X)))
-    # start of numbers with same length as X.
     count_state = {(True, True, frozenset([initial_state])):1}
     for index in xrange(len(x_digits)):
-        # start of shorter and shorter numbers.
         new_count_state = defaultdict(int)
         new_count_state[True, False, frozenset([initial_state])] = 1
         for (is_empty, is_prefix_of_x, states), count in count_state.iteritems():
@@ -121,6 +113,7 @@ def match_NFA(X, transitions, initial_state, final_state):
         for end_state in states:
             if final_state in transitions[end_state]['']:
                 count_match += count
+    #print count_match
     return count_match
 
 def integeregex():
