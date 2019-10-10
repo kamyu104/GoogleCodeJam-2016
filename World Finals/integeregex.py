@@ -24,7 +24,7 @@ def make_E_NFA(R, start, state_count, transitions):
         assert(R[start[0]] == '(')
         start[0] += 1
         transitions[initial_state][''] = set()
-        lookup = set()
+        # lookup = set()
         while True:
             prev_start = start[0]
             new_initial_state, new_final_state = make_NFA(R, start, state_count, transitions)
@@ -38,9 +38,11 @@ def make_E_NFA(R, start, state_count, transitions):
                 break
             assert(R[start[0]] in ")|")
             start[0] += 1
-            if R[prev_start:start[0]-1] in lookup:
-                continue
-            lookup.add(R[prev_start:start[0]-1])
+            # if R[prev_start:start[0]-1] in lookup:
+            #     if R[start[0]-1] == ')':
+            #         break
+            #     continue
+            # lookup.add(R[prev_start:start[0]-1])
             transitions[initial_state][''].add(new_initial_state)
             transitions[new_final_state][''] = set([final_state])
             if R[start[0]-1] == ')':
@@ -119,7 +121,7 @@ def match_NFA(X, transitions, initial_state, final_state):
 def integeregex():
     A, B = map(int, raw_input().strip().split())
     R = raw_input().strip()
-    print R
+    # print R
     transitions = defaultdict(dict)
     initial_state, final_state = make_NFA(R, [0], [0], transitions)
     expand_epsilon_transitions(transitions, final_state)
