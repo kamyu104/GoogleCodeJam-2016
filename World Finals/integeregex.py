@@ -60,18 +60,17 @@ def make_NFA(R, start, state_count, transitions):
     return initial_state, final_state
 
 def expand_epsilon_reached_states(transitions, final_state):
-    def dfs(start_state, transitions, lookup=set()):
-        epsilon_set = set()
-        for state in transitions[start_state]['']:
-            if state not in lookup:
-                lookup.add(state)
-                dfs(state, transitions, lookup)
-            epsilon_set |= transitions[state]['']
-        epsilon_set.add(start_state)
-        transitions[start_state][''] = epsilon_set
+    def dfs(start_state, curr_state, transitions, lookup):
+        for state in set(transitions[curr_state]['']):
+            if state in lookup:
+                continue
+            lookup.add(state)
+            dfs(start_state, state, transitions, lookup)
+        transitions[start_state][''] |= transitions[curr_state]['']
 
     for state in transitions.keys():
-        dfs(state, transitions)
+        dfs(state, state, transitions, set())
+        transitions[state][''].add(state)
     transitions[final_state][''] = set([final_state])
 
 def match_NFA(X, transitions, initial_state, final_state):
@@ -100,16 +99,19 @@ def match_NFA(X, transitions, initial_state, final_state):
         for end_state in states:
             if final_state in transitions[end_state]['']:
                 count_match += count
-    #print count_state, initial_state, final_state
+    # print count_state, initial_state, final_state
     return count_match
 
 def integeregex():
     A, B = map(int, raw_input().strip().split())
     R = raw_input().strip()
+    #print A, B
     #print R
     transitions = defaultdict(lambda: defaultdict(set))
     initial_state, final_state = make_NFA(R, [0], [0], transitions)
+    #print transitions
     expand_epsilon_reached_states(transitions, final_state)
+    #print transitions
     #print R, transitions, initial_state, final_state
     return match_NFA(B, transitions, initial_state, final_state) - \
            match_NFA(A-1, transitions, initial_state, final_state)
