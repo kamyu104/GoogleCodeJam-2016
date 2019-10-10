@@ -3,7 +3,7 @@
 # Google Code Jam 2016 World Finals - Problem A. Integeregex
 # https://code.google.com/codejam/contest/7234486/dashboard#s=p0
 #
-# Time:  O(R*2^R)
+# Time:  O(R^2 + RlogB)
 # Space: O(R)
 #
 
@@ -57,7 +57,7 @@ def make_NFA(R, start, state_count, transitions):
         final_state = new_final_state
     return initial_state, final_state
 
-def expand_epsilon_reached_states(transitions, final_state):  # Time: O(R^2), Space: O(R^2)
+def expand_epsilon_reached_states(transitions, final_state):  # Time: O(R^2), Space: O(R)
     def dfs(start_state, curr_state, transitions, lookup):
         for state in set(transitions[curr_state]['']):
             if state in lookup:
@@ -70,13 +70,14 @@ def expand_epsilon_reached_states(transitions, final_state):  # Time: O(R^2), Sp
         dfs(state, state, transitions, set())
     transitions[final_state][''] = set([final_state])
 
-def match_NFA(X, transitions, initial_state, final_state):
+def match_NFA(X, transitions, initial_state, final_state):  # Time: O(RlogB), Space: O(R)
     x_digits = map(int, list(str(X)))
     count_state = {(True, True, frozenset([initial_state])):1}
-    for index in xrange(len(x_digits)):
+    for index in xrange(len(x_digits)):  # O(logB) times
         new_count_state = defaultdict(int)
         new_count_state[True, False, frozenset([initial_state])] = 1
-        for (is_empty, is_prefix_of_x, states), count in count_state.iteritems():
+        assert(len(count_state) <= len(transitions))
+        for (is_empty, is_prefix_of_x, states), count in count_state.iteritems():  # O(R) times
             for new_digit in xrange(10):
                 if is_empty and new_digit == 0:
                     continue  # numbers can't start with 0
