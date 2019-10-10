@@ -3,8 +3,8 @@
 # Google Code Jam 2016 World Finals - Problem A. Integeregex
 # https://code.google.com/codejam/contest/7234486/dashboard#s=p0
 #
-# Time:  O(R)
-# Space: O(R)
+# Time:  O(R^2)
+# Space: O(R^2)
 #
 
 from collections import defaultdict
@@ -59,7 +59,7 @@ def make_NFA(R, start, state_count, transitions):
     # print "make_NFA:  ", R[i:] if start[0] == len(R) else R[i:start[0]]
     return initial_state, final_state
 
-def expand_epsilon_reached_states(transitions, final_state):
+def expand_epsilon_reached_states(transitions, final_state):  # Time: O(R^2), Space: O(R^2)
     def dfs(start_state, curr_state, transitions, lookup):
         transitions[start_state][''] |= set(state for state in transitions[curr_state][''] if state not in lookup)
         for state in set(transitions[curr_state]['']):
