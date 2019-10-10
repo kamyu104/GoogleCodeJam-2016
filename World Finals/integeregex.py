@@ -18,7 +18,6 @@ def make_E_NFA(R, start, state_count, transitions):
     initial_state, final_state = make_state(state_count), make_state(state_count)
     i = start[0]
     if R[start[0]].isdigit():
-        # E: digit
         transitions[initial_state][int(R[start[0]])] = final_state
         start[0] += 1
     else:
@@ -29,7 +28,7 @@ def make_E_NFA(R, start, state_count, transitions):
         while True:
             prev_start = start[0]
             new_initial_state, new_final_state = make_NFA(R, start, state_count, transitions)
-            if not new_initial_state and not new_final_state:
+            if not new_initial_state or not new_final_state:
                 break
             if start[0]+1 != len(R) and R[start[0]:start[0]+2] == ')*':
                 # repetition
@@ -37,7 +36,7 @@ def make_E_NFA(R, start, state_count, transitions):
                 transitions[new_final_state][''] = set([new_initial_state, final_state])
                 transitions[initial_state][''] |= set([new_initial_state, final_state])
                 break
-            # disjunction
+            assert(R[start[0]] in ")|")
             start[0] += 1
             if R[prev_start:start[0]-1] in lookup:
                 continue
@@ -97,7 +96,6 @@ def match_NFA(X, transitions, initial_state, final_state):
                 # find all possible states if new_digit was next in the string
                 new_possible_states = set()
                 for start_state in states:
-                    # add all states that can be reached from start_state by (epsilon)* new_digit
                     for epsilon_state in transitions[start_state]['']:
                         if new_digit in transitions[epsilon_state]:
                             new_possible_states.add(transitions[epsilon_state][new_digit])
@@ -105,7 +103,6 @@ def match_NFA(X, transitions, initial_state, final_state):
                     continue
                 new_count_state[False, is_prefix_of_x and new_digit == x_digits[index], frozenset(new_possible_states)] += count
         count_state = new_count_state
-
     count_match = 0
     for (_, _, states), count in count_state.iteritems():
         for end_state in states:
