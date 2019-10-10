@@ -11,7 +11,7 @@ from collections import defaultdict
 
 def make_state(state_count):
     state_count[0] += 1
-    return "s{}".format(state_count[0])
+    return "s{}".format(state_count[0])  # make state more readable
 
 def make_E_NFA(R, start, state_count, transitions):
     initial_state, final_state = make_state(state_count), make_state(state_count)
