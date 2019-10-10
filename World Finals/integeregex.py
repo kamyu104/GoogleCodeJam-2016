@@ -20,26 +20,26 @@ def make_E_NFA(R, start, state_count, transitions):
     if R[start[0]].isdigit():
         transitions[initial_state][int(R[start[0]])] = set([final_state])
         start[0] += 1
-        return initial_state, final_state
-    assert(R[start[0]] == '(')
-    start[0] += 1
-    transitions[initial_state][''] = set()
-    while True:
-        prev_start = start[0]
-        new_initial_state, new_final_state = make_NFA(R, start, state_count, transitions)
-        if not new_initial_state or not new_final_state:
-            break
-        if start[0]+1 != len(R) and R[start[0]:start[0]+2] == ")*":
-            start[0] += 2  # repetition
-            transitions[new_final_state][''] = set([new_initial_state, final_state])
-            transitions[initial_state][''] |= set([new_initial_state, final_state])
-            break
-        assert(R[start[0]] in ")|")
-        start[0] += 1  # disjunction
-        transitions[initial_state][''].add(new_initial_state)
-        transitions[new_final_state][''] = set([final_state])
-        if R[start[0]-1] == ')':
-            break
+    else:
+        assert(R[start[0]] == '(')
+        start[0] += 1
+        transitions[initial_state][''] = set()
+        while True:
+            prev_start = start[0]
+            new_initial_state, new_final_state = make_NFA(R, start, state_count, transitions)
+            if not new_initial_state or not new_final_state:
+                break
+            if start[0]+1 != len(R) and R[start[0]:start[0]+2] == ")*":
+                start[0] += 2  # repetition
+                transitions[new_final_state][''] = set([new_initial_state, final_state])
+                transitions[initial_state][''] |= set([new_initial_state, final_state])
+                break
+            assert(R[start[0]] in ")|")
+            start[0] += 1  # disjunction
+            transitions[initial_state][''].add(new_initial_state)
+            transitions[new_final_state][''] = set([final_state])
+            if R[start[0]-1] == ')':
+                break
     return initial_state, final_state
 
 # Thompson's construction, reference: https://www.researchgate.net/profile/Shin-ichi_Minato/publication/221580042/figure/fig1/AS:341447451660288@1458418824089/The-construction-of-Thompson-automata-TNFAs.png
