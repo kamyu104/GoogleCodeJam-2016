@@ -23,7 +23,6 @@ def make_E_NFA(R, start, state_count, transitions):
     else:
         assert(R[start[0]] == '(')
         start[0] += 1
-        transitions[initial_state][''] = set()
         while True:
             prev_start = start[0]
             new_initial_state, new_final_state = make_NFA(R, start, state_count, transitions)
