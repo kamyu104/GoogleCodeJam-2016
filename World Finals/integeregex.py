@@ -23,7 +23,7 @@ def make_E_NFA(R, start, state_count, transitions):
     else:
         assert(R[start[0]] == '(')
         start[0] += 1
-        while R[start[0]-1] != ')':
+        while R[start[0]-1] in "(|":
             new_initial_state, new_final_state = make_NFA(R, start, state_count, transitions)
             if start[0]+1 != len(R) and R[start[0]:start[0]+2] == ")*":
                 start[0] += 2  # repetition
