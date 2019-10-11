@@ -47,7 +47,7 @@ def make_NFA(R, start, state_count, transitions):  # Time: O(R), Space: O(R)
         final_state = new_final_state
     return initial_state, final_state
 
-def expand_epsilon_reached_states(transitions, final_state):  # Time: O(R^2), Space: O(R)
+def make_epsilon_reached_NFA(transitions, final_state):  # Time: O(R^2), Space: O(R)
     def dfs(transitions, curr_state, lookup, epsilon_reached_states):
         for state in transitions[curr_state]['']:
             if state in lookup:
@@ -94,7 +94,7 @@ def integeregex():
     R = raw_input().strip()
     transitions = defaultdict(lambda: defaultdict(set))
     initial_state, final_state = make_NFA(R, [0], [0], transitions)
-    expand_epsilon_reached_states(transitions, final_state)
+    make_epsilon_reached_NFA(transitions, final_state)
     return match_NFA(transitions, initial_state, final_state, B) - \
            match_NFA(transitions, initial_state, final_state, A-1)
 
