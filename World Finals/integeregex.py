@@ -13,7 +13,7 @@ def make_state(state_count):
     state_count[0] += 1
     return "s{}".format(state_count[0])  # make state more readable
 
-def make_E_NFA(R, start, state_count, transitions):
+def make_Ei_NFA(R, start, state_count, transitions):
     initial_state, final_state = make_state(state_count), make_state(state_count)
     assert(state_count[0] <= 2*len(R))
     i = start[0]
@@ -41,7 +41,7 @@ def make_NFA(R, start, state_count, transitions):  # Time: O(R), Space: O(R)
     initial_state, final_state = None, None
     i = start[0]
     while start[0] != len(R) and (R[start[0]] == '(' or R[start[0]].isdigit()):
-        new_initial_state, new_final_state = make_E_NFA(R, start, state_count, transitions)  # concatenation
+        new_initial_state, new_final_state = make_Ei_NFA(R, start, state_count, transitions)  # concatenation
         if initial_state is None:
             initial_state = new_initial_state
         if final_state is not None:
