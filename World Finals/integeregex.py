@@ -39,7 +39,6 @@ def make_Ei_NFA(R, start, state_count, transitions):
 # Thompson's construction, reference: https://www.researchgate.net/profile/Shin-ichi_Minato/publication/221580042/figure/fig1/AS:341447451660288@1458418824089/The-construction-of-Thompson-automata-TNFAs.png
 def make_NFA(R, start, state_count, transitions):  # Time: O(R), Space: O(R)
     initial_state, final_state = None, None
-    i = start[0]
     while start[0] != len(R) and (R[start[0]] == '(' or R[start[0]].isdigit()):
         new_initial_state, new_final_state = make_Ei_NFA(R, start, state_count, transitions)  # concatenation
         if initial_state is None:
