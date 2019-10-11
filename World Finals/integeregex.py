@@ -30,7 +30,7 @@ def make_E_NFA(R, start, state_count, transitions):
                 transitions[initial_state][''] |= set([new_initial_state, final_state])
                 transitions[new_final_state][''] = set([new_initial_state, final_state])
                 break
-            assert(R[start[0]] in ")|")
+            assert(R[start[0]] in "|)")
             start[0] += 1  # disjunction
             transitions[initial_state][''] |= set([new_initial_state])
             transitions[new_final_state][''] = set([final_state])
