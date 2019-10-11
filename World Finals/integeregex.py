@@ -86,7 +86,7 @@ def match_NFA(X, transitions, initial_state, final_state):  # Time: O(RlogB), Sp
     count_match = 0
     for (_, _, states), count in count_state.iteritems():
         if any(final_state in transitions[end_state][''] for end_state in states):
-            count_match += count
+            count_match += count  # NFA matching includes empty string, which would be excluded after substraction
     return count_match
 
 def integeregex():
