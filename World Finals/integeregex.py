@@ -16,7 +16,6 @@ def make_state(state_count):
 def make_Ei_NFA(R, start, state_count, transitions):
     initial_state, final_state = make_state(state_count), make_state(state_count)
     assert(state_count[0] <= 2*len(R))
-    i = start[0]
     if R[start[0]].isdigit():
         start[0] += 1
         transitions[initial_state][int(R[start[0]-1])] = set([final_state])
