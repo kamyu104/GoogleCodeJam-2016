@@ -56,7 +56,7 @@ def expand_epsilon_reached_states(transitions, final_state):  # Time: O(R^2), Sp
             dfs(transitions, state, lookup, epsilon_reached_states)
         epsilon_reached_states.add(curr_state)
 
-    transitions[final_state][''] = set([final_state])
+    transitions[final_state][''] = set([final_state])  # create key first to avoid changing size of keys below
     for state in transitions.iterkeys():
         epsilon_reached_states = set()
         dfs(transitions, state, set(), epsilon_reached_states)
