@@ -60,7 +60,7 @@ def expand_epsilon_reached_states(transitions, final_state):  # Time: O(R^2), Sp
     for state in transitions.iterkeys():
         epsilon_reached_states = set()
         dfs(transitions, state, set(), epsilon_reached_states)
-        transitions[state][''] = epsilon_reached_states
+        transitions[state][''] |= epsilon_reached_states
 
 def match_NFA(transitions, initial_state, final_state, X):  # Time: O(RlogB), Space: O(R)
     x_digits = map(int, list(str(X)))
