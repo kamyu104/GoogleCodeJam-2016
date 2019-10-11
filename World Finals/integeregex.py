@@ -62,7 +62,7 @@ def expand_epsilon_reached_states(transitions, final_state):  # Time: O(R^2), Sp
         dfs(transitions, state, set(), epsilon_reached_states)
         transitions[state][''] = epsilon_reached_states
 
-def match_NFA(X, transitions, initial_state, final_state):  # Time: O(RlogB), Space: O(R)
+def match_NFA(transitions, initial_state, final_state, X):  # Time: O(RlogB), Space: O(R)
     x_digits = map(int, list(str(X)))
     count_state = {(True, True, frozenset([initial_state])):1}
     for index in xrange(len(x_digits)):  # O(logB) times
@@ -95,8 +95,8 @@ def integeregex():
     transitions = defaultdict(lambda: defaultdict(set))
     initial_state, final_state = make_NFA(R, [0], [0], transitions)
     expand_epsilon_reached_states(transitions, final_state)
-    return match_NFA(B, transitions, initial_state, final_state) - \
-           match_NFA(A-1, transitions, initial_state, final_state)
+    return match_NFA(transitions, initial_state, final_state, B) - \
+           match_NFA(transitions, initial_state, final_state, A-1)
 
 for case in xrange(input()):
     print 'Case #%d: %s' % (case+1, integeregex())
