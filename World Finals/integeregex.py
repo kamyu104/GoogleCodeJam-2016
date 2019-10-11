@@ -58,9 +58,9 @@ def expand_epsilon_reached_states(transitions, final_state):  # Time: O(R^2), Sp
             dfs(start_state, state, transitions, lookup)
         transitions[start_state][''].add(curr_state)
 
-    for state in transitions.keys():
-        dfs(state, state, transitions, set())
     transitions[final_state][''] = set([final_state])
+    for state in transitions.iterkeys():
+        dfs(state, state, transitions, set())
 
 def match_NFA(X, transitions, initial_state, final_state):  # Time: O(RlogB), Space: O(R)
     x_digits = map(int, list(str(X)))
