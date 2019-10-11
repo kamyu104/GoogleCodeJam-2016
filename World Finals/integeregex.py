@@ -25,8 +25,6 @@ def make_E_NFA(R, start, state_count, transitions):
         start[0] += 1
         while True:
             new_initial_state, new_final_state = make_NFA(R, start, state_count, transitions)
-            if not new_initial_state or not new_final_state:
-                break
             if start[0]+1 != len(R) and R[start[0]:start[0]+2] == ")*":
                 start[0] += 2  # repetition
                 transitions[initial_state][''] |= set([new_initial_state, final_state])
