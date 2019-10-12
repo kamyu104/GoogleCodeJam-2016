@@ -68,8 +68,8 @@ def match_NFA(transitions, initial_state, final_state, X):  # Time: O(RlogB), Sp
     for index in xrange(len(x_digits)):  # O(logB) times
         new_count_state = defaultdict(int)
         new_count_state[True, False, frozenset([initial_state])] = 1
-        assert(len(count_state) <= 10*len(transitions))
-        for (is_empty, is_prefix_of_x, states), count in count_state.iteritems():  # O(R) times
+        assert(len(count_state) <= len(transitions))  # for extreme case, it would be more than 10*R
+        for (is_empty, is_prefix_of_x, states), count in count_state.iteritems():  # O(R) times on normal case
             for new_digit in xrange(10):
                 if is_empty and new_digit == 0:
                     continue  # numbers can't start with 0
