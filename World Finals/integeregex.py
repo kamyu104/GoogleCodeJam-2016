@@ -3,7 +3,7 @@
 # Google Code Jam 2016 World Finals - Problem A. Integeregex
 # https://code.google.com/codejam/contest/7234486/dashboard#s=p0
 #
-# Time:  O(R^2 + RlogB)
+# Time:  O(R^2 + RlogB) on average, worst: O(R^2 + (2^R)logB)
 # Space: O(R)
 #
 
@@ -68,7 +68,7 @@ def match_NFA(transitions, initial_state, final_state, X):  # Time: O(RlogB), Sp
     for index in xrange(len(x_digits)):  # O(logB) times
         new_count_state = defaultdict(int)
         new_count_state[True, False, frozenset([initial_state])] = 1
-        assert(len(count_state) <= len(transitions))  # for extreme case, it would be more than 10*R
+        assert(len(count_state) <= len(transitions))  # for extreme case, it would be more than 10*R, worst to O(2^R)
         for (is_empty, is_prefix_of_x, states), count in count_state.iteritems():  # O(R) times on normal case
             for new_digit in xrange(10):
                 if is_empty and new_digit == 0:
