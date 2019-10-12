@@ -62,7 +62,7 @@ def make_epsilon_reached_NFA(transitions, final_state):  # Time: O(R^2), Space: 
         dfs(transitions, state, set(), epsilon_reached_states)
         transitions[state][''] = epsilon_reached_states
 
-def match_NFA(transitions, initial_state, final_state, X):  # Time: O(RlogB) ~ O((2^R)logB), Space: O(R) ~ O(2^R)
+def match_NFA(transitions, initial_state, final_state, X):  # Time: O(RlogB) ~ O((2^R)logB), Space: O(R) ~ O(2^R), ps. NFA for exact string matching rather than range count is only Time: O(RlogB), Space: O(R)
     x_digits = map(int, list(str(X)))
     count_state = {(True, True, frozenset([initial_state])):1}
     for index in xrange(len(x_digits)):  # O(logB) times
