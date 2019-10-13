@@ -1,13 +1,13 @@
 # Copyright (c) 2019 kamyu. All rights reserved.
 #
 # Google Code Jam 2016 World Finals - Problem D. Map Reduce
-# https://code.google.com/codejam/contest/7234486/dashboard#M=p3
+# https://code.google.com/codejam/contest/7234486/dashboard#s=p3
 #
 # Time:  O((R * C) * log(R * C)), pass in PyPy2 but Python2
 # Space: O(R * C)
 #
 
-from itertools import izip, islice
+from itertools import islice, imap
 from collections import deque
 
 def manhattan_distance(S, F):
@@ -86,7 +86,7 @@ def apply_remove_list(M, remove_list, l):
 def binary_search_for_remove_list_length(M, S, F, D, remove_list):
     left, right = 0, len(remove_list)
     while left <= right:
-        mid = left+(right-left)//2
+        mid = left + (right-left)//2
         apply_remove_list(M, remove_list, mid)
         if not (shortest_distance(M, S, F) >= D):
             right = mid-1
@@ -132,7 +132,8 @@ def map_reduce():
     if not check(M, S, F, D):
         assert(False)
     M[S[0]][S[1]], M[F[0]][F[1]] = 'S', 'F'
-    result = ["POSSIBLE"]+map(lambda x: "".join(x), M)
+    result = ["POSSIBLE"]
+    result.extend(imap(lambda x: "".join(x), M))
     return "\n".join(result)
 
 DIRECTIONS = [(-1, 0), (0, 1), (1, 0), (0, -1),

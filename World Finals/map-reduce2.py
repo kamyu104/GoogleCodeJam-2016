@@ -7,7 +7,7 @@
 # Space: O(R * C)
 #
 
-from itertools import izip, islice
+from itertools import islice, izip, imap
 from collections import deque
 
 def manhattan_distance(S, F):
@@ -131,7 +131,8 @@ def map_reduce():
     if not check(M, S, F, D):
         assert(False)
     M[S[0]][S[1]], M[F[0]][F[1]] = 'S', 'F'
-    result = ["POSSIBLE"] + map(lambda x: "".join(x), M)
+    result = ["POSSIBLE"]
+    result.extend(imap(lambda x: "".join(x), M))
     return "\n".join(result)
 
 DIRECTIONS = [(-1, 0), (0, 1), (1, 0), (0, -1),
