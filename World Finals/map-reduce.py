@@ -117,9 +117,9 @@ def map_reduce():
             elif M[r][c] == 'F':
                 F = (r, c)
                 M[r][c] = '.'
-    manh_d = manhattan_distance(S, F)
-    min_d = shortest_distance(M, S, F)
-    if min_d < D or manh_d > D or min_d%2 != D%2:
+    min_d = manhattan_distance(S, F)
+    curr_d = shortest_distance(M, S, F)
+    if not (min_d <= D <= curr_d and curr_d%2 == D%2):
         return "IMPOSSIBLE"
     remove_list = find_remove_list_in_order(M, S, F)
     l = binary_search_for_remove_list_length(M, S, F, D, remove_list)
