@@ -3,7 +3,7 @@
 # Google Code Jam 2016 World Finals - Problem D. Map Reduce
 # https://code.google.com/codejam/contest/7234486/dashboard#s=p3
 #
-# Time:  O((R * C) * log(R * C))
+# Time:  O((R * C) * log(R * C)), pass in PyPy2 but Python2
 # Space: O(R * C)
 #
 
