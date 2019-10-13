@@ -91,11 +91,11 @@ def binary_search_for_remove_list_length(M, S, F, D, remove_list):
     while left <= right:
         mid = left + (right-left)//2
         apply_remove_list(M, remove_list, mid)
-        if shortest_distance(M, S, F) >= D:
+        if not (shortest_distance(M, S, F) >= D):
             right = mid-1
         else:
-            left = mide+1
-    return left
+            left = mid+1
+    return right
 
 def is_invalid(M, p):
     return is_pattern(M, p, INVALIDS, 0, 2, 2)
@@ -114,15 +114,12 @@ def map_reduce():
             if M[r][c] == 'S':
                 S = (r, c)
                 M[r][c] = '.'
-                break
             elif M[r][c] == 'F':
                 F = (r, c)
                 M[r][c] = '.'
-                break
-    
     manh_d = manhattan_distance(S, F)
     min_d = shortest_distance(M, S, F)
-    if min_d < D or manh_d > D or manh_d%2 != min_d%2:
+    if min_d < D or manh_d > D or min_d%2 != D%2:
         return "IMPOSSIBLE"
     remove_list = find_remove_list_in_order(M, S, F)
     l = binary_search_for_remove_list_length(M, S, F, D, remove_list)
