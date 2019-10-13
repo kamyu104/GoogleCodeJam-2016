@@ -56,7 +56,10 @@ def is_pattern(M, p, patterns, shift, n, symmetric_count):
     return False
 
 def can_remove(M, p):
-    return is_pattern(M, p, REMOVABLES, 1, 3, 4)
+    if M[p[0]][p[1]] != '#':
+        return False
+    return is_pattern(M, p, REMOVABLES_ROTATE_1, 1, 3, 1) or \
+           is_pattern(M, p, REMOVABLES_ROTATE_4, 1, 3, 4)
 
 def find_remove_list_in_order(M, S, F):
     remove_list = []
@@ -100,7 +103,7 @@ def binary_search_for_remove_list_length(M, S, F, D, remove_list):
     return right
 
 def is_invalid(M, p):
-    return is_pattern(M, p, INVALIDS, 0, 2, 2)
+    return is_pattern(M, p, INVALIDS_ROTATE_2, 0, 2, 2)
 
 def check(M, S, F, D):
     return not any(is_invalid(M, (r, c)) for r in xrange(len(M)) for c in xrange(len(M[0]))) and \
@@ -132,17 +135,17 @@ def map_reduce():
     return "\n".join(result)
 
 DIRECTIONS = [(-1, 0), (0, 1), (1, 0), (0, -1),
-              (-1, 1), (1, 1), (1, -1), (-1, -1)]    
-REMOVABLES = [["...",
-               ".#.",
-               "..."],
-              ["?#?",
-               ".#.",
-               "..."],
-              ["?##",
-               ".##",
-               "..?"]]
-INVALIDS = [[".#", 
-             "#."]]
+              (-1, 1), (1, 1), (1, -1), (-1, -1)] 
+REMOVABLES_ROTATE_1 = [["...",
+                        ".#.",
+                        "..."]]
+REMOVABLES_ROTATE_4 = [["?#?",
+                        ".#.",
+                        "..."],
+                       ["?##",
+                        ".##",
+                        "..?"]]
+INVALIDS_ROTATE_2 = [[".#", 
+                      "#."]]
 for case in xrange(input()):
     print 'Case #%d: %s' % (case+1, map_reduce())
