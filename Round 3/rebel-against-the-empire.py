@@ -3,7 +3,7 @@
 # Google Code Jam 2016 Round 3 - Problem C. Rebel Against The Empire
 # https://code.google.com/codejam/contest/3224486/dashboard#s=p2
 #
-# Time:  O(logN * (N^2 + H * N)), H is the length of possible planets in the timeline. (Height of BFS)
+# Time:  O(logN * (N^2 + H * N)), H is the length of possible planets in the timeline. (Height of BFS), pass in PyPy2 but Python2
 # Space: O(N^2)
 #
 # TLE (Although it fails in Python, it could pass in C++ within 20 seconds)
