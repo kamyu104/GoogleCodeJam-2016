@@ -69,10 +69,12 @@ def find_remove_list_in_order(M, S, F):
             lookup.add((r, c))
             q.append((r, c))
     while q:
-        (x, y) = q.popleft()
-        if not can_remove(M, (x, y)):
-            lookup.remove((x, y))  # make it able to remove in the future
-        remove_list.append((x, y))
+        (r, c) = q.popleft()
+        if not can_remove(M, (r, c)):
+            lookup.remove((r, c))  # make it able to remove in the future
+            continue
+        remove_list.append((r, c))
+        M[r][c] = '.'
         for dr, dc in DIRECTIONS:
             nr, nc = r+dr, c+dc
             if not (0 <= nr < len(M) and 0 <= nc < len(M[0]) and
@@ -117,8 +119,7 @@ def map_reduce():
             elif M[r][c] == 'F':
                 F = (r, c)
                 M[r][c] = '.'
-    min_d = manhattan_distance(S, F)
-    curr_d = shortest_distance(M, S, F)
+    min_d, curr_d = manhattan_distance(S, F), shortest_distance(M, S, F)
     if not (min_d <= D <= curr_d and curr_d%2 == D%2):
         return "IMPOSSIBLE"
     remove_list = find_remove_list_in_order(M, S, F)
