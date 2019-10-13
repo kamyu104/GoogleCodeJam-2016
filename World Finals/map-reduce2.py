@@ -74,7 +74,7 @@ def find_remove_list_in_order(M, S, F):
     while q:
         (r, c) = q.popleft()
         if not can_remove(M, (r, c)):
-            lookup.remove((r, c))  # make it able to remove in the future
+            lookup.remove((r, c))  # make it removable in the future
             continue
         remove_list.append((r, c))
         M[r][c] = '.'
