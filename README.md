@@ -1,6 +1,6 @@
 # [GoogleCodeJam 2016](https://code.google.com/codejam/contests.html) ![Language](https://img.shields.io/badge/language-Python-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md) ![Progress](https://img.shields.io/badge/progress-25%20%2F%2026-ff69b4.svg)
 
-Python solutions of Google Code Jam 2016. Solution begins with * means it will get TLE in the largest data set (total computation amount > 10^8, which is not friendly for Python to solve in 5 ~ 15 seconds). A 4-minute timer is for the small dataset and a 8-minute timer is for the large dataset this year.
+Python solutions of Google Code Jam 2016. Solution begins with * means it will get TLE in the largest data set (total computation amount > 10^8, which is not friendly for Python to solve in 5 ~ 15 seconds). A `4-minute` timer is for the small dataset and a `8-minute` timer is for the large dataset this year.
 
 * [Qualification Round](https://github.com/kamyu104/GoogleCodeJam-2016#qualification-round)
 * [Round 1A](https://github.com/kamyu104/GoogleCodeJam-2016#round-1a)
