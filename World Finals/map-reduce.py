@@ -43,15 +43,15 @@ def can_remove(M, p):
         return False
     if M[r+1][c+1] != '#' and M[r+1][c] == '#' and M[r][c+1] == '#':
         return False     
-    cnt, pair = 0, 0
+    count, pair = 0, 0
     for i, (dr, dc) in enumerate(islice(DIRECTIONS, 4)):
         nr, nc = r+dr, c+dc
         if M[nr][nc] == '#':
-            cnt += 1
+            count += 1
             pair ^= i
-    return cnt == 0 or cnt == 1 or \
-           (cnt == 2 and (pair & 1))  # cnt == 2 and (pair&1) means only (left, up), (up, right),
-                                      # (right, down), (down, left) exist walls
+    return count == 0 or count == 1 or \
+           (count == 2 and (pair & 1))  # count == 2 and (pair&1) means only (left, up), (up, right),
+                                        # (right, down), (down, left) exist walls
 
 def find_remove_list_in_order(M, S, F):
     remove_list = []
