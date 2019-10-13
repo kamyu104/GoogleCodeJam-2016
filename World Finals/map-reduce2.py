@@ -1,7 +1,7 @@
 # Copyright (c) 2019 kamyu. All rights reserved.
 #
 # Google Code Jam 2016 World Finals - Problem D. Map Reduce
-# https://code.google.com/codejam/contest/7234486/dashboard#M=p3
+# https://code.google.com/codejam/contest/7234486/dashboard#s=p3
 #
 # Time:  O((R * C) * log(R * C)), pass in PyPy2 but Python2
 # Space: O(R * C)
@@ -29,29 +29,37 @@ def shortest_distance(M, S, F):
             q.append((d+1, (nr, nc)))
     assert(False)
 
+def match_pattern(matrix, pattern):
+    for r in xrange(len(matrix)):
+        for c in xrange(len(matrix[0])):
+            if pattern[r][c] == '?':
+                continue
+            if pattern[r][c] != matrix[r][c]:
+                return False   
+    return True
+
+def rotate(matrix):
+    return [list(reversed(x)) for x in izip(*matrix)]
+
+def is_pattern(M, p, patterns, shift, n, symmetric_count):
+    r, c = p[0]-shift, p[1]-shift
+    if not (0 <= r <= len(M)-n and 0 <= c <= len(M[0])-n):
+        return False
+    matrix = []
+    for x in xrange(r, r+n):
+        matrix.append([M[x][y] for y in xrange(c, c+n)])
+    for _ in xrange(symmetric_count):
+        for pattern in patterns:
+            if match_pattern(matrix, pattern):
+                return True
+        matrix = rotate(matrix)
+    return False
+
 def can_remove(M, p):
-    r, c = p
-    if not (0 < r < len(M)-1 and 0 < c < len(M[0])-1):
+    if M[p[0]][p[1]] != '#':
         return False
-    if M[r][c] != '#':
-        return False
-    if M[r-1][c-1] != '#' and M[r-1][c] == '#' and M[r][c-1] == '#':
-        return False
-    if M[r-1][c+1] != '#' and M[r-1][c] == '#' and M[r][c+1] == '#':
-        return False
-    if M[r+1][c-1] != '#' and M[r+1][c] == '#' and M[r][c-1] == '#':
-        return False
-    if M[r+1][c+1] != '#' and M[r+1][c] == '#' and M[r][c+1] == '#':
-        return False     
-    cnt, pair = 0, 0
-    for i, (dr, dc) in enumerate(islice(DIRECTIONS, 4)):
-        nr, nc = r+dr, c+dc
-        if M[nr][nc] == '#':
-            cnt += 1
-            pair ^= i
-    return cnt == 0 or cnt == 1 or \
-           (cnt == 2 and (pair & 1))  # cnt == 2 and (pair&1) means only (left, up), (up, right),
-                                      # (right, down), (down, left) exist walls
+    return is_pattern(M, p, REMOVABLES_ROTATE_1, 1, 3, 1) or \
+           is_pattern(M, p, REMOVABLES_ROTATE_4, 1, 3, 4)
 
 def find_remove_list_in_order(M, S, F):
     remove_list = []
@@ -86,7 +94,7 @@ def apply_remove_list(M, remove_list, l):
 def binary_search_for_remove_list_length(M, S, F, D, remove_list):
     left, right = 0, len(remove_list)
     while left <= right:
-        mid = left+(right-left)//2
+        mid = left + (right-left)//2
         apply_remove_list(M, remove_list, mid)
         if not (shortest_distance(M, S, F) >= D):
             right = mid-1
@@ -95,16 +103,7 @@ def binary_search_for_remove_list_length(M, S, F, D, remove_list):
     return right
 
 def is_invalid(M, p):
-    r, c = p
-    if not (0 <= r < len(M)-1 and 0 <= c < len(M[0])-1):
-        return False
-    if M[r][c] == '#' and M[r+1][c+1] == '#' and \
-       M[r][c+1] != '#' and M[r+1][c] != '#':
-        return True
-    if M[r][c+1] == '#' and M[r+1][c] == '#' and \
-       M[r][c] != '#' and M[r+1][c+1] != '#':
-        return True
-    return False
+    return is_pattern(M, p, INVALIDS_ROTATE_2, 0, 2, 2)
 
 def check(M, S, F, D):
     return not any(is_invalid(M, (r, c)) for r in xrange(len(M)) for c in xrange(len(M[0]))) and \
@@ -132,10 +131,21 @@ def map_reduce():
     if not check(M, S, F, D):
         assert(False)
     M[S[0]][S[1]], M[F[0]][F[1]] = 'S', 'F'
-    result = ["POSSIBLE"]+map(lambda x: "".join(x), M)
+    result = ["POSSIBLE"] + map(lambda x: "".join(x), M)
     return "\n".join(result)
 
 DIRECTIONS = [(-1, 0), (0, 1), (1, 0), (0, -1),
               (-1, 1), (1, 1), (1, -1), (-1, -1)] 
+REMOVABLES_ROTATE_1 = [["...",
+                        ".#.",
+                        "..."]]
+REMOVABLES_ROTATE_4 = [["?#?",
+                        ".#.",
+                        "..."],
+                       ["?##",
+                        ".##",
+                        "..?"]]
+INVALIDS_ROTATE_2 = [[".#", 
+                      "#."]]
 for case in xrange(input()):
     print 'Case #%d: %s' % (case+1, map_reduce())
