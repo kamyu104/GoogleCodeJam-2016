@@ -7,8 +7,8 @@
 # Space: O(R * C)
 #
 
-from itertools import islice, izip, imap
 from collections import deque
+from itertools import islice, izip, imap
 
 def manhattan_distance(S, F):
     return abs(S[0]-F[0]) + abs(S[1]-F[1])
