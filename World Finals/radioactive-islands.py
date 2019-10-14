@@ -41,8 +41,8 @@ def radioactive_islands():
     finish_y = int((B-Y_START)/Y_STEP + 0.5)
     return dp[finish_y]
 
-GRANULARITY = 11
-GRID_NUM = 50
+GRANULARITY = 11  # tuned by experiment
+GRID_NUM = 50  # tuned by experiment
 X_START, X_END = -10.0, 10.0
 Y_START, Y_END = -10.0, 10.0
 MAX_ABS_SLOPE = 2
