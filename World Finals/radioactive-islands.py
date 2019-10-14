@@ -6,8 +6,8 @@
 # Time:  O(P^2*G^2), P is the granularity parameter of y, G is the number of grids
 # Space: O(P*G)
 #
-
 # referenced from https://code.google.com/codejam/contest/scoreboard/do?cmd=GetSourceCode&contest=7234486&problem=5760632301289472&io_set_id=1&username=Gennady.Korotkevich
+#
 
 from sys import float_info
 from math import sqrt
