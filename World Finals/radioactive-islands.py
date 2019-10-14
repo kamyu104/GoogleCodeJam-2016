@@ -21,7 +21,7 @@ def D(C, x):
         dose += 1.0/dist
     return dose
 
-def calc(C, a, b):
+def calc(C, a, b):  # dose = (1 + sum(1 / (x^2 + (y-ci)^2))) * sqrt(dx^2 + dy^2)
     return (1.0+D(C, (X_START + a[0]*X_STEP, Y_START + a[1]*Y_STEP))) * \
            sqrt(((b[0]-a[0])*X_STEP)**2 + ((b[1]-a[1])*Y_STEP)**2)
 
