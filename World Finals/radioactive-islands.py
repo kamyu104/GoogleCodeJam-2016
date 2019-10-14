@@ -15,10 +15,10 @@ from math import sqrt
 def D(C, x):
     dose = 0.0
     for c in C:
-        dist = x[0]**2 + (x[1]-c)**2
-        if dist < float_info.epsilon:
+        d_square = x[0]**2 + (x[1]-c)**2
+        if d_square < float_info.epsilon:
             return float("inf")
-        dose += 1.0/dist
+        dose += 1.0/d_square
     return dose
 
 def calc(C, a, b):  # dose = (1 + sum(1 / (x^2 + (y-ci)^2))) * sqrt(dx^2 + dy^2)
