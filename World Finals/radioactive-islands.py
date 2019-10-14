@@ -30,16 +30,16 @@ def radioactive_islands():
     N, A, B = map(float, raw_input().strip().split())
     C = map(float, raw_input().strip().split())
     dp = [float("inf")]*(Y_NUM+1)
-    start_y = int((A-Y_START)/Y_STEP + 0.5)
-    dp[start_y] = 0.0
+    y_start = int((A-Y_START)/Y_STEP + 0.5)
+    dp[y_start] = 0.0
     for i in xrange(1, X_NUM+1):
         new_dp = [float("inf")]*(Y_NUM+1)
         for j in xrange(Y_NUM+1):
             for k in xrange(max(0, j-K_NUM), min(Y_NUM, j+K_NUM)+1):
                 new_dp[j] = min(new_dp[j], dp[k] + calc(C, (i-1, j), (i, k)))
         dp = new_dp
-    finish_y = int((B-Y_START)/Y_STEP + 0.5)
-    return dp[finish_y]
+    y_finish = int((B-Y_START)/Y_STEP + 0.5)
+    return dp[y_finish]
 
 GRANULARITY = 11  # tuned by experiment
 GRID_NUM = 50  # tuned by experiment
