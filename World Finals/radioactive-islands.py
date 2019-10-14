@@ -46,7 +46,6 @@ Y_START, Y_END = -13.0, 13.0  # verified by experiment
 X_START, X_END = -10.0, 10.0
 X_GRID_NUM, Y_GRID_NUM = GRID_NUM, GRANULARITY*GRID_NUM
 NEIGHBORS_NUM = MAX_ABS_SLOPE*Y_GRID_NUM//X_GRID_NUM
-X_STEP = (X_END-X_START)/X_GRID_NUM
-Y_STEP = (Y_END-Y_START)/Y_GRID_NUM
+X_STEP, Y_STEP = (X_END-X_START)/X_GRID_NUM, (Y_END-Y_START)/Y_GRID_NUM
 for case in xrange(input()):
     print "Case #%d: %s" % (case+1, radioactive_islands())
