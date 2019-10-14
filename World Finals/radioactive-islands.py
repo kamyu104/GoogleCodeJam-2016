@@ -22,9 +22,8 @@ def D(C, x):
     return dose
 
 def calc(C, a, b):
-    a = (X_START + a[0]*X_STEP, Y_START + a[1]*Y_STEP)
-    b = (X_START + b[0]*X_STEP, Y_START + b[1]*Y_STEP)
-    return (1.0+D(C, a)) * sqrt((b[0]-a[0])**2 + (b[1]-a[1])**2)
+    return (1.0+D(C, (X_START + a[0]*X_STEP, Y_START + a[1]*Y_STEP))) * \
+           sqrt(((b[0]-a[0])*X_STEP)**2 + ((b[1]-a[1])*Y_STEP)**2)
 
 def radioactive_islands():
     N, A, B = map(float, raw_input().strip().split())
