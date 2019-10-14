@@ -43,9 +43,9 @@ def radioactive_islands():
 
 GRANULARITY = 11  # tuned by experiment
 GRID_NUM = 50  # tuned by experiment
+MAX_ABS_SLOPE = 2  # verified by experiment
 X_START, X_END = -10.0, 10.0
 Y_START, Y_END = -10.0, 10.0
-MAX_ABS_SLOPE = 2  # verified by experiment
 X_NUM, Y_NUM = GRID_NUM, GRANULARITY*GRID_NUM
 K_NUM = MAX_ABS_SLOPE*Y_NUM//X_NUM
 X_STEP = (X_END-X_START)/X_NUM
