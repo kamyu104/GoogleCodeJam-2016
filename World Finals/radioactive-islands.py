@@ -35,7 +35,7 @@ def radioactive_islands():
         new_dp = [float("inf")]*(Y_GRID_NUM+1)
         for j in xrange(Y_GRID_NUM+1):
             for k in xrange(max(0, j-NEIGHBORS_NUM), min(Y_GRID_NUM, j+NEIGHBORS_NUM)+1):
-                new_dp[j] = min(new_dp[j], dp[k] + calc(C, (i-1, j), (i, k)))
+                new_dp[j] = min(new_dp[j], dp[k] + calc(C, (i-1, k), (i, j)))
         dp = new_dp
     return dp[int((B-Y_START)/Y_STEP + 0.5)]
 
