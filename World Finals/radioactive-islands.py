@@ -24,7 +24,7 @@ def D(C, x):
 def calc(C, a, b):
     a = (X_START + a[0]*X_STEP, Y_START + a[1]*Y_STEP)
     b = (X_START + b[0]*X_STEP, Y_START + b[1]*Y_STEP)
-    return (1.0+(D(C, a)+D(C, b))/2) * sqrt((b[0]-a[0])**2 + (b[1]-a[1])**2)
+    return (1.0+D(C, a)) * sqrt((b[0]-a[0])**2 + (b[1]-a[1])**2)
 
 def radioactive_islands():
     N, A, B = map(float, raw_input().strip().split())
@@ -39,11 +39,12 @@ def radioactive_islands():
         dp = new_dp
     return dp[int((B-Y_START)/Y_STEP + 0.5)]
 
-GRANULARITY = 11  # tuned by experiment
-GRID_NUM = 33  # tuned by experiment
+GRANULARITY = 26  # tuned by experiment
+GRID_NUM = 40  # tuned by experiment
 MAX_ABS_SLOPE = 2  # verified by experiment
+Y_START, Y_END = -13.0, 13.0  # verified by experiment
+
 X_START, X_END = -10.0, 10.0
-Y_START, Y_END = -10.0, 10.0
 X_GRID_NUM, Y_GRID_NUM = GRID_NUM, GRANULARITY*GRID_NUM
 NEIGHBORS_NUM = MAX_ABS_SLOPE*Y_GRID_NUM//X_GRID_NUM
 X_STEP = (X_END-X_START)/X_GRID_NUM
