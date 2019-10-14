@@ -3,7 +3,7 @@
 # Google Code Jam 2016 World Finals - Problem E. Radioactive Islands
 # https://code.google.com/codejam/contest/7234486/dashboard#s=p4
 #
-# Time:  O(P^2*G^2), P is the granularity parameter of y, G is the number of grids
+# Time:  O(P^2*G^2), P is the granularity parameter of y, G is the number of grids, pass in PyPy2 but Python2
 # Space: O(P*G)
 #
 # referenced from https://code.google.com/codejam/contest/scoreboard/do?cmd=GetSourceCode&contest=7234486&problem=5760632301289472&io_set_id=1&username=Gennady.Korotkevich
