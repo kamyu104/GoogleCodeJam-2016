@@ -23,7 +23,7 @@ def D(C, x):
 
 def calc(C, a, b):
     a = (X_START + a[0]*X_STEP, Y_START + a[1]*Y_STEP)
-    b = (X_START + b[0]*X_STEP,  Y_START + b[1]*Y_STEP)
+    b = (X_START + b[0]*X_STEP, Y_START + b[1]*Y_STEP)
     return (1.0+(D(C, a)+D(C, b))/2) * sqrt((a[0]-b[0])**2 + (a[1]-b[1])**2)
 
 def radioactive_islands():
