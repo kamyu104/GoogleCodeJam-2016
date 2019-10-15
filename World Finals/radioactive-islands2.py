@@ -22,14 +22,25 @@ def D(C, x, y):
 # Euler-Lagrange Equation for finding minima of F(a, b) = sum(f(x, y, y') * dx)
 def fp(C, x, y, yp):  # y'' = f'(x, y, y')
     d = [x**2 + (y-c)**2 for c in C]
-    p0, p1, p2, p3 = 1.0+yp**2, 0.0, 0.0, 1.0
+    t, s, syp, sx = 1.0+yp**2, 1.0, 0.0, 0.0
     for i in xrange(len(C)):
-        p1 += (y-C[i])/d[i]/d[i]
-        p2 += (x + (y-C[i])*yp)/d[i]/d[i]
-        p3 += 1.0/d[i]
-    # solved by Euler-Lagrange Equation, i.e. df/dy - d(df/dy')/dx = 0
-    return -2.0*(p0**2*p1 - yp*p0*p2)/p3  # be care of error occurred by p0 when it is very large,
-                                          # using (p0^2*a + p0*b) is better than p0*(p0*a + b) by experiment
+        s += 1.0/d[i]
+        sx += (x + (y-C[i])*yp)/d[i]/d[i]
+        syp += (y-C[i])/d[i]/d[i]
+    # solved by Euler-Lagrange Equation, i.e. df/dy = d(df/dy')/dx
+    # let f = s * t^(1/2)
+    #   1. df/dy = -2 * syp * t^(1/2)
+    #   2. df/dy' = s * y' * t^(-1/2)
+    #      d(df/dy')/dx = (-2 * sx) * y' * t^(-1/2) + s * (y'' *  t^(-1/2) - y' * y' * y'' * t^(-3/2))
+    #                   = (-2 * sx * y') * t^(-1/2) + s * (t^(-1/2) - y'^2 * t^(-3/2)) * y''
+    # df/dy = d(df/dy')/dx
+    # => -2 * syp * t^(1/2) = (-2 * sx * y') * t^(-1/2) + s * (t^(-1/2) - y'^2 * t^(-3/2)) * y''
+    # => y'' = -2 * (syp * t^(1/2) - (sx * y') * t^(-1/2)) / (s * (t^(-1/2) - y'^2 * t^(-3/2)))
+    #        = -2 * (syp * t^2 - sx * y' * t) / s * (t - y'^2))
+    #        = -2 * (syp * t^2 - sx * y' * t) / s * ((1 + y'^2) - y'^2))
+    #        = -2 * (syp * t^2 - sx * y' * t) / s
+    return -2.0*(t**2*syp - t*yp*sx)/s  # be care of error occurred by t when it is very large,
+                                        # using (t^2*a + t*b) is better than t*(t*a + b) by experiment
 
 # Runge-Kutta Method (RK4) for 2nd-order ODE:
 # 1. https://math.stackexchange.com/questions/2615672/solve-fourth-order-ode-using-fourth-order-runge-kutta-method
