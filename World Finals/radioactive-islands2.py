@@ -28,8 +28,8 @@ def fp(C, x, y, yp):  # y'' = f'(x, y, y')
         p2 += (x + (y-C[i])*yp)/d[i]/d[i]
         p3 += 1.0/d[i]
     # solved by Euler-Lagrange Equation, i.e. df/dy - d(df/dy')/dx = 0
-    return -2.0*(p0**2*p1 - yp*p0*p2)/p3  # be care of error occurred by p0, which is very large,
-                                          # do (p0^2*a + p0*b) instead of p0*(p0*a + b)
+    return -2.0*(p0**2*p1 - yp*p0*p2)/p3  # be care of error occurred by p0 when it is very large,
+                                          # using (p0^2*a + p0*b) is better than p0*(p0*a + b) by experiment
 
 # Runge-Kutta Method (RK4) for 2nd-order ODE:
 # 1. https://math.stackexchange.com/questions/2615672/solve-fourth-order-ode-using-fourth-order-runge-kutta-method
@@ -43,6 +43,8 @@ def F(C, x, y, yp):
             return float("inf"), MIN_Y_BOUND
         if y > MAX_Y_BOUND:
             return float("inf"), MAX_Y_BOUND
+        if yp > 1/float_info.epsilon:  # avoid yp being too large to get more error
+            return float("inf"), y
         # dose = sum(f(x, y, y') * dx = (1 + sum(1 / (x^2 + (y-ci)^2))) * sqrt(1 + y'^2) * dx)), where dx = H
         dose += H * (1.0+D(C, x, y)) * sqrt(1.0 + yp**2)
         k1 = H * yp
