@@ -58,7 +58,7 @@ def F(C, x, y, y_prime):
 
 def binary_search(A, B, C, left, right):
     dose = float("inf")
-    while abs(right-left) > EPISOLON:
+    while abs(right-left) > EPSILON:
         mid = (left+right)/2
         dose, y = F(C, X_START, A, mid)
         if y >= B:
@@ -75,15 +75,13 @@ def radioactive_islands():
     slopes.sort()
     result = float("inf")
     for i in xrange(len(slopes)-1):
-        result = min(result,
-                     binary_search(A, B, C, slopes[i], slopes[i+1]),
-                     binary_search(A, B, C, slopes[i+1], slopes[i]))
+        result = min(result, binary_search(A, B, C, slopes[i], slopes[i+1]))
     return result
 
 H = 0.001  # tuned by experiment
-MIN_Y_BOUND, MAX_Y_BOUND = -100.0, 100.0  # tuned by experiment
-EPISOLON = 1e-4  # tuned by experiment
+EPSILON = 1e-4  # tuned by experiment
 
+MIN_Y_BOUND, MAX_Y_BOUND = -13.0, 13.0  # verified by experiment
 X_START, X_END = -10.0, 10.0
 MIN_A, MAX_A = -10.0, 10.0
 MIN_C, MAX_C = -10.0, 10.0
