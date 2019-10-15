@@ -3,7 +3,7 @@
 # Google Code Jam 2016 World Finals - Problem E. Radioactive Islands
 # https://code.google.com/codejam/contest/7234486/dashboard#s=p4
 #
-# Time:  O((20/H)^2), H is the dx parameter we use to do integral, pass in PyPy2 but Python2
+# Time:  O((20/H)^2), H is the dx parameter we use to do integral
 # Space: O(1)
 #
 
@@ -42,14 +42,15 @@ def fp(C, x, y, yp):  # y'' = f'(x, y, y')
     #        = 2 * t * (sx * y' - syp * t) / s
     return 2.0 * t * (sx * yp - syp * t) / s
 
-# Runge-Kutta Method for 2nd-order ODE:
+# Runge-Kutta Method:
+# - https://en.wikipedia.org/wiki/List_of_Runge%E2%80%93Kutta_methods
 # RK2 for 2nd-order ODE:
-# https://math.stackexchange.com/questions/1134540/second-order-runge-kutta-method-for-solving-second-order-ode
+# - https://math.stackexchange.com/questions/1134540/second-order-runge-kutta-method-for-solving-second-order-ode
 # RK4 for 2nd-order ODE:
-# 1. https://math.stackexchange.com/questions/2615672/solve-fourth-order-ode-using-fourth-order-runge-kutta-method
-# 2. http://homepages.cae.wisc.edu/~blanchar/eps/ivp/ivp.htm
-# 3. https://stackoverflow.com/questions/52334558/runge-kutta-4th-order-method-to-solve-second-order-odes
-# 4. https://publications.waset.org/1175/pdf
+# - https://math.stackexchange.com/questions/2615672/solve-fourth-order-ode-using-fourth-order-runge-kutta-method
+# - http://homepages.cae.wisc.edu/~blanchar/eps/ivp/ivp.htm
+# - https://stackoverflow.com/questions/52334558/runge-kutta-4th-order-method-to-solve-second-order-odes
+# - https://publications.waset.org/1175/pdf
 def F(C, x, y, yp):
     dose = 0.0
     while x < X_END:
@@ -57,7 +58,9 @@ def F(C, x, y, yp):
             break
         # dose = sum(f(x, y, y') * dx = (1 + sum(1 / (x^2 + (y-ci)^2))) * sqrt(1 + y'^2) * dx)), where dx = H
         dose += H * (1.0+D(C, x, y)) * sqrt(1.0 + yp**2)
-        # apply RK2 for 2nd-order ODE, besides, RK1 is also fine, but RK4 may get wrong for some case due to large yp
+        # applying RK1 (forward Euler) for 2nd-order ODE is enough,
+        # besides, RK2 (explicit midpoint) is also fine,
+        # but it will get wrong with RK4 for some case due to large yp
         k1 = H * yp
         l1 = H * fp(C, x, y, yp)
         k2 = H * (yp + l1/2.0)
