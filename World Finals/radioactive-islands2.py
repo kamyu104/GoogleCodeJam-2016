@@ -63,11 +63,11 @@ def F(C, x, y, yp):
         # but it will get wrong with RK4 for some case due to large y'
         k1 = H * yp
         l1 = H * fp(C, x, y, yp)
-        k2 = H * (yp + l1/2.0)
-        l2 = H * fp(C, x+H/2.0, y+k1/2.0, yp+l1/2.0)
+        # k2 = H * (yp + l1/2.0)
+        # l2 = H * fp(C, x+H/2.0, y+k1/2.0, yp+l1/2.0)
         x += H
-        y += k2
-        yp += l2
+        y += k1  # alternatively, y += k2 for RK2
+        yp += l1  # alternatively, yp += l2 for RK2
     return dose, y
 
 def binary_search(A, B, C, left, right):
@@ -92,7 +92,7 @@ def radioactive_islands():
         result = min(result, binary_search(A, B, C, slopes[i], slopes[i+1]))
     return result
 
-H = 0.001  # tuned by experiment
+H = 0.01  # tuned by experiment
 EPSILON = 1e-4  # tuned by experiment
 
 MIN_Y_BOUND, MAX_Y_BOUND = -13.0, 13.0  # verified by experiment
