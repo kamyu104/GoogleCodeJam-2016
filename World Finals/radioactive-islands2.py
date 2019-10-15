@@ -12,14 +12,12 @@
 from sys import float_info
 from math import sqrt
 
-def D(C, x, y):
-    dose = 0.0
-    for c in C:
-        d_square = x**2 + (y-c)**2
-        if d_square < float_info.epsilon:
-            return float("inf")
-        dose += 1.0/d_square
-    return dose
+def f(C, x, y):
+    d = [x**2 + (y-c)**2 for c in C]
+    s = 1.0
+    for i in xrange(len(C)):
+        s += 1.0/d[i]
+    return s
 
 # Euler-Lagrange Equation for finding minima of F(a, b) = sum(f(x, y, y') * dx)
 def fp(C, x, y, yp):  # y'' = f'(x, y, y')
@@ -59,7 +57,7 @@ def F(C, x, y, yp):
         if not (MIN_Y_BOUND <= y <= MAX_Y_BOUND):
             break
         # dose = sum(f(x, y, y') * dx = (1 + sum(1 / (x^2 + (y-ci)^2))) * sqrt(1 + y'^2) * dx)), where dx = H
-        dose += H * (1.0+D(C, x, y)) * sqrt(1.0 + yp**2)
+        dose += H * f(C, x, y) * sqrt(1.0 + yp**2)
         # applying RK1 (forward Euler) for 2nd-order ODE is enough,
         # besides, RK2 (explicit midpoint) is also fine,
         # but it will get wrong with RK4 for some case due to too large y'
