@@ -22,12 +22,11 @@ def D(C, x, y):
 # Euler-Lagrange Equation for finding minima of F
 def f(C, x, y, y_prime):  # y'' = f(x, y, y')
     d = [x**2 + (y-c)**2 for c in C]
-    p1, p2, p3 = 0.0, 0.0, 1.0
+    p0, p1, p2, p3 = 1.0+y_prime**2, 0.0, 0.0, 1.0
     for i in xrange(len(C)):
         p1 += (y-C[i])/d[i]/d[i]
         p2 += (x + (y-C[i])*y_prime)/d[i]/d[i]
         p3 += 1.0/d[i]
-    p0 = 1.0+y_prime**2
     return -2.0*(p0**2*p1 - y_prime*p0*p2)/p3  # solved by Euler-Lagrange Equation
 
 # Runge-Kutta Method (RK4) for 2nd-order ODE:
@@ -59,7 +58,7 @@ def F(C, x, y, y_prime):
 
 def binary_search(A, B, C, left, right):
     dose = float("inf")
-    while abs(right-left) > float_info.epsilon:
+    while abs(right-left) > EPISOLON:
         mid = (left+right)/2
         dose, y = F(C, X_START, A, mid)
         if y >= B:
@@ -83,6 +82,7 @@ def radioactive_islands():
 
 H = 0.001  # tuned by experiment
 MIN_Y_BOUND, MAX_Y_BOUND = -100.0, 100.0  # tuned by experiment
+EPISOLON = 1e-4  # tuned by experiment
 
 X_START, X_END = -10.0, 10.0
 MIN_A, MAX_A = -10.0, 10.0
