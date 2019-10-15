@@ -27,8 +27,8 @@ def fp(C, x, y, yp):  # y'' = f'(x, y, y')
     t, s, syp, sx = 1.0+yp**2, 1.0, 0.0, 0.0
     for i in xrange(len(C)):
         s += 1.0/d[i]
-        sx += (x + (y-C[i])*yp)/d[i]/d[i]
-        syp += (y-C[i])/d[i]/d[i]
+        sx += (x + (y-C[i])*yp)/d[i]**2
+        syp += (y-C[i])/d[i]**2
     # solved by Euler-Lagrange Equation, i.e. df/dy = d(df/dy')/dx
     # let f = s * t^(1/2)
     #   1. df/dy = -2 * syp * t^(1/2)
