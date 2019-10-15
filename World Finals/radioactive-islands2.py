@@ -23,12 +23,12 @@ def D(C, x, y):
 
 # Euler-Lagrange Equation for finding minima of F(a, b) = sum(f(x, y, y') * dx)
 def fp(C, x, y, yp):  # y'' = f'(x, y, y')
-    d = [x**2 + (y-c)**2 for c in C]
     t, s, syp, sx = 1.0+yp**2, 1.0, 0.0, 0.0
-    for i in xrange(len(C)):
-        s += 1.0/d[i]
-        sx += (x + (y-C[i])*yp)/d[i]**2
-        syp += (y-C[i])/d[i]**2
+    for c in C:
+        d = x**2 + (y-c)**2 
+        s += 1.0/d
+        sx += (x + (y-c)*yp)/d**2
+        syp += (y-c)/d**2
     # solved by Euler-Lagrange Equation, i.e. df/dy = d(df/dy')/dx
     # let f = s * t^(1/2)
     #   1. df/dy = -2 * syp * t^(1/2)
