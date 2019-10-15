@@ -35,12 +35,12 @@ def fp(C, x, y, yp):  # y'' = f'(x, y, y')
     #                   = (-2 * sx * y') * t^(-1/2) + s * (t^(-1/2) - y'^2 * t^(-3/2)) * y''
     # df/dy = d(df/dy')/dx
     # => -2 * syp * t^(1/2) = (-2 * sx * y') * t^(-1/2) + s * (t^(-1/2) - y'^2 * t^(-3/2)) * y''
-    # => y'' = -2 * (syp * t^(1/2) - (sx * y') * t^(-1/2)) / (s * (t^(-1/2) - y'^2 * t^(-3/2)))
-    #        = -2 * (syp * t^2 - sx * y' * t) / s * (t - y'^2))
-    #        = -2 * (syp * t^2 - sx * y' * t) / s * ((1 + y'^2) - y'^2))
-    #        = -2 * (syp * t^2 - sx * y' * t) / s
-    return -2.0*(t**2*syp - t*yp*sx)/s  # be care of error occurred by t when it is very large,
-                                        # using (t^2*a + t*b) is better than t*(t*a + b) by experiment
+    # => y'' = 2 * ((sx * y') * t^(-1/2) - syp * t^(1/2)) / (s * (t^(-1/2) - y'^2 * t^(-3/2)))
+    #        = 2 * (sx * y' * t - syp * t^2) / s * (t - y'^2))
+    #        = 2 * (sx * y' * t - syp * t^2) / s * ((1 + y'^2) - y'^2))
+    #        = 2 * (sx * y' * t - syp * t^2) / s
+    return 2.0 * (t * yp * sx - t**2 * syp) / s # be care of error occurred by t when it is very large,
+                                                # the order of computation does matter
 
 # Runge-Kutta Method (RK4) for 2nd-order ODE:
 # 1. https://math.stackexchange.com/questions/2615672/solve-fourth-order-ode-using-fourth-order-runge-kutta-method
@@ -58,15 +58,15 @@ def F(C, x, y, yp):
         dose += H * (1.0+D(C, x, y)) * sqrt(1.0 + yp**2)
         k1 = H * yp
         l1 = H * fp(C, x, y, yp)
-        k2 = H * (yp + l1/2)
-        l2 = H * fp(C, x+H/2, y+k1/2, yp+l1/2)
+        k2 = H * (yp + l1/2.0)
+        l2 = H * fp(C, x+H/2.0, y+k1/2.0, yp+l1/2.0)
         k3 = H * (yp + l2/2)
-        l3 = H * fp(C, x+H/2, y+k2/2, yp+l2/2)
-        k4 = H * (yp + l3/2)
-        l4 = H * fp(C, x+H/2, y+k3, yp+l3)
+        l3 = H * fp(C, x+H/2.0, y+k2/2.0, yp+l2/2.0)
+        k4 = H * (yp + l3/2.0)
+        l4 = H * fp(C, x+H/2.0, y+k3, yp+l3)
         x += H
-        y += (k1 + 2*k2 + 2*k3 + k4)/6
-        yp += (l1 + 2*l2 + 2*l3 + l4)/6
+        y += (k1 + 2.0*k2 + 2.0*k3 + k4)/6.0
+        yp += (l1 + 2.0*l2 + 2.0*l3 + l4)/6.0
     return dose, y
 
 def binary_search(A, B, C, left, right):
