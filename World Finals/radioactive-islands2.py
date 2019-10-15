@@ -68,8 +68,8 @@ def F(C, x, y, yp):
         l2 = H * fp(C, x+H/2.0, y+k1/2.0, yp+l1/2.0)
         k3 = H * (yp + l2/2)
         l3 = H * fp(C, x+H/2.0, y+k2/2.0, yp+l2/2.0)
-        k4 = H * (yp + l3/2.0)
-        l4 = H * fp(C, x+H/2.0, y+k3, yp+l3)
+        k4 = H * (yp + l3)
+        l4 = H * fp(C, x+H, y+k3, yp+l3)
         '''
         x += H
         y += k1  # RK2: y += k2, RK4: (k1 + 2.0*k2 + 2.0*k3 + k4)/6.0
