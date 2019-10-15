@@ -25,10 +25,10 @@ def D(C, x, y):
 def fp(C, x, y, yp):  # y'' = f'(x, y, y')
     t, s, syp, sx = 1.0+yp**2, 1.0, 0.0, 0.0
     for c in C:
-        d = x**2 + (y-c)**2 
-        s += 1.0/d
-        sx += (x + (y-c)*yp)/d**2
-        syp += (y-c)/d**2
+        d_square = x**2 + (y-c)**2
+        s += 1.0/d_square
+        sx += (x + (y-c)*yp)/d_square**2
+        syp += (y-c)/d_square**2
     # solved by Euler-Lagrange Equation, i.e. df/dy = d(df/dy')/dx
     # let f = s * t^(1/2)
     #   1. df/dy = -2 * syp * t^(1/2)
