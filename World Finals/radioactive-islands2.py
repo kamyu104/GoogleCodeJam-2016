@@ -60,14 +60,20 @@ def F(C, x, y, yp):
         dose += H * (1.0+D(C, x, y)) * sqrt(1.0 + yp**2)
         # applying RK1 (forward Euler) for 2nd-order ODE is enough,
         # besides, RK2 (explicit midpoint) is also fine,
-        # but it will get wrong with RK4 for some case due to large y'
+        # but it will get wrong with RK4 for some case due to too large y'
         k1 = H * yp
         l1 = H * fp(C, x, y, yp)
-        # k2 = H * (yp + l1/2.0)
-        # l2 = H * fp(C, x+H/2.0, y+k1/2.0, yp+l1/2.0)
+        '''
+        k2 = H * (yp + l1/2.0)
+        l2 = H * fp(C, x+H/2.0, y+k1/2.0, yp+l1/2.0)
+        k3 = H * (yp + l2/2)
+        l3 = H * fp(C, x+H/2.0, y+k2/2.0, yp+l2/2.0)
+        k4 = H * (yp + l3/2.0)
+        l4 = H * fp(C, x+H/2.0, y+k3, yp+l3)
+        '''
         x += H
-        y += k1  # alternatively, y += k2 for RK2
-        yp += l1  # alternatively, yp += l2 for RK2
+        y += k1  # RK2: y += k2, RK4: (k1 + 2.0*k2 + 2.0*k3 + k4)/6.0
+        yp += l1  # RK2: yp += l2, RK4: (l1 + 2.0*l2 + 2.0*l3 + l4)/6.0
     return dose, y
 
 def binary_search(A, B, C, left, right):
