@@ -39,8 +39,8 @@ def fp(C, x, y, yp):  # y'' = f'(x, y, y')
     #        = 2 * (sx * y' * t - syp * t^2) / s * (t - y'^2))
     #        = 2 * (sx * y' * t - syp * t^2) / s * ((1 + y'^2) - y'^2))
     #        = 2 * (sx * y' * t - syp * t^2) / s
-    return 2.0 * (t * yp * sx - t**2 * syp) / s # be care of error occurred by t when it is very large,
-                                                # the order of computation does matter
+    #        = 2 * t * (sx * y' - syp * t) / s
+    return 2.0 * t * (sx * yp - syp * t) / s
 
 # Runge-Kutta Method for 2nd-order ODE:
 # RK2 for 2nd-order ODE:
