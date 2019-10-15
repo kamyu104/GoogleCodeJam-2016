@@ -3,7 +3,7 @@
 # Google Code Jam 2016 World Finals - Problem E. Radioactive Islands
 # https://code.google.com/codejam/contest/7234486/dashboard#s=p4
 #
-# Time:  O((20/H)^2), pass in PyPy2 but Python2
+# Time:  O((20/H)^2), H is the dx parameter we use to do integral, pass in PyPy2 but Python2
 # Space: O(1)
 #
 
