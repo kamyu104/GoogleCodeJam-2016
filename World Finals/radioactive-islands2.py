@@ -19,7 +19,7 @@ def D(C, x, y):
         dose += 1.0/d_square
     return dose
 
-# Euler-Lagrange Equation for finding minima of F
+# Euler-Lagrange Equation for finding minima of F(a, b) = sum(f(x, y, y') * dx)
 def fp(C, x, y, yp):  # y'' = f'(x, y, y')
     d = [x**2 + (y-c)**2 for c in C]
     p0, p1, p2, p3 = 1.0+yp**2, 0.0, 0.0, 1.0
