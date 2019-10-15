@@ -41,7 +41,7 @@ def F(C, x, y, y_prime):
             return float("inf"), MIN_Y_BOUND
         if y > MAX_Y_BOUND:
             return float("inf"), MAX_Y_BOUND
-        # dose = sum(f(x, y, y_prime) * dx = (1 + sum(1 / (x^2 + (y-ci)^2))) * sqrt(1 + y_prime^2) * dx)), where dx = H
+        # dose = sum(f(x, y, y') * dx = (1 + sum(1 / (x^2 + (y-ci)^2))) * sqrt(1 + y'^2) * dx)), where dx = H
         dose += H * (1.0+D(C, x, y)) * sqrt(1.0 + y_prime**2)
         k1 = H * y_prime
         l1 = H * f(C, x, y, y_prime)
