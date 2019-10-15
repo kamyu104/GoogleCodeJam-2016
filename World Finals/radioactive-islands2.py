@@ -28,9 +28,9 @@ def f(C, x, y, y_prime):  # y'' = f(x, y, y')
         p2 += (x + (y-C[i])*y_prime)/d[i]/d[i]
         p3 += 1.0/d[i]
     p0 = 1.0+y_prime**2
-    return -2.0*(p0**2*p1 - y_prime*p0*p2)/p3  # derived by Euler-Lagrange Equation
+    return -2.0*(p0**2*p1 - y_prime*p0*p2)/p3  # solved by Euler-Lagrange Equation
 
-# Runge Kutta Method (RK4) for 2nd-order ODE:
+# Runge-Kutta Method (RK4) for 2nd-order ODE:
 # 1. https://math.stackexchange.com/questions/2615672/solve-fourth-order-ode-using-fourth-order-runge-kutta-method
 # 2. http://homepages.cae.wisc.edu/~blanchar/eps/ivp/ivp.htm
 # 3. https://stackoverflow.com/questions/52334558/runge-kutta-4th-order-method-to-solve-second-order-odes
