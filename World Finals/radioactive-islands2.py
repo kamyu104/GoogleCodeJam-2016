@@ -72,8 +72,8 @@ def F(C, x, y, yp):
         l4 = H * fp(C, x+H, y+k3, yp+l3)
         '''
         x += H
-        y += k2  # RK2: y += k2, RK4: y += (k1 + 2.0*k2 + 2.0*k3 + k4)/6.0
-        yp += l2  # RK2: yp += l2, RK4: y+= (l1 + 2.0*l2 + 2.0*l3 + l4)/6.0
+        y += k1  # RK2: y += k2, RK4: y += (k1 + 2.0*k2 + 2.0*k3 + k4)/6.0
+        yp += l1  # RK2: yp += l2, RK4: y+= (l1 + 2.0*l2 + 2.0*l3 + l4)/6.0
     return dose, y
 
 def binary_search(A, B, C, left, right):
