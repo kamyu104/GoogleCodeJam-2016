@@ -27,7 +27,9 @@ def fp(C, x, y, yp):  # y'' = f'(x, y, y')
         p1 += (y-C[i])/d[i]/d[i]
         p2 += (x + (y-C[i])*yp)/d[i]/d[i]
         p3 += 1.0/d[i]
-    return -2.0*(p0**2*p1 - yp*p0*p2)/p3  # solved by Euler-Lagrange Equation, i.e. df/dy - d(df/dy')/dx = 0
+    # solved by Euler-Lagrange Equation, i.e. df/dy - d(df/dy')/dx = 0
+    return -2.0*(p0**2*p1 - yp*p0*p2)/p3  # be care of error occurred by p0, which is very large,
+                                          # do (p0^2*a + p0*b) instead of p0*(p0*a + b)
 
 # Runge-Kutta Method (RK4) for 2nd-order ODE:
 # 1. https://math.stackexchange.com/questions/2615672/solve-fourth-order-ode-using-fourth-order-runge-kutta-method
