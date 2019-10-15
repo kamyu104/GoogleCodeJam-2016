@@ -42,7 +42,10 @@ def fp(C, x, y, yp):  # y'' = f'(x, y, y')
     return 2.0 * (t * yp * sx - t**2 * syp) / s # be care of error occurred by t when it is very large,
                                                 # the order of computation does matter
 
-# Runge-Kutta Method (RK4) for 2nd-order ODE:
+# Runge-Kutta Method for 2nd-order ODE:
+# RK2 for 2nd-order ODE:
+# https://math.stackexchange.com/questions/1134540/second-order-runge-kutta-method-for-solving-second-order-ode
+# RK4 for 2nd-order ODE:
 # 1. https://math.stackexchange.com/questions/2615672/solve-fourth-order-ode-using-fourth-order-runge-kutta-method
 # 2. http://homepages.cae.wisc.edu/~blanchar/eps/ivp/ivp.htm
 # 3. https://stackoverflow.com/questions/52334558/runge-kutta-4th-order-method-to-solve-second-order-odes
@@ -50,23 +53,18 @@ def fp(C, x, y, yp):  # y'' = f'(x, y, y')
 def F(C, x, y, yp):
     dose = 0.0
     while x < X_END:
-        if y < MIN_Y_BOUND:
-            return float("inf"), MIN_Y_BOUND
-        if y > MAX_Y_BOUND:
-            return float("inf"), MAX_Y_BOUND
+        if not (MIN_Y_BOUND <= y <= MAX_Y_BOUND):
+            break
         # dose = sum(f(x, y, y') * dx = (1 + sum(1 / (x^2 + (y-ci)^2))) * sqrt(1 + y'^2) * dx)), where dx = H
         dose += H * (1.0+D(C, x, y)) * sqrt(1.0 + yp**2)
+        # apply RK2 for 2nd-order ODE, besides, RK1 is also fine, but RK4 may get wrong for some case due to large yp
         k1 = H * yp
         l1 = H * fp(C, x, y, yp)
         k2 = H * (yp + l1/2.0)
         l2 = H * fp(C, x+H/2.0, y+k1/2.0, yp+l1/2.0)
-        k3 = H * (yp + l2/2)
-        l3 = H * fp(C, x+H/2.0, y+k2/2.0, yp+l2/2.0)
-        k4 = H * (yp + l3/2.0)
-        l4 = H * fp(C, x+H/2.0, y+k3, yp+l3)
         x += H
-        y += (k1 + 2.0*k2 + 2.0*k3 + k4)/6.0
-        yp += (l1 + 2.0*l2 + 2.0*l3 + l4)/6.0
+        y += k2
+        yp += l2
     return dose, y
 
 def binary_search(A, B, C, left, right):
