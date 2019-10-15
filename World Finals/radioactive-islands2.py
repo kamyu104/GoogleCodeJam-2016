@@ -20,21 +20,21 @@ def D(C, x, y):
     return dose
 
 # Euler-Lagrange Equation for finding minima of F
-def f(C, x, y, y_prime):  # y'' = f(x, y, y')
+def fp(C, x, y, yp):  # y'' = f'(x, y, y')
     d = [x**2 + (y-c)**2 for c in C]
-    p0, p1, p2, p3 = 1.0+y_prime**2, 0.0, 0.0, 1.0
+    p0, p1, p2, p3 = 1.0+yp**2, 0.0, 0.0, 1.0
     for i in xrange(len(C)):
         p1 += (y-C[i])/d[i]/d[i]
-        p2 += (x + (y-C[i])*y_prime)/d[i]/d[i]
+        p2 += (x + (y-C[i])*yp)/d[i]/d[i]
         p3 += 1.0/d[i]
-    return -2.0*(p0**2*p1 - y_prime*p0*p2)/p3  # solved by Euler-Lagrange Equation
+    return -2.0*(p0**2*p1 - yp*p0*p2)/p3  # solved by Euler-Lagrange Equation, i.e. df/dy - d(df/dy')/dx = 0
 
 # Runge-Kutta Method (RK4) for 2nd-order ODE:
 # 1. https://math.stackexchange.com/questions/2615672/solve-fourth-order-ode-using-fourth-order-runge-kutta-method
 # 2. http://homepages.cae.wisc.edu/~blanchar/eps/ivp/ivp.htm
 # 3. https://stackoverflow.com/questions/52334558/runge-kutta-4th-order-method-to-solve-second-order-odes
 # 4. https://publications.waset.org/1175/pdf
-def F(C, x, y, y_prime):
+def F(C, x, y, yp):
     dose = 0.0
     while x < X_END:
         if y < MIN_Y_BOUND:
@@ -42,18 +42,18 @@ def F(C, x, y, y_prime):
         if y > MAX_Y_BOUND:
             return float("inf"), MAX_Y_BOUND
         # dose = sum(f(x, y, y') * dx = (1 + sum(1 / (x^2 + (y-ci)^2))) * sqrt(1 + y'^2) * dx)), where dx = H
-        dose += H * (1.0+D(C, x, y)) * sqrt(1.0 + y_prime**2)
-        k1 = H * y_prime
-        l1 = H * f(C, x, y, y_prime)
-        k2 = H * (y_prime + l1/2)
-        l2 = H * f(C, x+H/2, y+k1/2, y_prime+l1/2)
-        k3 = H * (y_prime + l2/2)
-        l3 = H * f(C, x+H/2, y+k2/2, y_prime+l2/2)
-        k4 = H * (y_prime + l3/2)
-        l4 = H * f(C, x+H/2, y+k3, y_prime+l3)
+        dose += H * (1.0+D(C, x, y)) * sqrt(1.0 + yp**2)
+        k1 = H * yp
+        l1 = H * fp(C, x, y, yp)
+        k2 = H * (yp + l1/2)
+        l2 = H * fp(C, x+H/2, y+k1/2, yp+l1/2)
+        k3 = H * (yp + l2/2)
+        l3 = H * fp(C, x+H/2, y+k2/2, yp+l2/2)
+        k4 = H * (yp + l3/2)
+        l4 = H * fp(C, x+H/2, y+k3, yp+l3)
         x += H
         y += (k1 + 2*k2 + 2*k3 + k4)/6
-        y_prime += (l1 + 2*l2 + 2*l3 + l4)/6
+        yp += (l1 + 2*l2 + 2*l3 + l4)/6
     return dose, y
 
 def binary_search(A, B, C, left, right):
