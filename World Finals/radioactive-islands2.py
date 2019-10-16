@@ -55,7 +55,7 @@ def fp(C, x, y, yp):  # y'' = f'(x, y, y')
 # - https://publications.waset.org/1175/pdf
 def F(C, x, y, yp):
     dose = 0.0
-    while x < X_END:
+    for _ in xrange(int((X_END-X_START)/H)):  # more accurate than [while x < X_END]
         if not (MIN_Y_BOUND <= y <= MAX_Y_BOUND):
             return float("inf"), y
         # dose = sum(f(x, y, y') * dx = (1 + sum(1 / (x^2 + (y-ci)^2))) * sqrt(1 + y'^2) * dx)), where dx = H
