@@ -7,7 +7,7 @@
 #                       , IT is the count of iterations for hill-climbing method
 #                       , W is the interval window size
 #                       , H is the dx parameter for integral
-# Space: O(1)
+# Space: O(X/H)
 #
 # Hill-Climbing method: faster than dp, but slower than Calculus of Variations
 #
