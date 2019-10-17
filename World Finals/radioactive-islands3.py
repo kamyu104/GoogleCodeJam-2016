@@ -3,10 +3,10 @@
 # Google Code Jam 2016 World Finals - Problem E. Radioactive Islands
 # https://code.google.com/codejam/contest/7234486/dashboard#s=p4
 #
-# Time:  O(IT * W * X/H), IT is the count of iterations for hill-climbing method
+# Time:  O(IT * W * X/H), X is the const range of x for integral
+#                       , IT is the count of iterations for hill-climbing method
 #                       , W is the interval window size
 #                       , H is the dx parameter for integral
-#                       , X is the range of x for integral
 # Space: O(1)
 #
 # Hill-Climbing method: faster than dp, but slower than Calculus of Variations
