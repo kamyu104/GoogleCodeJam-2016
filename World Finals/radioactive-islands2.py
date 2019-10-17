@@ -21,7 +21,7 @@ def D(C, x, y):
         dose += 1.0/d_square
     return dose
 
-# Euler-Lagrange Equation for finding minima of F(a, b) = sum(f(x, y, y') * dx)
+# Euler-Lagrange equation for finding minima of F(a, b) = sum(f(x, y, y') * dx)
 def fp(C, x, y, yp):  # y'' = f'(x, y, y')
     t, s, syp, sx = 1.0+yp**2, 1.0, 0.0, 0.0
     for c in C:
@@ -44,7 +44,7 @@ def fp(C, x, y, yp):  # y'' = f'(x, y, y')
     #        = 2 * t * (sx * y' - syp * t) / s
     return 2.0 * t * (sx * yp - syp * t) / s
 
-# Runge-Kutta Method:
+# Runge-Kutta methods:
 # - https://en.wikipedia.org/wiki/List_of_Runge%E2%80%93Kutta_methods
 # RK2 for 2nd-order ODE:
 # - https://math.stackexchange.com/questions/1134540/second-order-runge-kutta-method-for-solving-second-order-ode
