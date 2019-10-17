@@ -9,6 +9,8 @@
 #                       , X is the range of x for integral
 # Space: O(1)
 #
+# Hill-Climbing method: faster than dp, but slower than Calculus of Variations
+#
 
 from sys import float_info
 from math import sqrt
