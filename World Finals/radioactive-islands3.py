@@ -3,7 +3,7 @@
 # Google Code Jam 2016 World Finals - Problem E. Radioactive Islands
 # https://code.google.com/codejam/contest/7234486/dashboard#s=p4
 #
-# Time:  O(IT * W * X/H), IT is the count of iterations for hill-climbing method, fail...
+# Time:  O(IT * W * X/H), IT is the count of iterations for hill-climbing method
 #                       , W is the interval window size
 #                       , H is the dx parameter for integral
 #                       , X is the range of x for integral
