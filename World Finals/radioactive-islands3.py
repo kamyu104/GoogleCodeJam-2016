@@ -68,7 +68,6 @@ def radioactive_islands():
     regions.extend(C)
     regions.sort()
     result = float("inf")
-    final_path = None
     for i in xrange(len(regions)-1):
         assert(PATH_LEN%2 == 1)
         mid, mid_y = (PATH_LEN-1)//2, (regions[i]+regions[i+1])/2.0
