@@ -7,6 +7,8 @@
 #              , H is the dx parameter for integral
 # Space: O(1)
 #
+# Calculus of Variations: the fastest one
+#
 
 from sys import float_info
 from math import sqrt
