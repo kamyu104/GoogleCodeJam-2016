@@ -82,11 +82,11 @@ def radioactive_islands():
 
 IT = 200  # tuned by experiment
 W = 5  # interval window size is 2W+1 for move of hill-climbing, ex. move (1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1), tuned by experiment
-H = 0.2  # tuned by experiment
-M = 0.005  # tuned by experiment
+H = 0.4  # tuned by experiment
 
 MIN_Y_BOUND, MAX_Y_BOUND = -13.0, 13.0  # verified by experiment
 X_START, X_END = -10.0, 10.0
 PATH_LEN = int((X_END-X_START)/H)+1
+M = H*W/IT  # verified by experiment
 for case in xrange(input()):
     print ("Case #%d: %s" % (case+1, radioactive_islands()))
