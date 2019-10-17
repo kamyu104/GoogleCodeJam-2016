@@ -63,7 +63,7 @@ def F(C, x, y, yp):
         dose += H * (1.0+D(C, x, y)) * sqrt(1.0 + yp**2)
         # applying RK1 (forward Euler) for 2nd-order ODE is enough,
         # besides, RK2 (explicit midpoint) is also fine,
-        # but RK4 is unstable (fine with H = 0.01 but other may not) for some cases due to large y'
+        # but RK4 is unstable (fine with H = 0.4 but other may not) for some cases due to large y'
         k1 = H * yp
         l1 = H * fp(C, x, y, yp)
         '''
@@ -101,7 +101,7 @@ def radioactive_islands():
         result = min(result, binary_search(A, B, C, slopes[i], slopes[i+1]))
     return result
 
-H = 0.01  # tuned by experiment
+H = 0.4  # tuned by experiment
 
 MIN_Y_BOUND, MAX_Y_BOUND = -13.0, 13.0  # verified by experiment
 X_START, X_END = -10.0, 10.0

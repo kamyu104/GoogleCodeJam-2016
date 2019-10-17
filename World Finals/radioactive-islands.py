@@ -3,8 +3,10 @@
 # Google Code Jam 2016 World Finals - Problem E. Radioactive Islands
 # https://code.google.com/codejam/contest/7234486/dashboard#s=p4
 #
-# Time:  O(P^2*G^2), P is the granularity parameter of y, G is the number of grids, pass in PyPy2 but Python2
-# Space: O(P*G)
+# Time:  O(G^2 * (X/H)^2), X is the const range of x for integral,
+#                        , G is the granularity parameter of y
+#                        , H is the dx parameter for integral
+# Space: O(G * (X/H))
 #
 # referenced from https://code.google.com/codejam/contest/scoreboard/do?cmd=GetSourceCode&contest=7234486&problem=5760632301289472&io_set_id=1&username=Gennady.Korotkevich
 #
@@ -38,8 +40,8 @@ def radioactive_islands():
         dp = new_dp
     return dp[int((B-MIN_Y_BOUND)/Y_STEP + 0.5)]
 
-GRANULARITY = 26  # tuned by experiment
-GRID_NUM = 40  # tuned by experiment
+G = 14  # tuned by experiment
+H = 0.4  # tuned by experiment
 
 MIN_Y_BOUND, MAX_Y_BOUND = -13.0, 13.0  # verified by experiment
 X_START, X_END = -10.0, 10.0
@@ -47,7 +49,8 @@ MIN_A, MAX_A = -10.0, 10.0
 MIN_C, MAX_C = -10.0, 10.0
 X_C = 0.0
 MAX_ABS_SLOPE = int((MAX_C-MIN_A)/(X_C-X_START))
-X_GRID_NUM, Y_GRID_NUM = GRID_NUM, GRANULARITY*GRID_NUM
+GRID_NUM = int((X_END-X_START)/H)
+X_GRID_NUM, Y_GRID_NUM = GRID_NUM, G*GRID_NUM
 X_STEP, Y_STEP = (X_END-X_START)/X_GRID_NUM, (MAX_Y_BOUND-MIN_Y_BOUND)/Y_GRID_NUM
 NEIGHBORS_NUM = MAX_ABS_SLOPE*Y_GRID_NUM//X_GRID_NUM
 for case in xrange(input()):
