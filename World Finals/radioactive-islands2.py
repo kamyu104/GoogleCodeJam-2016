@@ -80,7 +80,7 @@ def F(C, x, y, yp):
 
 def binary_search(A, B, C, left, right):
     dose = float("inf")
-    while abs(right-left) > EPSILON:
+    while abs(right-left) > float_info.epsilon:
         mid = (left+right)/2
         dose, y = F(C, X_START, A, mid)
         if y >= B:
@@ -101,7 +101,6 @@ def radioactive_islands():
     return result
 
 H = 0.01  # tuned by experiment
-EPSILON = 1e-4  # tuned by experiment
 
 MIN_Y_BOUND, MAX_Y_BOUND = -13.0, 13.0  # verified by experiment
 X_START, X_END = -10.0, 10.0
