@@ -3,7 +3,7 @@
 # Google Code Jam 2016 World Finals - Problem E. Radioactive Islands
 # https://code.google.com/codejam/contest/7234486/dashboard#s=p4
 #
-# Time:  O(X/H), X is the range of x for integral
+# Time:  O(X/H), X is the const range of x for integral
 #              , H is the dx parameter for integral
 # Space: O(1)
 #
