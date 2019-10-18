@@ -101,7 +101,7 @@ def radioactive_islands():
         result = min(result, binary_search(A, B, C, slopes[i], slopes[i+1]))
     return result
 
-H = 0.01  # tuned by experiment, works for RK1, RK2, RK4, besides, H = 0.4 only works for RK1
+H = 0.01  # tuned by experiment, works for RK1, RK2, RK4, besides, H = 0.5 only works for RK1
 
 MIN_Y_BOUND, MAX_Y_BOUND = -13.0, 13.0  # verified by experiment
 X_START, X_END = -10.0, 10.0

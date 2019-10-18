@@ -81,13 +81,13 @@ def radioactive_islands():
         result = min(result, hill_climbing(C, path))
     return result
 
-IT = 200  # tuned by experiment
-W = 5  # interval window size is 2W+1 for move of hill-climbing, ex. move (1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1), tuned by experiment
-H = 0.4  # tuned by experiment
+IT = 500  # tuned by experiment
+W = 2  # interval window size is 2W+1 for move of hill-climbing, ex. move (1, 2, 3, 2, 1), tuned by experiment
+H = 0.5  # tuned by experiment
 
 MIN_Y_BOUND, MAX_Y_BOUND = -13.0, 13.0  # verified by experiment
 X_START, X_END = -10.0, 10.0
 PATH_LEN = int((X_END-X_START)/H)+1
-M = H*W/IT  # verified by experiment
+M = (MAX_Y_BOUND-MIN_Y_BOUND)/(W**2*IT)  # every iteration each point can move [0, W^2] up or down in a triangular shape
 for case in xrange(input()):
     print ("Case #%d: %s" % (case+1, radioactive_islands()))
