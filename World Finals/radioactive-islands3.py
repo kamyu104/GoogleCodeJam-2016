@@ -50,16 +50,16 @@ def fi(C, path, i, m):
 
 def hill_climbing(C, path):
     for it in xrange(IT):
-        change = 0
+        is_changed = False
         for i in xrange(len(path)):
             up, down = fi(C, path, i, M), fi(C, path, i, -M)
             if up < down:
                 move(path, i, M)
-                change += 1
+                is_changed = True
             elif down < up:
                 move(path, i, -M)
-                change += 1
-        if change == 0:
+                is_changed = True
+        if not is_changed:
             break
     return F(C, path)
 
