@@ -12,7 +12,7 @@
 from collections import defaultdict
 
 def make_epsilon_reached_NFA(R, start, lookup, idx_set):  # Time: O(R), Space: O(R)
-    # find the nearest epsilon reachable digits from current position of regex,
+    # find the nearest epsilon reachable digit indices from current position of regex,
     # which are expressed as a state
     if start in lookup:
        return
