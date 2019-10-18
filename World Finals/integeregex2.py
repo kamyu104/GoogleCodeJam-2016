@@ -23,12 +23,12 @@ def make_epsilon_reached_NFA(R, start, lookup, idx_set):  # Time: O(R), Space: O
     if R[start] == ')':
         make_epsilon_reached_NFA(R, start+1, lookup, idx_set)  # ...)expr...
         return
-    if R[start]=='|':
+    if R[start] == '|':
         count, new_start = 0,  0
         for i in xrange(start+1, len(R)):
-            if R[i]=='(':
+            if R[i] == '(':
                 count += 1
-            elif R[i]==')':
+            elif R[i] == ')':
                 count -= 1
             if count == -1:
                 new_start = i
