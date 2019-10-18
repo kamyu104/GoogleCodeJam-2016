@@ -66,10 +66,11 @@ def make_epsilon_reached_NFA(R, start, lookup, idx_set):  # Time: O(R), Space: O
 
 def match_NFA(R, transitions, X):  # Time: O(RlogB) ~ O((2^R)logB), Space: O(R) ~ O(2^R), ps. NFA for exact string matching rather than range count is only Time: O(RlogB), Space: O(R)
     x_digits = map(int, list(str(X)))
-    count_state = {(True, True, frozenset(transitions[0])):1}
+    initial_state, final_state = 0, len(R)
+    count_state = {(True, True, frozenset(transitions[initial_state])):1}
     for index in xrange(len(x_digits)):  # O(logB) times
         new_count_state = defaultdict(int)
-        new_count_state[True, False, frozenset(transitions[0])] = 1
+        new_count_state[True, False, frozenset(transitions[initial_state])] = 1
         assert(len(count_state) <= len(transitions))  # for extreme case, it would be more than 10*R, worst to O(2^R)
         for (is_empty, is_prefix_of_x, states), count in count_state.iteritems():  # O(R) times on normal case
             for new_digit in xrange(10):
@@ -80,7 +81,7 @@ def match_NFA(R, transitions, X):  # Time: O(RlogB) ~ O((2^R)logB), Space: O(R) 
                 new_possible_states = set()
                 for start_state in states:  # find all possible states if new_digit was next in the string
                     for epsilon_state in transitions[start_state]:
-                        if epsilon_state != len(R) and R[epsilon_state] == str(new_digit):
+                        if epsilon_state != final_state and R[epsilon_state] == str(new_digit):
                             new_possible_states |= transitions[epsilon_state+1]
                 if not new_possible_states:
                     continue
@@ -88,7 +89,7 @@ def match_NFA(R, transitions, X):  # Time: O(RlogB) ~ O((2^R)logB), Space: O(R) 
         count_state = new_count_state
     count_match = 0
     for (_, _, states), count in count_state.iteritems():
-        if len(R) in states:
+        if final_state in states:
             count_match += count  # NFA matching may include empty string, which would be excluded after substraction
     return count_match
 
