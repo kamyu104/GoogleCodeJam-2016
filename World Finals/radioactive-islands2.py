@@ -81,7 +81,7 @@ def F(C, x, y, yp):
 
 def binary_search(A, B, C, left, right):
     dose = float("inf")
-    while abs(right-left) > float_info.epsilon:
+    while abs(right-left)/2.0 > float_info.epsilon:
         mid = (left+right)/2.0
         dose, y = F(C, X_START, A, mid)
         if y >= B:
