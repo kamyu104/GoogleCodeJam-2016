@@ -88,7 +88,7 @@ def match_NFA(R, transitions, X):  # Time: O(RlogB) ~ O((2^R)logB), Space: O(R) 
         count_state = new_count_state
     count_match = 0
     for (_, _, states), count in count_state.iteritems():
-        if states & transitions[len(R)]:
+        if len(R) in states:
             count_match += count  # NFA matching may include empty string, which would be excluded after substraction
     return count_match
 
