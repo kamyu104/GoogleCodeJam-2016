@@ -6,7 +6,7 @@
 # Time:  O(R^2 + RlogB) on average, worst: O(R^2 + (2^R)logB)
 # Space: O(R) on average, worst: O(2^R)
 #
-# another implementation of NFA 
+# another faster implementation of NFA 
 #
 
 from collections import defaultdict
