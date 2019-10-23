@@ -34,8 +34,7 @@ def F(C, path):
     return dose
 
 def dy(path, m, i, j):
-    m *= (1.0-abs(j-i)/W)
-    y = path[i][1] + m
+    m *= W-abs(j-i)
     if j in (0, len(path)-1):
         return 0.0  # no change on begin and end
     return m
@@ -81,8 +80,8 @@ def radioactive_islands():
         result = min(result, hill_climbing(C, path))
     return result
 
-IT = 500  # tuned by experiment
-W = 2  # interval window size is 2W+1 for move of hill-climbing, ex. move (1, 2, 3, 2, 1), tuned by experiment
+IT = 501  # tuned by experiment
+W = 5  # interval window size is 2W+1 for move of hill-climbing, ex. move (0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 0), tuned by experiment
 H = 0.5  # tuned by experiment
 
 MIN_Y_BOUND, MAX_Y_BOUND = -13.0, 13.0  # verified by experiment
