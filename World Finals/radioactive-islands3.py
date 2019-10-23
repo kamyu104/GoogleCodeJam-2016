@@ -88,6 +88,6 @@ H = 0.5  # tuned by experiment
 MIN_Y_BOUND, MAX_Y_BOUND = -13.0, 13.0  # verified by experiment
 X_START, X_END = -10.0, 10.0
 PATH_LEN = int((X_END-X_START)/H)+1
-M = (MAX_Y_BOUND-MIN_Y_BOUND)/(W**2*IT)  # every iteration each point can move [0, W^2] up or down in a triangular shape
+M = (MAX_Y_BOUND-MIN_Y_BOUND)/((W+1)**2*IT)  # every iteration each point can move [0, (W+1)^2] up or down in a triangular shape
 for case in xrange(input()):
     print ("Case #%d: %s" % (case+1, radioactive_islands()))
