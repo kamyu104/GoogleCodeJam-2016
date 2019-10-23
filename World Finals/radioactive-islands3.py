@@ -38,13 +38,13 @@ def dy(path, m, i, j):
         return 0.0  # no change on begin and end
     return m * (W-abs(j-i))
 
-def move(path, i, m):
-    for j in xrange(max(0, i-W), min(i+W+1, len(path))):
-        path[j][1] += dy(path, m, i, j)
-
 def fi(C, path, i, m):
     new_path = [[path[j][0], path[j][1]+dy(path, m, i, j)] for j in xrange(max(0, i-W), min(i+W+1, len(path)))]
     return F(C, new_path)
+
+def move(path, i, m):
+    for j in xrange(max(0, i-W), min(i+W+1, len(path))):
+        path[j][1] += dy(path, m, i, j)
 
 def hill_climbing(C, path):
     for it in xrange(IT):
