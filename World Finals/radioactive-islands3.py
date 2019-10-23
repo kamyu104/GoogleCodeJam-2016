@@ -34,10 +34,9 @@ def F(C, path):
     return dose
 
 def dy(path, m, i, j):
-    m *= W-abs(j-i)
     if j in (0, len(path)-1):
         return 0.0  # no change on begin and end
-    return m
+    return m * (W-abs(j-i))
 
 def move(path, i, m):
     for j in xrange(max(0, i-W), min(i+W+1, len(path))):
