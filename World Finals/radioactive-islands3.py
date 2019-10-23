@@ -80,7 +80,7 @@ def radioactive_islands():
     return result
 
 IT = 1600  # tuned by experiment
-W = 2  # interval window size is 2W+1 for move of hill-climbing, ex. move (0, 1, 2, 3, 4, 3, 2, 1, 0), tuned by experiment
+W = 2  # interval window size is 2W+1 for move of hill-climbing, ex. move (0, 1, 2, 1, 0), tuned by experiment
 H = 0.5  # tuned by experiment
 
 MIN_Y_BOUND, MAX_Y_BOUND = -13.0, 13.0  # verified by experiment
