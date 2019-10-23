@@ -47,7 +47,7 @@ def move(path, i, m):
         path[j][1] += dy(path, m, i, j)
 
 def hill_climbing(C, path):
-    for it in xrange(IT):
+    for _ in xrange(IT):
         is_changed = False
         for i in xrange(len(path)):
             up, down = fi(C, path, i, M), fi(C, path, i, -M)
