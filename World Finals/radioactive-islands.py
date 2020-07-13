@@ -40,7 +40,7 @@ def radioactive_islands():
         dp = new_dp
     return dp[int((B-MIN_Y_BOUND)/Y_STEP + 0.5)]
 
-G = 14  # tuned by experiment
+G = 16  # tuned by experiment
 H = 0.4  # tuned by experiment
 
 MIN_Y_BOUND, MAX_Y_BOUND = -13.0, 13.0  # verified by experiment
