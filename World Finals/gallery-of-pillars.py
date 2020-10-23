@@ -32,7 +32,7 @@ def gallery_of_pillars():
             result += MU[d] * count((N-1)//d, r_square//(d*d))
     return result
 
-def sieve_of_eratosthenes(n):  # Time: O(M), Space: O(M)
+def sieve_of_eratosthenes(n):  # Time: O(Mlog(logM)), Space: O(M)
     is_prime = [True]*n
     mu = [1]*n
     for i in xrange(2, n):
